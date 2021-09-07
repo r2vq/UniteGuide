@@ -3,12 +3,12 @@ package ca.keaneq.uniteguide.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ca.keaneq.uniteguide.api.PokeApi
-import ca.keaneq.uniteguide.api.model.PokemonRootResponse
+import ca.keaneq.uniteguide.repo.PokemonRepository
+import ca.keaneq.uniteguide.repo.model.Pokemon
 import kotlinx.coroutines.*
 
 class HomeViewModel(
-    private val api: PokeApi
+    private val repository: PokemonRepository
 ) : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
@@ -16,14 +16,14 @@ class HomeViewModel(
     }
 
     private var _pokemonJob: Job? = null
-    private val _pokemon = MutableLiveData<PokemonRootResponse>()
+    private val _pokemon = MutableLiveData<List<Pokemon>>()
 
     val text: LiveData<String> = _text
-    val pokemon: LiveData<PokemonRootResponse> = _pokemon
+    val pokemon: LiveData<List<Pokemon>> = _pokemon
 
     fun getPokemon() {
         _pokemonJob = CoroutineScope(Dispatchers.IO).launch {
-            val response = api.getPokemon()
+            val response = repository.getPokemon()
             withContext(Dispatchers.Main) {
                 _pokemon.postValue(response)
             }

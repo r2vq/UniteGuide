@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         homeViewModel.pokemon.observe(this) { response ->
-            response.pokemon.forEach { pokemon ->
+            response.forEach { pokemon ->
                 Log.d("Keane", pokemon.toString())
             }
         }

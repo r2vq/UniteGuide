@@ -2,6 +2,8 @@ package ca.keaneq.uniteguide.di
 
 import ca.keaneq.uniteguide.api.CacheControlInterceptor
 import ca.keaneq.uniteguide.api.PokeApi
+import ca.keaneq.uniteguide.repo.PokemonRepository
+import ca.keaneq.uniteguide.repo.impl.PokemonRepositoryImpl
 import ca.keaneq.uniteguide.ui.home.HomeViewModel
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
@@ -74,11 +76,19 @@ val AppModule = module {
         retrofit.create(PokeApi::class.java)
     }
 
-    viewModel {
+    single<PokemonRepository> {
         val api: PokeApi = get()
 
+        PokemonRepositoryImpl(
+            pokeApi = api
+        )
+    }
+
+    viewModel {
+        val repository: PokemonRepository = get()
+
         HomeViewModel(
-            api = api
+            repository = repository
         )
     }
 }
