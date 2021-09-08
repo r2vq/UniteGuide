@@ -60,6 +60,10 @@ dependencies {
     // Dependency Injection
     implementation("io.insert-koin:koin-android:3.1.2")
 
+    // Image Processing
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+
     // Network
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
