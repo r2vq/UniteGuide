@@ -5,27 +5,25 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ca.keaneq.uniteguide.repo.PokemonRepository
 import ca.keaneq.uniteguide.repo.model.Pokemon
+import ca.keaneq.uniteguide.ui.pokemonToListItemPokemon
+import ca.keaneq.uniteguide.ui.model.ListItem
 import kotlinx.coroutines.*
 
 class HomeViewModel(
     private val repository: PokemonRepository
 ) : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-
     private var _pokemonJob: Job? = null
-    private val _pokemon = MutableLiveData<List<Pokemon>>()
+    private val _data = MutableLiveData<List<ListItem>>()
 
-    val text: LiveData<String> = _text
-    val pokemon: LiveData<List<Pokemon>> = _pokemon
+    val data: LiveData<List<ListItem>> = _data
 
     fun getPokemon() {
         _pokemonJob = CoroutineScope(Dispatchers.IO).launch {
             val response = repository.getPokemon()
             withContext(Dispatchers.Main) {
-                _pokemon.postValue(response)
+                _data.postValue(
+                    response.map(Pokemon::pokemonToListItemPokemon)
+                )
             }
         }
     }

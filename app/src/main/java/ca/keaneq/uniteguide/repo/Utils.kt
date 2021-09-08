@@ -12,5 +12,6 @@ fun PokemonResponse.toPokemon(): Pokemon = Pokemon(
     difficulty = difficulty,
     style = style,
     role = role,
-    attackType = attackType
+    attackType = attackType,
+    image = image
 )

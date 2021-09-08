@@ -10,5 +10,6 @@ data class PokemonResponse(
     @Json(name = "difficulty") val difficulty: String,
     @Json(name = "style") val style: String,
     @Json(name = "role") val role: String,
-    @Json(name = "attack_type") val attackType: String
+    @Json(name = "attack_type") val attackType: String,
+    @Json(name = "image") val image: String?
 )

@@ -4,6 +4,8 @@ import ca.keaneq.uniteguide.api.CacheControlInterceptor
 import ca.keaneq.uniteguide.api.PokeApi
 import ca.keaneq.uniteguide.repo.PokemonRepository
 import ca.keaneq.uniteguide.repo.impl.PokemonRepositoryImpl
+import ca.keaneq.uniteguide.ui.adapter.ContentAdapter
+import ca.keaneq.uniteguide.ui.diff.ListItemDiffUtil
 import ca.keaneq.uniteguide.ui.home.HomeViewModel
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
@@ -81,6 +83,18 @@ val AppModule = module {
 
         PokemonRepositoryImpl(
             pokeApi = api
+        )
+    }
+
+    single {
+        ListItemDiffUtil()
+    }
+
+    factory {
+        val diffUtil: ListItemDiffUtil = get()
+
+        ContentAdapter(
+            diffCallback = diffUtil
         )
     }
 

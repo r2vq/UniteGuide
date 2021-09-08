@@ -6,5 +6,6 @@ data class Pokemon(
     val difficulty: String,
     val style: String,
     val role: String,
-    val attackType: String
+    val attackType: String,
+    val image: String?
 )

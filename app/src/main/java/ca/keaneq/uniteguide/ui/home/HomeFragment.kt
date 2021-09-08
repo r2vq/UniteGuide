@@ -1,19 +1,21 @@
 package ca.keaneq.uniteguide.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ca.keaneq.uniteguide.databinding.FragmentHomeBinding
+import ca.keaneq.uniteguide.ui.adapter.ContentAdapter
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModel()
+    private val listAdapter: ContentAdapter by inject()
     private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
@@ -28,22 +30,14 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
-    }
+        val rvPokemon: RecyclerView = binding.rvPokemon
+        rvPokemon.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        rvPokemon.adapter = listAdapter
 
-    override fun onResume() {
-        super.onResume()
-        homeViewModel.pokemon.observe(this) { response ->
-            response.forEach { pokemon ->
-                Log.d("Keane", pokemon.toString())
-            }
-        }
-
+        homeViewModel.data.observe(viewLifecycleOwner, listAdapter::submitList)
         homeViewModel.getPokemon()
+
+        return root
     }
 
     override fun onDestroyView() {
