@@ -8,6 +8,6 @@ interface PokeApi {
     suspend fun getPokemon(): PokemonRootResponse
 
     companion object {
-        const val BASE_URL = "https://r2vq.github.io/"
+        const val BASE_URL = "https://r2vq.github.io/unite/"
     }
 }
