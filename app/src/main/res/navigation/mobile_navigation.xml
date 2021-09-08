@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="ca.keaneq.uniteguide.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:name="ca.keaneq.uniteguide.ui.pokemonlist.PokemonListFragment"
+        android:label="@string/title_pokemon"
         tools:layout="@layout/fragment_home" />
 
     <fragment

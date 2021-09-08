@@ -1,4 +1,4 @@
-package ca.keaneq.uniteguide.ui.home
+package ca.keaneq.uniteguide.ui.pokemonlist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,9 +12,9 @@ import ca.keaneq.uniteguide.ui.adapter.ContentAdapter
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : Fragment() {
+class PokemonListFragment : Fragment() {
 
-    private val homeViewModel: HomeViewModel by viewModel()
+    private val pokemonListViewModel: PokemonListViewModel by viewModel()
     private val listAdapter: ContentAdapter by inject()
     private var _binding: FragmentHomeBinding? = null
 
@@ -34,8 +34,8 @@ class HomeFragment : Fragment() {
         rvPokemon.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvPokemon.adapter = listAdapter
 
-        homeViewModel.data.observe(viewLifecycleOwner, listAdapter::submitList)
-        homeViewModel.getPokemon()
+        pokemonListViewModel.data.observe(viewLifecycleOwner, listAdapter::submitList)
+        pokemonListViewModel.getPokemon()
 
         return root
     }

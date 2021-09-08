@@ -1,4 +1,4 @@
-package ca.keaneq.uniteguide.ui.home
+package ca.keaneq.uniteguide.ui.pokemonlist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +9,7 @@ import ca.keaneq.uniteguide.ui.pokemonToListItemPokemon
 import ca.keaneq.uniteguide.ui.model.ListItem
 import kotlinx.coroutines.*
 
-class HomeViewModel(
+class PokemonListViewModel(
     private val repository: PokemonRepository
 ) : ViewModel() {
     private var _pokemonJob: Job? = null
