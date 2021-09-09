@@ -23,4 +23,7 @@
     <string name="difficulty_novice">Novice</string>
     <string name="difficulty_intermediate">Intermediate</string>
     <string name="difficulty_expert">Expert</string>
+
+    <string name="header_evolutions">Evolutions</string>
+    <string name="evolves_at">Level %d</string>
 </resources>

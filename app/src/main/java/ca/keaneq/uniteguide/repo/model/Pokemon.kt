@@ -8,5 +8,6 @@ data class Pokemon(
     val role: String,
     val lane: String,
     val attackType: String,
-    val image: String?
+    val image: String?,
+    val evolutions: List<Evolution>
 )

@@ -1,5 +1,6 @@
 package ca.keaneq.uniteguide.ui.model
 
+import android.content.Context
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 
@@ -10,7 +11,9 @@ enum class ListItemType(
     TITLE(1),
     IMAGE(2),
     CHIPS(3),
-    FACTS(4)
+    FACTS(4),
+    SUBTITLE(5),
+    EVOLUTIONS(6),
 }
 
 sealed class ListItem {
@@ -107,4 +110,44 @@ data class ListItemFacts(
             && newItem.leftFact == leftFact
             && newItem.centerFact == centerFact
             && newItem.rightFact == rightFact
+}
+
+abstract class ListItemSubtitle : ListItem() {
+    override val type: ListItemType = ListItemType.SUBTITLE
+    abstract fun getText(context: Context): String
+}
+
+data class ListItemResSubtitle(
+    val id: String,
+    @StringRes private val stringRes: Int
+) : ListItemSubtitle() {
+    override fun getText(context: Context): String = context
+        .getString(stringRes)
+
+    override fun areItemsTheSame(newItem: ListItem): Boolean = newItem is ListItemResSubtitle
+            && newItem.id == id
+
+    override fun areContentsTheSame(newItem: ListItem): Boolean = newItem is ListItemResSubtitle
+            && newItem.id == id
+            && newItem.stringRes == stringRes
+}
+
+data class ListItemEvolutions(
+    val id: String,
+    val species: List<Species>
+) : ListItem() {
+    override val type: ListItemType = ListItemType.EVOLUTIONS
+
+    override fun areItemsTheSame(newItem: ListItem): Boolean = newItem is ListItemEvolutions
+            && newItem.id == id
+
+    override fun areContentsTheSame(newItem: ListItem): Boolean = newItem is ListItemEvolutions
+            && newItem.id == id
+            && newItem.species == species
+
+    data class Species(
+        val name: String,
+        val level: Int,
+        val image: String,
+    )
 }

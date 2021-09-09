@@ -45,6 +45,12 @@ class ContentAdapter(
             ListItemType.FACTS.id -> FactsViewHolder(
                 ListItemFactsBinding.inflate(layoutInflater, parent, false)
             )
+            ListItemType.SUBTITLE.id -> SubtitleViewHolder(
+                ListItemSubtitleBinding.inflate(layoutInflater, parent, false)
+            )
+            ListItemType.EVOLUTIONS.id -> EvolutionsViewHolder(
+                ListItemEvolutionsBinding.inflate(layoutInflater, parent, false)
+            )
             else -> UnknownViewHolder(
                 ListItemEmptyBinding.inflate(layoutInflater, parent, false)
             )

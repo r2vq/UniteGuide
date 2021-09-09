@@ -3,12 +3,11 @@ package ca.keaneq.uniteguide.ui.pokemondetail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import ca.keaneq.uniteguide.R
 import ca.keaneq.uniteguide.repo.PokemonRepository
+import ca.keaneq.uniteguide.ui.*
 import ca.keaneq.uniteguide.ui.model.ListItem
-import ca.keaneq.uniteguide.ui.pokemonToChips
-import ca.keaneq.uniteguide.ui.pokemonToFacts
-import ca.keaneq.uniteguide.ui.pokemonToImage
-import ca.keaneq.uniteguide.ui.pokemonToTitle
+import ca.keaneq.uniteguide.ui.model.ListItemResSubtitle
 import kotlinx.coroutines.*
 
 class PokemonDetailViewModel(
@@ -30,6 +29,8 @@ class PokemonDetailViewModel(
                             pokemonToImage("image"),
                             pokemonToChips("chips"),
                             pokemonToFacts("facts"),
+                            ListItemResSubtitle("evolution-subtitle", R.string.header_evolutions),
+                            pokemonToEvolution("evolution"),
                         )
                     }
                     ?.let(_data::postValue)

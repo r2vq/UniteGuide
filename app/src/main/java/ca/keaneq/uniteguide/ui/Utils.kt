@@ -4,6 +4,7 @@ import android.graphics.Color
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import ca.keaneq.uniteguide.R
+import ca.keaneq.uniteguide.repo.model.Evolution
 import ca.keaneq.uniteguide.repo.model.Pokemon
 import ca.keaneq.uniteguide.ui.model.*
 
@@ -72,6 +73,17 @@ fun Pokemon.pokemonToFacts(id: String): ListItemFacts = ListItemFacts(
     leftFact = getAttackType(),
     centerFact = getLane(),
     rightFact = getDifficulty()
+)
+
+fun Pokemon.pokemonToEvolution(id: String): ListItemEvolutions = ListItemEvolutions(
+    id = id,
+    species = evolutions.map(Evolution::evolutionToSpecies)
+)
+
+fun Evolution.evolutionToSpecies() = ListItemEvolutions.Species(
+    name = name,
+    level = level,
+    image = image
 )
 
 @ColorInt
