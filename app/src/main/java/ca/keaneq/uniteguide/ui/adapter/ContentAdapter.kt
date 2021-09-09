@@ -5,10 +5,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.ListAdapter
-import ca.keaneq.uniteguide.databinding.ListItemEmptyBinding
-import ca.keaneq.uniteguide.databinding.ListItemPhotoBinding
-import ca.keaneq.uniteguide.databinding.ListItemPokemonBinding
-import ca.keaneq.uniteguide.databinding.ListItemTitleBinding
+import ca.keaneq.uniteguide.databinding.*
 import ca.keaneq.uniteguide.lifecycle.Event
 import ca.keaneq.uniteguide.ui.diff.ListItemDiffUtil
 import ca.keaneq.uniteguide.ui.model.ListItem
@@ -41,6 +38,9 @@ class ContentAdapter(
             )
             ListItemType.IMAGE.id -> ImageViewHolder(
                 ListItemPhotoBinding.inflate(layoutInflater, parent, false)
+            )
+            ListItemType.CHIPS.id -> ChipsViewHolder(
+                ListItemChipsBinding.inflate(layoutInflater, parent, false)
             )
             else -> UnknownViewHolder(
                 ListItemEmptyBinding.inflate(layoutInflater, parent, false)

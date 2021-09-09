@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ca.keaneq.uniteguide.repo.PokemonRepository
 import ca.keaneq.uniteguide.ui.model.ListItem
+import ca.keaneq.uniteguide.ui.pokemonToChips
 import ca.keaneq.uniteguide.ui.pokemonToImage
 import ca.keaneq.uniteguide.ui.pokemonToTitle
 import kotlinx.coroutines.*
@@ -26,6 +27,7 @@ class PokemonDetailViewModel(
                         listOf(
                             pokemonToTitle("title"),
                             pokemonToImage("image"),
+                            pokemonToChips("chips"),
                         )
                     }
                     ?.let(_data::postValue)
