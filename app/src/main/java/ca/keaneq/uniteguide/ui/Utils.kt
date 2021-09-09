@@ -5,10 +5,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import ca.keaneq.uniteguide.R
 import ca.keaneq.uniteguide.repo.model.Pokemon
-import ca.keaneq.uniteguide.ui.model.ListItemChips
-import ca.keaneq.uniteguide.ui.model.ListItemImage
-import ca.keaneq.uniteguide.ui.model.ListItemPokemon
-import ca.keaneq.uniteguide.ui.model.ListItemTitle
+import ca.keaneq.uniteguide.ui.model.*
 
 const val COLOR_ATTACKER = "#f06f2a"
 const val COLOR_DEFENDER = "#74a03f"
@@ -19,6 +16,14 @@ const val COLOR_ALL_ROUNDER = "#5805d0"
 const val COLOR_MELEE = "#333333"
 const val COLOR_RANGED = "#5805d0"
 
+const val DIFFICULTY_NOVICE = "novice"
+const val DIFFICULTY_INTERMEDIATE = "intermediate"
+const val DIFFICULTY_EXPERT = "expert"
+
+const val LANE_TOP = "top"
+const val LANE_CENTER = "center"
+const val LANE_BOTTOM = "bottom"
+
 const val ROLE_ATTACKER = "attacker"
 const val ROLE_DEFENDER = "defender"
 const val ROLE_SPEEDSTER = "speedster"
@@ -27,6 +32,9 @@ const val ROLE_ALL_ROUNDER = "allrounder"
 
 const val STYLE_MELEE = "melee"
 const val STYLE_RANGED = "ranged"
+
+const val TYPE_PHYSICAL = "physical"
+const val TYPE_SPECIAL = "special"
 
 fun Pokemon.pokemonToListItemPokemon(): ListItemPokemon = ListItemPokemon(
     id = id,
@@ -57,6 +65,13 @@ fun Pokemon.pokemonToChips(id: String): ListItemChips = ListItemChips(
         backgroundColor = getStyleColor(),
         text = getStyleName()
     ),
+)
+
+fun Pokemon.pokemonToFacts(id: String): ListItemFacts = ListItemFacts(
+    id = id,
+    leftFact = getAttackType(),
+    centerFact = getLane(),
+    rightFact = getDifficulty()
 )
 
 @ColorInt
@@ -90,5 +105,28 @@ fun Pokemon.getStyleColor(): Int? = when (style) {
 fun Pokemon.getStyleName(): Int? = when (style) {
     STYLE_MELEE -> R.string.attack_style_melee
     STYLE_RANGED -> R.string.attack_style_ranged
+    else -> null
+}
+
+@StringRes
+fun Pokemon.getAttackType(): Int? = when (attackType) {
+    TYPE_PHYSICAL -> R.string.attack_type_physical
+    TYPE_SPECIAL -> R.string.attack_type_special
+    else -> null
+}
+
+@StringRes
+fun Pokemon.getLane(): Int? = when (lane) {
+    LANE_TOP -> R.string.lane_top
+    LANE_CENTER -> R.string.lane_center
+    LANE_BOTTOM -> R.string.lane_bottom
+    else -> null
+}
+
+@StringRes
+fun Pokemon.getDifficulty(): Int? = when (difficulty) {
+    DIFFICULTY_NOVICE -> R.string.difficulty_novice
+    DIFFICULTY_INTERMEDIATE -> R.string.difficulty_intermediate
+    DIFFICULTY_EXPERT -> R.string.difficulty_expert
     else -> null
 }

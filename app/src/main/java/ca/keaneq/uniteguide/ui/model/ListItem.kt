@@ -10,6 +10,7 @@ enum class ListItemType(
     TITLE(1),
     IMAGE(2),
     CHIPS(3),
+    FACTS(4)
 }
 
 sealed class ListItem {
@@ -88,4 +89,22 @@ data class ListItemChips(
         fun areContentsTheSame(newItem: Chip): Boolean = newItem.backgroundColor == backgroundColor
                 && newItem.text == text
     }
+}
+
+data class ListItemFacts(
+    val id: String,
+    @StringRes val leftFact: Int?,
+    @StringRes val centerFact: Int?,
+    @StringRes val rightFact: Int?
+) : ListItem() {
+    override val type: ListItemType = ListItemType.FACTS
+
+    override fun areItemsTheSame(newItem: ListItem): Boolean = newItem is ListItemFacts
+            && newItem.id == id
+
+    override fun areContentsTheSame(newItem: ListItem): Boolean = newItem is ListItemFacts
+            && newItem.id == id
+            && newItem.leftFact == leftFact
+            && newItem.centerFact == centerFact
+            && newItem.rightFact == rightFact
 }

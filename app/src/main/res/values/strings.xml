@@ -12,4 +12,15 @@
 
     <string name="attack_style_ranged">Ranged</string>
     <string name="attack_style_melee">Melee</string>
+
+    <string name="attack_type_physical">Physical</string>
+    <string name="attack_type_special">Special</string>
+
+    <string name="lane_top">Top</string>
+    <string name="lane_center">Center</string>
+    <string name="lane_bottom">Bottom</string>
+
+    <string name="difficulty_novice">Novice</string>
+    <string name="difficulty_intermediate">Intermediate</string>
+    <string name="difficulty_expert">Expert</string>
 </resources>

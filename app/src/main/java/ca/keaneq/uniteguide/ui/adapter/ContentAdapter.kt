@@ -42,6 +42,9 @@ class ContentAdapter(
             ListItemType.CHIPS.id -> ChipsViewHolder(
                 ListItemChipsBinding.inflate(layoutInflater, parent, false)
             )
+            ListItemType.FACTS.id -> FactsViewHolder(
+                ListItemFactsBinding.inflate(layoutInflater, parent, false)
+            )
             else -> UnknownViewHolder(
                 ListItemEmptyBinding.inflate(layoutInflater, parent, false)
             )
