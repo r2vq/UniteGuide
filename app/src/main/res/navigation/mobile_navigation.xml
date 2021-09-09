@@ -12,6 +12,17 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_pokemon_detail"
+        android:name="ca.keaneq.uniteguide.ui.pokemondetail.PokemonDetailFragment"
+        android:label="@string/title_pokemon"
+        tools:layout="@layout/fragment_home">
+        <argument
+            android:name="pokemonId"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
         android:id="@+id/navigation_dashboard"
         android:name="ca.keaneq.uniteguide.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"

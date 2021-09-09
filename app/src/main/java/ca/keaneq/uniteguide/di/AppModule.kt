@@ -6,6 +6,7 @@ import ca.keaneq.uniteguide.repo.PokemonRepository
 import ca.keaneq.uniteguide.repo.impl.PokemonRepositoryImpl
 import ca.keaneq.uniteguide.ui.adapter.ContentAdapter
 import ca.keaneq.uniteguide.ui.diff.ListItemDiffUtil
+import ca.keaneq.uniteguide.ui.pokemondetail.PokemonDetailViewModel
 import ca.keaneq.uniteguide.ui.pokemonlist.PokemonListViewModel
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
@@ -95,6 +96,14 @@ val AppModule = module {
 
         ContentAdapter(
             diffCallback = diffUtil
+        )
+    }
+
+    viewModel {
+        val repository: PokemonRepository = get()
+
+        PokemonDetailViewModel(
+            repository = repository
         )
     }
 

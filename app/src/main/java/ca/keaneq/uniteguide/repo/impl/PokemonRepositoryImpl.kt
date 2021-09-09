@@ -14,4 +14,10 @@ class PokemonRepositoryImpl(
         .getPokemon()
         .pokemon
         .map(PokemonResponse::toPokemon)
+
+    override suspend fun getPokemon(id: String): Pokemon? = pokeApi
+        .getPokemon()
+        .pokemon
+        .firstOrNull { it.id == id }
+        ?.let(PokemonResponse::toPokemon)
 }
