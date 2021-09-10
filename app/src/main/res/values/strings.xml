@@ -13,8 +13,8 @@
     <string name="attack_style_ranged">Ranged</string>
     <string name="attack_style_melee">Melee</string>
 
-    <string name="attack_type_physical">Physical</string>
-    <string name="attack_type_special">Special</string>
+    <string name="attack_type_physical">Attack</string>
+    <string name="attack_type_special">Sp. Atk</string>
 
     <string name="lane_top">Top</string>
     <string name="lane_center">Center</string>
