@@ -16,6 +16,8 @@ enum class ListItemType(
     EVOLUTIONS(6),
     MOVE_SINGLE(7),
     MOVE_SINGLE_COMPRESSED(8),
+    MOVE_ABILITY(9),
+    MOVE_ABILITY_COMPRESSED(10),
 }
 
 sealed class ListItem {
@@ -203,4 +205,62 @@ data class ListItemMoveSingleCompressed(
         name = name,
         description = description
     )
+}
+
+data class ListItemMoveAbility(
+    val id: String,
+    val image: String,
+    val name: String,
+    val description: String
+) : ListItem() {
+    override val type: ListItemType = ListItemType.MOVE_ABILITY
+
+    override fun areItemsTheSame(newItem: ListItem): Boolean =
+        newItem is ListItemMoveAbility
+                && newItem.id == id
+
+    override fun areContentsTheSame(newItem: ListItem): Boolean =
+        newItem is ListItemMoveAbility
+                && newItem.id == id
+                && newItem.image == image
+                && newItem.name == name
+                && newItem.description == description
+
+    fun compress(): ListItemMoveAbilityCompressed {
+        return ListItemMoveAbilityCompressed(
+            id = id,
+            image = image,
+            name = name,
+            description = description
+        )
+    }
+}
+
+data class ListItemMoveAbilityCompressed(
+    val id: String,
+    val image: String,
+    val name: String,
+    val description: String
+) : ListItem() {
+    override val type: ListItemType = ListItemType.MOVE_ABILITY_COMPRESSED
+
+    override fun areItemsTheSame(newItem: ListItem): Boolean =
+        newItem is ListItemMoveAbilityCompressed
+                && newItem.id == id
+
+    override fun areContentsTheSame(newItem: ListItem): Boolean =
+        newItem is ListItemMoveAbilityCompressed
+                && newItem.id == id
+                && newItem.image == image
+                && newItem.name == name
+                && newItem.description == description
+
+    fun expand(): ListItemMoveAbility {
+        return ListItemMoveAbility(
+            id = id,
+            image = image,
+            name = name,
+            description = description
+        )
+    }
 }

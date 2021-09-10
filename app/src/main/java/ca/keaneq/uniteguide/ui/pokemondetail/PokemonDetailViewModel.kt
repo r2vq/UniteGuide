@@ -7,10 +7,7 @@ import ca.keaneq.uniteguide.R
 import ca.keaneq.uniteguide.lifecycle.Event
 import ca.keaneq.uniteguide.repo.PokemonRepository
 import ca.keaneq.uniteguide.ui.*
-import ca.keaneq.uniteguide.ui.model.ListItem
-import ca.keaneq.uniteguide.ui.model.ListItemMoveSingle
-import ca.keaneq.uniteguide.ui.model.ListItemMoveSingleCompressed
-import ca.keaneq.uniteguide.ui.model.ListItemResSubtitle
+import ca.keaneq.uniteguide.ui.model.*
 import kotlinx.coroutines.*
 
 class PokemonDetailViewModel(
@@ -25,21 +22,29 @@ class PokemonDetailViewModel(
         _pokemonJob = CoroutineScope(Dispatchers.IO).launch {
             val response = repository.getPokemon(id)
             withContext(Dispatchers.Main) {
-                response
-                    ?.run {
-                        listOf(
-                            pokemonToTitle("title"),
-                            pokemonToImage("image"),
-                            pokemonToChips("chips"),
-                            pokemonToFacts("facts"),
-                            ListItemResSubtitle("evolution-subtitle", R.string.header_evolutions),
-                            pokemonToEvolution("evolution"),
-                            ListItemResSubtitle("moveset-subtitle", R.string.header_moveset),
-                            pokemonToUnite("moveset-unite"),
-                            pokemonToPassive("moveset-passive"),
-                            pokemonToBasic("moveset-basic"),
+                response?.run {
+                    emptySequence<ListItem>()
+                        .plus(pokemonToTitle("title"))
+                        .plus(pokemonToImage("image"))
+                        .plus(pokemonToChips("chips"))
+                        .plus(pokemonToFacts("facts"))
+                        .plus(
+                            ListItemResSubtitle("evolution-subtitle", R.string.header_evolutions)
                         )
-                    }
+                        .plus(pokemonToEvolution("evolution"))
+                        .plus(
+                            ListItemResSubtitle("moveset-subtitle", R.string.header_moveset)
+                        )
+                        .plus(
+                            moveset.mapIndexed { index, moveset ->
+                                moveset.pokemonToMoveAbility("moveset-basic-$index")
+                            }
+                        )
+                        .plus(pokemonToUnite("moveset-unite"))
+                        .plus(pokemonToPassive("moveset-passive"))
+                        .plus(pokemonToBasic("moveset-basic"))
+                        .toList()
+                }
                     ?.let(_data::postValue)
             }
         }
@@ -50,8 +55,10 @@ class PokemonDetailViewModel(
         _data.value?.let { items ->
             items.map { listItem ->
                 when {
-                    listItem is ListItemMoveSingle && listItem.id == id -> listItem.compress()
+                    listItem is ListItemMoveAbilityCompressed && listItem.id == id -> listItem.expand()
+                    listItem is ListItemMoveAbility && listItem.id == id -> listItem.compress()
                     listItem is ListItemMoveSingleCompressed && listItem.id == id -> listItem.expand()
+                    listItem is ListItemMoveSingle && listItem.id == id -> listItem.compress()
                     else -> listItem
                 }
             }

@@ -1,11 +1,7 @@
 package ca.keaneq.uniteguide.repo
 
-import ca.keaneq.uniteguide.api.model.PokemonEvolutionResponse
-import ca.keaneq.uniteguide.api.model.PokemonResponse
-import ca.keaneq.uniteguide.api.model.PokemonSingleMoveResponse
-import ca.keaneq.uniteguide.repo.model.Evolution
-import ca.keaneq.uniteguide.repo.model.Pokemon
-import ca.keaneq.uniteguide.repo.model.SingleMove
+import ca.keaneq.uniteguide.api.model.*
+import ca.keaneq.uniteguide.repo.model.*
 
 /**
  * Util to convert from PokemonResponse to Pokemon.
@@ -20,6 +16,7 @@ fun PokemonResponse.toPokemon(): Pokemon = Pokemon(
     attackType = attackType,
     image = image,
     evolutions = evolutions.map(PokemonEvolutionResponse::toEvolution),
+    moveset = moveset.map(PokemonMovesetResponse::toMoveset),
     passive = passive.toSingleMove(),
     basic = basic.toSingleMove(),
     unite = unite.toSingleMove()
@@ -38,4 +35,16 @@ fun PokemonSingleMoveResponse.toSingleMove(): SingleMove = SingleMove(
     name = name,
     image = image,
     description = description,
+)
+
+fun PokemonMovesetResponse.toMoveset(): Moveset = Moveset(
+    basic = basic.toBasic(),
+)
+
+fun PokemonMovesetBasicResponse.toBasic(): BasicMove = BasicMove(
+    name = name,
+    cooldown = cooldown,
+    description = description,
+    upgrade = upgrade,
+    image = image,
 )

@@ -5,6 +5,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import ca.keaneq.uniteguide.R
 import ca.keaneq.uniteguide.repo.model.Evolution
+import ca.keaneq.uniteguide.repo.model.Moveset
 import ca.keaneq.uniteguide.repo.model.Pokemon
 import ca.keaneq.uniteguide.ui.model.*
 
@@ -84,6 +85,13 @@ fun Evolution.evolutionToSpecies() = ListItemEvolutions.Species(
     name = name,
     level = level,
     image = image
+)
+
+fun Moveset.pokemonToMoveAbility(id: String) = ListItemMoveAbilityCompressed(
+    id = id,
+    image = basic.image,
+    name = basic.name,
+    description = basic.description,
 )
 
 fun Pokemon.pokemonToPassive(id: String) = ListItemMoveSingleCompressed(
