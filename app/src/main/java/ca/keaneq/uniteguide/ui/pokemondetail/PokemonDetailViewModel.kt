@@ -31,6 +31,8 @@ class PokemonDetailViewModel(
                             pokemonToFacts("facts"),
                             ListItemResSubtitle("evolution-subtitle", R.string.header_evolutions),
                             pokemonToEvolution("evolution"),
+                            ListItemResSubtitle("moveset-subtitle", R.string.header_moveset),
+                            pokemonToPassive("moveset-passive"),
                         )
                     }
                     ?.let(_data::postValue)

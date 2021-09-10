@@ -51,6 +51,9 @@ class ContentAdapter(
             ListItemType.EVOLUTIONS.id -> EvolutionsViewHolder(
                 ListItemEvolutionsBinding.inflate(layoutInflater, parent, false)
             )
+            ListItemType.MOVE_SINGLE.id -> MoveSingleViewHolder(
+                ListItemMoveSingleBinding.inflate(layoutInflater, parent, false)
+            )
             else -> UnknownViewHolder(
                 ListItemEmptyBinding.inflate(layoutInflater, parent, false)
             )

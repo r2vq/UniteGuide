@@ -26,4 +26,6 @@
 
     <string name="header_evolutions">Evolutions</string>
     <string name="evolves_at">Level %d</string>
+
+    <string name="header_moveset">Moveset</string>
 </resources>

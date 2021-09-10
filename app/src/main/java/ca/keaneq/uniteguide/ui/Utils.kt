@@ -86,6 +86,13 @@ fun Evolution.evolutionToSpecies() = ListItemEvolutions.Species(
     image = image
 )
 
+fun Pokemon.pokemonToPassive(id: String) = ListItemMoveSingle(
+    id = id,
+    image = passive.image,
+    name = passive.name,
+    description = passive.description
+)
+
 @ColorInt
 fun Pokemon.getRoleColor(): Int? = when (role) {
     ROLE_ATTACKER -> COLOR_ATTACKER

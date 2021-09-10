@@ -14,6 +14,7 @@ enum class ListItemType(
     FACTS(4),
     SUBTITLE(5),
     EVOLUTIONS(6),
+    MOVE_SINGLE(7),
 }
 
 sealed class ListItem {
@@ -150,4 +151,22 @@ data class ListItemEvolutions(
         val level: Int,
         val image: String,
     )
+}
+
+data class ListItemMoveSingle(
+    val id: String,
+    val image: String,
+    val name: String,
+    val description: String
+) : ListItem() {
+    override val type: ListItemType = ListItemType.MOVE_SINGLE
+
+    override fun areItemsTheSame(newItem: ListItem): Boolean = newItem is ListItemMoveSingle
+            && newItem.id == id
+
+    override fun areContentsTheSame(newItem: ListItem): Boolean = newItem is ListItemMoveSingle
+            && newItem.id == id
+            && newItem.image == image
+            && newItem.name == name
+            && newItem.description == description
 }

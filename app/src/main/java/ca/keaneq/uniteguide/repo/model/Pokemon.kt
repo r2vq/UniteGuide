@@ -9,5 +9,6 @@ data class Pokemon(
     val lane: String,
     val attackType: String,
     val image: String?,
-    val evolutions: List<Evolution>
+    val evolutions: List<Evolution>,
+    val passive: Passive
 )
