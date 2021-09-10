@@ -1,10 +1,10 @@
 package ca.keaneq.uniteguide.repo
 
 import ca.keaneq.uniteguide.api.model.PokemonEvolutionResponse
-import ca.keaneq.uniteguide.api.model.PokemonPassiveResponse
+import ca.keaneq.uniteguide.api.model.PokemonSingleMoveResponse
 import ca.keaneq.uniteguide.api.model.PokemonResponse
 import ca.keaneq.uniteguide.repo.model.Evolution
-import ca.keaneq.uniteguide.repo.model.Passive
+import ca.keaneq.uniteguide.repo.model.SingleMove
 import ca.keaneq.uniteguide.repo.model.Pokemon
 
 /**
@@ -20,7 +20,8 @@ fun PokemonResponse.toPokemon(): Pokemon = Pokemon(
     attackType = attackType,
     image = image,
     evolutions = evolutions.map(PokemonEvolutionResponse::toEvolution),
-    passive = passive.toPassive(),
+    passive = passive.toSingleMove(),
+    unite = unite.toSingleMove()
 )
 
 /**
@@ -32,7 +33,7 @@ fun PokemonEvolutionResponse.toEvolution(): Evolution = Evolution(
     image = image
 )
 
-fun PokemonPassiveResponse.toPassive(): Passive = Passive(
+fun PokemonSingleMoveResponse.toSingleMove(): SingleMove = SingleMove(
     name = name,
     image = image,
     description = description,

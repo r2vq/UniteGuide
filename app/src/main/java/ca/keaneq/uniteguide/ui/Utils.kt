@@ -93,6 +93,13 @@ fun Pokemon.pokemonToPassive(id: String) = ListItemMoveSingle(
     description = passive.description
 )
 
+fun Pokemon.pokemonToUnite(id: String) = ListItemMoveSingle(
+    id = id,
+    image = unite.image,
+    name = unite.name,
+    description = unite.description
+)
+
 @ColorInt
 fun Pokemon.getRoleColor(): Int? = when (role) {
     ROLE_ATTACKER -> COLOR_ATTACKER

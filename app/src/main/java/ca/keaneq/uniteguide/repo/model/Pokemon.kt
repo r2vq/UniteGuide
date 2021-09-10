@@ -10,5 +10,6 @@ data class Pokemon(
     val attackType: String,
     val image: String?,
     val evolutions: List<Evolution>,
-    val passive: Passive
+    val passive: SingleMove,
+    val unite: SingleMove,
 )

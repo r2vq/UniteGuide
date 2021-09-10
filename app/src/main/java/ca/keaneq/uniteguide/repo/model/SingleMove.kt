@@ -1,6 +1,6 @@
 package ca.keaneq.uniteguide.repo.model
 
-data class Passive(
+data class SingleMove(
     val name: String,
     val image: String,
     val description: String
