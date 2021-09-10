@@ -100,6 +100,13 @@ fun Pokemon.pokemonToUnite(id: String) = ListItemMoveSingle(
     description = unite.description
 )
 
+fun Pokemon.pokemonToBasic(id: String) = ListItemMoveSingle(
+    id = id,
+    image = basic.image,
+    name = basic.name,
+    description = basic.description
+)
+
 @ColorInt
 fun Pokemon.getRoleColor(): Int? = when (role) {
     ROLE_ATTACKER -> COLOR_ATTACKER

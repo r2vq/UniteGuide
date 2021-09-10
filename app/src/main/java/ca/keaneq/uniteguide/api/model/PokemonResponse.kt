@@ -15,5 +15,6 @@ data class PokemonResponse(
     @Json(name = "image") val image: String?,
     @Json(name = "evolutions") val evolutions: List<PokemonEvolutionResponse>,
     @Json(name = "passive") val passive: PokemonSingleMoveResponse,
+    @Json(name = "basic") val basic: PokemonSingleMoveResponse,
     @Json(name = "unite") val unite: PokemonSingleMoveResponse
 )

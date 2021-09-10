@@ -34,6 +34,7 @@ class PokemonDetailViewModel(
                             ListItemResSubtitle("moveset-subtitle", R.string.header_moveset),
                             pokemonToUnite("moveset-unite"),
                             pokemonToPassive("moveset-passive"),
+                            pokemonToBasic("moveset-basic"),
                         )
                     }
                     ?.let(_data::postValue)

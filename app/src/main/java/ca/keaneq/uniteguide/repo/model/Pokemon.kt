@@ -11,5 +11,6 @@ data class Pokemon(
     val image: String?,
     val evolutions: List<Evolution>,
     val passive: SingleMove,
+    val basic: SingleMove,
     val unite: SingleMove,
 )
