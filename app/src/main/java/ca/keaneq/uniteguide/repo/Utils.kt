@@ -39,6 +39,7 @@ fun PokemonSingleMoveResponse.toSingleMove(): SingleMove = SingleMove(
 
 fun PokemonMovesetResponse.toMoveset(): Moveset = Moveset(
     basic = basic.toBasic(),
+    upgrades = upgrades.map(PokemonMovesetUpgradesResponse::toUpgrade)
 )
 
 fun PokemonMovesetBasicResponse.toBasic(): BasicMove = BasicMove(
@@ -46,5 +47,12 @@ fun PokemonMovesetBasicResponse.toBasic(): BasicMove = BasicMove(
     cooldown = cooldown,
     description = description,
     upgrade = upgrade,
+    image = image,
+)
+
+fun PokemonMovesetUpgradesResponse.toUpgrade(): UpgradeMove = UpgradeMove(
+    name = name,
+    cooldown = cooldown,
+    description = description,
     image = image,
 )

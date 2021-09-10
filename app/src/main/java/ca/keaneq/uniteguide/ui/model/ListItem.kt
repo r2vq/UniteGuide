@@ -211,7 +211,17 @@ data class ListItemMoveAbility(
     val id: String,
     val image: String,
     val name: String,
-    val description: String
+    val description: String,
+    val cooldown: String,
+    val upgrade: Int,
+    val upgrade1Name: String?,
+    val upgrade1Description: String?,
+    val upgrade1Cooldown: String?,
+    val upgrade1Image: String?,
+    val upgrade2Name: String?,
+    val upgrade2Description: String?,
+    val upgrade2Cooldown: String?,
+    val upgrade2Image: String?,
 ) : ListItem() {
     override val type: ListItemType = ListItemType.MOVE_ABILITY
 
@@ -225,22 +235,50 @@ data class ListItemMoveAbility(
                 && newItem.image == image
                 && newItem.name == name
                 && newItem.description == description
+                && newItem.cooldown == cooldown
+                && newItem.upgrade == upgrade
+                && newItem.upgrade1Name == upgrade1Name
+                && newItem.upgrade1Description == upgrade1Description
+                && newItem.upgrade1Cooldown == upgrade1Cooldown
+                && newItem.upgrade1Image == upgrade1Image
+                && newItem.upgrade2Name == upgrade2Name
+                && newItem.upgrade2Description == upgrade2Description
+                && newItem.upgrade2Cooldown == upgrade2Cooldown
+                && newItem.upgrade2Image == upgrade2Image
 
-    fun compress(): ListItemMoveAbilityCompressed {
-        return ListItemMoveAbilityCompressed(
-            id = id,
-            image = image,
-            name = name,
-            description = description
-        )
-    }
+    fun compress(): ListItemMoveAbilityCompressed = ListItemMoveAbilityCompressed(
+        id = id,
+        image = image,
+        name = name,
+        description = description,
+        cooldown = cooldown,
+        upgrade = upgrade,
+        upgrade1Name = upgrade1Name,
+        upgrade1Description = upgrade1Description,
+        upgrade1Cooldown = upgrade1Cooldown,
+        upgrade1Image = upgrade1Image,
+        upgrade2Name = upgrade2Name,
+        upgrade2Description = upgrade2Description,
+        upgrade2Cooldown = upgrade2Cooldown,
+        upgrade2Image = upgrade2Image,
+    )
 }
 
 data class ListItemMoveAbilityCompressed(
     val id: String,
     val image: String,
     val name: String,
-    val description: String
+    val description: String,
+    val cooldown: String,
+    val upgrade: Int,
+    val upgrade1Name: String?,
+    val upgrade1Description: String?,
+    val upgrade1Cooldown: String?,
+    val upgrade1Image: String?,
+    val upgrade2Name: String?,
+    val upgrade2Description: String?,
+    val upgrade2Cooldown: String?,
+    val upgrade2Image: String?,
 ) : ListItem() {
     override val type: ListItemType = ListItemType.MOVE_ABILITY_COMPRESSED
 
@@ -254,13 +292,31 @@ data class ListItemMoveAbilityCompressed(
                 && newItem.image == image
                 && newItem.name == name
                 && newItem.description == description
+                && newItem.cooldown == cooldown
+                && newItem.upgrade == upgrade
+                && newItem.upgrade1Name == upgrade1Name
+                && newItem.upgrade1Description == upgrade1Description
+                && newItem.upgrade1Cooldown == upgrade1Cooldown
+                && newItem.upgrade1Image == upgrade1Image
+                && newItem.upgrade2Name == upgrade2Name
+                && newItem.upgrade2Description == upgrade2Description
+                && newItem.upgrade2Cooldown == upgrade2Cooldown
+                && newItem.upgrade2Image == upgrade2Image
 
-    fun expand(): ListItemMoveAbility {
-        return ListItemMoveAbility(
-            id = id,
-            image = image,
-            name = name,
-            description = description
-        )
-    }
+    fun expand(): ListItemMoveAbility = ListItemMoveAbility(
+        id = id,
+        image = image,
+        name = name,
+        description = description,
+        cooldown = cooldown,
+        upgrade = upgrade,
+        upgrade1Name = upgrade1Name,
+        upgrade1Description = upgrade1Description,
+        upgrade1Cooldown = upgrade1Cooldown,
+        upgrade1Image = upgrade1Image,
+        upgrade2Name = upgrade2Name,
+        upgrade2Description = upgrade2Description,
+        upgrade2Cooldown = upgrade2Cooldown,
+        upgrade2Image = upgrade2Image,
+    )
 }

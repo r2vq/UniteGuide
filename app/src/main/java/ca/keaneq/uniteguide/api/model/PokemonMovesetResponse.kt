@@ -5,5 +5,6 @@ import com.squareup.moshi.Json
 
 @Keep
 data class PokemonMovesetResponse(
-    @Json(name = "basic") val basic: PokemonMovesetBasicResponse
+    @Json(name = "basic") val basic: PokemonMovesetBasicResponse,
+    @Json(name = "upgrades") val upgrades: List<PokemonMovesetUpgradesResponse>,
 )

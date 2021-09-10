@@ -87,12 +87,26 @@ fun Evolution.evolutionToSpecies() = ListItemEvolutions.Species(
     image = image
 )
 
-fun Moveset.pokemonToMoveAbility(id: String) = ListItemMoveAbilityCompressed(
-    id = id,
-    image = basic.image,
-    name = basic.name,
-    description = basic.description,
-)
+fun Moveset.pokemonToMoveAbility(id: String): ListItemMoveAbilityCompressed {
+    val upgrade1 = upgrades.getOrNull(0)
+    val upgrade2 = upgrades.getOrNull(1)
+    return ListItemMoveAbilityCompressed(
+        id = id,
+        image = basic.image,
+        name = basic.name,
+        description = basic.description,
+        cooldown = basic.cooldown,
+        upgrade = basic.upgrade,
+        upgrade1Name = upgrade1?.name,
+        upgrade1Description = upgrade1?.description,
+        upgrade1Cooldown = upgrade1?.cooldown,
+        upgrade1Image = upgrade1?.image,
+        upgrade2Name = upgrade2?.name,
+        upgrade2Description = upgrade2?.description,
+        upgrade2Cooldown = upgrade2?.cooldown,
+        upgrade2Image = upgrade2?.image,
+    )
+}
 
 fun Pokemon.pokemonToPassive(id: String) = ListItemMoveSingleCompressed(
     id = id,
