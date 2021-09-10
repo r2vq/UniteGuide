@@ -1,12 +1,12 @@
 package ca.keaneq.uniteguide.ui.viewholder
 
-import ca.keaneq.uniteguide.databinding.ListItemMoveSingleBinding
+import ca.keaneq.uniteguide.databinding.ListItemMoveSingleCompressedBinding
 import ca.keaneq.uniteguide.ui.model.ListItem
-import ca.keaneq.uniteguide.ui.model.ListItemMoveSingle
+import ca.keaneq.uniteguide.ui.model.ListItemMoveSingleCompressed
 import com.bumptech.glide.Glide
 
-class MoveSingleViewHolder(
-    private val binding: ListItemMoveSingleBinding,
+class MoveSingleCompressedViewHolder(
+    private val binding: ListItemMoveSingleCompressedBinding,
     private val onClick: (String) -> Unit,
 ) : BindableViewHolder<ListItem>(binding.root) {
 
@@ -19,10 +19,9 @@ class MoveSingleViewHolder(
     }
 
     override fun bind(item: ListItem) {
-        val moveItem = item as? ListItemMoveSingle
+        val moveItem = item as? ListItemMoveSingleCompressed
         id = moveItem?.id
         binding.tvMoveName.text = moveItem?.name ?: ""
-        binding.tvMoveDescription.text = moveItem?.description ?: ""
         moveItem?.image
             ?.let { image ->
                 Glide.with(binding.root)

@@ -36,6 +36,8 @@ class PokemonDetailFragment : Fragment() {
         rvPokemon.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvPokemon.adapter = listAdapter
 
+        listAdapter.onClick.observe(viewLifecycleOwner, pokemonListViewModel::onItemClick)
+
         pokemonListViewModel.data.observe(viewLifecycleOwner, listAdapter::submitList)
         pokemonListViewModel.getPokemon(args.pokemonId)
 

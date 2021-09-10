@@ -86,21 +86,21 @@ fun Evolution.evolutionToSpecies() = ListItemEvolutions.Species(
     image = image
 )
 
-fun Pokemon.pokemonToPassive(id: String) = ListItemMoveSingle(
+fun Pokemon.pokemonToPassive(id: String) = ListItemMoveSingleCompressed(
     id = id,
     image = passive.image,
     name = passive.name,
     description = passive.description
 )
 
-fun Pokemon.pokemonToUnite(id: String) = ListItemMoveSingle(
+fun Pokemon.pokemonToUnite(id: String) = ListItemMoveSingleCompressed(
     id = id,
     image = unite.image,
     name = unite.name,
     description = unite.description
 )
 
-fun Pokemon.pokemonToBasic(id: String) = ListItemMoveSingle(
+fun Pokemon.pokemonToBasic(id: String) = ListItemMoveSingleCompressed(
     id = id,
     image = basic.image,
     name = basic.name,

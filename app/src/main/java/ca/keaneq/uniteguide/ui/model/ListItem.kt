@@ -15,6 +15,7 @@ enum class ListItemType(
     SUBTITLE(5),
     EVOLUTIONS(6),
     MOVE_SINGLE(7),
+    MOVE_SINGLE_COMPRESSED(8),
 }
 
 sealed class ListItem {
@@ -169,4 +170,37 @@ data class ListItemMoveSingle(
             && newItem.image == image
             && newItem.name == name
             && newItem.description == description
+
+    fun compress() = ListItemMoveSingleCompressed(
+        id = id,
+        image = image,
+        name = name,
+        description = description
+    )
+}
+
+data class ListItemMoveSingleCompressed(
+    val id: String,
+    val image: String,
+    val name: String,
+    val description: String
+) : ListItem() {
+    override val type: ListItemType = ListItemType.MOVE_SINGLE_COMPRESSED
+
+    override fun areItemsTheSame(newItem: ListItem): Boolean =
+        newItem is ListItemMoveSingleCompressed
+                && newItem.id == id
+
+    override fun areContentsTheSame(newItem: ListItem): Boolean =
+        newItem is ListItemMoveSingleCompressed
+                && newItem.id == id
+                && newItem.image == image
+                && newItem.name == name
+
+    fun expand() = ListItemMoveSingle(
+        id = id,
+        image = image,
+        name = name,
+        description = description
+    )
 }

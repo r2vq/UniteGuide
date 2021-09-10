@@ -4,9 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ca.keaneq.uniteguide.R
+import ca.keaneq.uniteguide.lifecycle.Event
 import ca.keaneq.uniteguide.repo.PokemonRepository
 import ca.keaneq.uniteguide.ui.*
 import ca.keaneq.uniteguide.ui.model.ListItem
+import ca.keaneq.uniteguide.ui.model.ListItemMoveSingle
+import ca.keaneq.uniteguide.ui.model.ListItemMoveSingleCompressed
 import ca.keaneq.uniteguide.ui.model.ListItemResSubtitle
 import kotlinx.coroutines.*
 
@@ -40,6 +43,19 @@ class PokemonDetailViewModel(
                     ?.let(_data::postValue)
             }
         }
+    }
+
+    fun onItemClick(idEvent: Event<String>) {
+        val id = idEvent.getContentIfNotHandled()
+        _data.value?.let { items ->
+            items.map { listItem ->
+                when {
+                    listItem is ListItemMoveSingle && listItem.id == id -> listItem.compress()
+                    listItem is ListItemMoveSingleCompressed && listItem.id == id -> listItem.expand()
+                    else -> listItem
+                }
+            }
+        }?.let { list -> _data.postValue(list) }
     }
 
     override fun onCleared() {
