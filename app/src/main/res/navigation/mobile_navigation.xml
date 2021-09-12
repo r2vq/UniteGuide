@@ -6,16 +6,16 @@
     app:startDestination="@+id/navigation_home">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_pokemon_list"
         android:name="ca.keaneq.uniteguide.ui.pokemonlist.PokemonListFragment"
         android:label="@string/title_pokemon"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_pokemon_list" />
 
     <fragment
         android:id="@+id/navigation_pokemon_detail"
         android:name="ca.keaneq.uniteguide.ui.pokemondetail.PokemonDetailFragment"
         android:label="@string/title_pokemon"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_pokemon_list">
         <argument
             android:name="pokemonId"
             app:argType="string"
@@ -29,8 +29,8 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="ca.keaneq.uniteguide.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_home"
+        android:name="ca.keaneq.uniteguide.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
 </navigation>

@@ -2,7 +2,7 @@
     <string name="app_name">Unite Guide</string>
     <string name="title_pokemon">Pokemon</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Home</string>
 
     <string name="role_attacker">Attacker</string>
     <string name="role_defender">Defender</string>

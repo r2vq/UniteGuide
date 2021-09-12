@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ca.keaneq.uniteguide.databinding.FragmentHomeBinding
+import ca.keaneq.uniteguide.databinding.FragmentPokemonDetailBinding
 import ca.keaneq.uniteguide.ui.adapter.ContentAdapter
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -18,7 +18,7 @@ class PokemonDetailFragment : Fragment() {
     private val pokemonListViewModel: PokemonDetailViewModel by viewModel()
     private val listAdapter: ContentAdapter by inject()
     private val args: PokemonDetailFragmentArgs by navArgs()
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentPokemonDetailBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -29,7 +29,7 @@ class PokemonDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentPokemonDetailBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val rvPokemon: RecyclerView = binding.rvPokemon
