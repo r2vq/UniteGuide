@@ -23,10 +23,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="ca.keaneq.uniteguide.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_items"
+        android:name="ca.keaneq.uniteguide.ui.items.ItemsFragment"
+        android:label="@string/title_items"
+        tools:layout="@layout/fragment_items" />
 
     <fragment
         android:id="@+id/navigation_home"

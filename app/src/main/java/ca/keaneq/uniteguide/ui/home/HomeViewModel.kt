@@ -33,7 +33,7 @@ class HomeViewModel(
                 ),
                 ListItemHome(
                     id = LIST_ITEM_ID_ITEMS,
-                    title = stringGetter(R.string.title_dashboard),
+                    title = stringGetter(R.string.title_items),
                     image = R.drawable.ic_dashboard_black_24dp,
                     color = R.color.teal_200,
                 ),
@@ -49,7 +49,7 @@ class HomeViewModel(
             ?.let {
                 when (it.id) {
                     LIST_ITEM_ID_POKEMON -> R.id.navigation_pokemon_list
-                    LIST_ITEM_ID_ITEMS -> R.id.navigation_dashboard
+                    LIST_ITEM_ID_ITEMS -> R.id.navigation_items
                     else -> null
                 }
             }
