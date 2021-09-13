@@ -2,6 +2,8 @@ package ca.keaneq.uniteguide.ui.model
 
 import android.content.Context
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
 enum class ListItemType(
@@ -18,6 +20,7 @@ enum class ListItemType(
     MOVE_SINGLE_COMPRESSED(8),
     MOVE_ABILITY(9),
     MOVE_ABILITY_COMPRESSED(10),
+    HOME_ITEM(11),
 }
 
 sealed class ListItem {
@@ -319,4 +322,22 @@ data class ListItemMoveAbilityCompressed(
         upgrade2Cooldown = upgrade2Cooldown,
         upgrade2Image = upgrade2Image,
     )
+}
+
+data class ListItemHome(
+    val id: String,
+    val title: String,
+    @DrawableRes val image: Int,
+    @ColorRes val color: Int,
+) : ListItem() {
+    override val type: ListItemType = ListItemType.HOME_ITEM
+
+    override fun areItemsTheSame(newItem: ListItem): Boolean = newItem is ListItemHome
+            && newItem.id == id
+
+    override fun areContentsTheSame(newItem: ListItem): Boolean = newItem is ListItemHome
+            && newItem.id == id
+            && newItem.title == title
+            && newItem.image == image
+            && newItem.color == color
 }

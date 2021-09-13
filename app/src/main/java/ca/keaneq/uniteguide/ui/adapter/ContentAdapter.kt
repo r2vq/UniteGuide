@@ -63,6 +63,9 @@ class ContentAdapter(
             ListItemType.MOVE_ABILITY_COMPRESSED.id -> MoveAbilityCompressedViewHolder(
                 ListItemMoveAbilityCompressedBinding.inflate(layoutInflater, parent, false)
             ) { moveId -> _onClick.postValue(Event(moveId)) }
+            ListItemType.HOME_ITEM.id -> HomeItemViewHolder(
+                ListItemHomeBinding.inflate(layoutInflater, parent, false)
+            ) { itemId -> _onClick.postValue(Event(itemId)) }
             else -> UnknownViewHolder(
                 ListItemEmptyBinding.inflate(layoutInflater, parent, false)
             )

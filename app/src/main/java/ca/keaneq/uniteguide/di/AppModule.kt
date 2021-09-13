@@ -6,6 +6,7 @@ import ca.keaneq.uniteguide.repo.PokemonRepository
 import ca.keaneq.uniteguide.repo.impl.PokemonRepositoryImpl
 import ca.keaneq.uniteguide.ui.adapter.ContentAdapter
 import ca.keaneq.uniteguide.ui.diff.ListItemDiffUtil
+import ca.keaneq.uniteguide.ui.home.HomeViewModel
 import ca.keaneq.uniteguide.ui.pokemondetail.PokemonDetailViewModel
 import ca.keaneq.uniteguide.ui.pokemonlist.PokemonListViewModel
 import com.squareup.moshi.JsonAdapter
@@ -112,6 +113,12 @@ val AppModule = module {
 
         PokemonListViewModel(
             repository = repository
+        )
+    }
+
+    viewModel {
+        HomeViewModel(
+            stringGetter = { id -> androidContext().getString(id) }
         )
     }
 }
