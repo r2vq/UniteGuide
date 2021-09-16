@@ -1,22 +1,12 @@
 package ca.keaneq.uniteguide.ui
 
-import android.graphics.Color
-import androidx.annotation.ColorInt
+import androidx.annotation.AttrRes
 import androidx.annotation.StringRes
 import ca.keaneq.uniteguide.R
 import ca.keaneq.uniteguide.repo.model.Evolution
 import ca.keaneq.uniteguide.repo.model.Moveset
 import ca.keaneq.uniteguide.repo.model.Pokemon
 import ca.keaneq.uniteguide.ui.model.*
-
-const val COLOR_ATTACKER = "#f06f2a"
-const val COLOR_DEFENDER = "#74a03f"
-const val COLOR_SPEEDSTER = "#1d709a"
-const val COLOR_SUPPORTER = "#e6b849"
-const val COLOR_ALL_ROUNDER = "#5805d0"
-
-const val COLOR_MELEE = "#333333"
-const val COLOR_RANGED = "#5805d0"
 
 const val DIFFICULTY_NOVICE = "novice"
 const val DIFFICULTY_INTERMEDIATE = "intermediate"
@@ -42,6 +32,7 @@ fun Pokemon.pokemonToListItemPokemon(): ListItemPokemon = ListItemPokemon(
     id = id,
     name = name,
     backgroundColor = getRoleColor(),
+    textColor = getRoleTextColor(),
     image = image
 )
 
@@ -49,6 +40,7 @@ fun Pokemon.pokemonToTitle(id: String): ListItemTitle = ListItemTitle(
     id = id,
     text = name,
     backgroundColor = getRoleColor(),
+    textColor = getRoleTextColor(),
 )
 
 fun Pokemon.pokemonToImage(id: String): ListItemImage = ListItemImage(
@@ -61,10 +53,12 @@ fun Pokemon.pokemonToChips(id: String): ListItemChips = ListItemChips(
     id = id,
     leftChip = ListItemChips.Chip(
         backgroundColor = getRoleColor(),
+        textColor = getRoleTextColor(),
         text = getRoleName()
     ),
     rightChip = ListItemChips.Chip(
         backgroundColor = getStyleColor(),
+        textColor = getStyleTextColor(),
         text = getStyleName()
     ),
 )
@@ -129,15 +123,25 @@ fun Pokemon.pokemonToBasic(id: String) = ListItemMoveSingleCompressed(
     description = basic.description
 )
 
-@ColorInt
+@AttrRes
 fun Pokemon.getRoleColor(): Int? = when (role) {
-    ROLE_ATTACKER -> COLOR_ATTACKER
-    ROLE_DEFENDER -> COLOR_DEFENDER
-    ROLE_SPEEDSTER -> COLOR_SPEEDSTER
-    ROLE_SUPPORTER -> COLOR_SUPPORTER
-    ROLE_ALL_ROUNDER -> COLOR_ALL_ROUNDER
+    ROLE_ATTACKER -> R.attr.colorAttacker
+    ROLE_DEFENDER -> R.attr.colorDefender
+    ROLE_SPEEDSTER -> R.attr.colorSpeedster
+    ROLE_SUPPORTER -> R.attr.colorSupporter
+    ROLE_ALL_ROUNDER -> R.attr.colorAllRounder
     else -> null
-}?.let { color -> Color.parseColor(color) }
+}
+
+@AttrRes
+fun Pokemon.getRoleTextColor(): Int? = when (role) {
+    ROLE_ATTACKER -> R.attr.colorOnAttacker
+    ROLE_DEFENDER -> R.attr.colorOnDefender
+    ROLE_SPEEDSTER -> R.attr.colorOnSpeedster
+    ROLE_SUPPORTER -> R.attr.colorOnSupporter
+    ROLE_ALL_ROUNDER -> R.attr.colorOnAllRounder
+    else -> null
+}
 
 @StringRes
 fun Pokemon.getRoleName(): Int? = when (role) {
@@ -149,12 +153,19 @@ fun Pokemon.getRoleName(): Int? = when (role) {
     else -> null
 }
 
-@ColorInt
+@AttrRes
 fun Pokemon.getStyleColor(): Int? = when (style) {
-    STYLE_MELEE -> COLOR_MELEE
-    STYLE_RANGED -> COLOR_RANGED
+    STYLE_MELEE -> R.attr.colorMelee
+    STYLE_RANGED -> R.attr.colorRanged
     else -> null
-}?.let { color -> Color.parseColor(color) }
+}
+
+@AttrRes
+fun Pokemon.getStyleTextColor(): Int? = when (style) {
+    STYLE_MELEE -> R.attr.colorOnMelee
+    STYLE_RANGED -> R.attr.colorOnRanged
+    else -> null
+}
 
 @StringRes
 fun Pokemon.getStyleName(): Int? = when (style) {

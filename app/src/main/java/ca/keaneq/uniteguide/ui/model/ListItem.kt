@@ -1,7 +1,9 @@
 package ca.keaneq.uniteguide.ui.model
 
 import android.content.Context
-import androidx.annotation.*
+import androidx.annotation.AttrRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 
 enum class ListItemType(
     val id: Int
@@ -29,7 +31,8 @@ sealed class ListItem {
 data class ListItemPokemon(
     val id: String,
     val name: String,
-    @ColorInt val backgroundColor: Int?,
+    @AttrRes val backgroundColor: Int?,
+    @AttrRes val textColor: Int?,
     val image: String?
 ) : ListItem() {
     override val type: ListItemType = ListItemType.POKEMON
@@ -41,12 +44,14 @@ data class ListItemPokemon(
             && newItem.id == id
             && newItem.name == name
             && newItem.image == image
+            && newItem.textColor == textColor
 }
 
 data class ListItemTitle(
     val id: String,
     val text: String,
-    @ColorInt val backgroundColor: Int?
+    @AttrRes val backgroundColor: Int?,
+    @AttrRes val textColor: Int?,
 ) : ListItem() {
     override val type: ListItemType = ListItemType.TITLE
 
@@ -56,12 +61,14 @@ data class ListItemTitle(
     override fun areContentsTheSame(newItem: ListItem): Boolean = newItem is ListItemTitle
             && newItem.id == id
             && newItem.text == text
+            && newItem.backgroundColor == backgroundColor
+            && newItem.textColor == backgroundColor
 }
 
 data class ListItemImage(
     val id: String,
     val imageUrl: String?,
-    @ColorInt val backgroundColor: Int?
+    @AttrRes val backgroundColor: Int?
 ) : ListItem() {
     override val type: ListItemType = ListItemType.IMAGE
 
@@ -90,10 +97,12 @@ data class ListItemChips(
             && rightChip.areContentsTheSame(newItem.rightChip)
 
     data class Chip(
-        @ColorInt val backgroundColor: Int?,
+        @AttrRes val backgroundColor: Int?,
+        @AttrRes val textColor: Int?,
         @StringRes val text: Int?
     ) {
         fun areContentsTheSame(newItem: Chip): Boolean = newItem.backgroundColor == backgroundColor
+                && newItem.textColor == textColor
                 && newItem.text == text
     }
 }

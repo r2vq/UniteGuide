@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorAttacker" format="color" />
+    <attr name="colorAttackerLight" format="color" />
+    <attr name="colorAttackerDark" format="color" />
+    <attr name="colorOnAttacker" format="color" />
+    <attr name="colorOnAttackerLight" format="color" />
+    <attr name="colorOnAttackerDark" format="color" />
+
+    <attr name="colorAllRounder" format="color" />
+    <attr name="colorAllRounderLight" format="color" />
+    <attr name="colorAllRounderDark" format="color" />
+    <attr name="colorOnAllRounder" format="color" />
+    <attr name="colorOnAllRounderLight" format="color" />
+    <attr name="colorOnAllRounderDark" format="color" />
+
+    <attr name="colorDefender" format="color" />
+    <attr name="colorDefenderLight" format="color" />
+    <attr name="colorDefenderDark" format="color" />
+    <attr name="colorOnDefender" format="color" />
+    <attr name="colorOnDefenderLight" format="color" />
+    <attr name="colorOnDefenderDark" format="color" />
+
+    <attr name="colorSpeedster" format="color" />
+    <attr name="colorSpeedsterLight" format="color" />
+    <attr name="colorSpeedsterDark" format="color" />
+    <attr name="colorOnSpeedster" format="color" />
+    <attr name="colorOnSpeedsterLight" format="color" />
+    <attr name="colorOnSpeedsterDark" format="color" />
+
+    <attr name="colorSupporter" format="color" />
+    <attr name="colorSupporterLight" format="color" />
+    <attr name="colorSupporterDark" format="color" />
+    <attr name="colorOnSupporter" format="color" />
+    <attr name="colorOnSupporterLight" format="color" />
+    <attr name="colorOnSupporterDark" format="color" />
+
+    <attr name="colorMelee" format="color" />
+    <attr name="colorMeleeLight" format="color" />
+    <attr name="colorMeleeDark" format="color" />
+    <attr name="colorOnMelee" format="color" />
+    <attr name="colorOnMeleeLight" format="color" />
+    <attr name="colorOnMeleeDark" format="color" />
+
+    <attr name="colorRanged" format="color" />
+    <attr name="colorRangedLight" format="color" />
+    <attr name="colorRangedDark" format="color" />
+    <attr name="colorOnRanged" format="color" />
+    <attr name="colorOnRangedLight" format="color" />
+    <attr name="colorOnRangedDark" format="color" />
+</resources>

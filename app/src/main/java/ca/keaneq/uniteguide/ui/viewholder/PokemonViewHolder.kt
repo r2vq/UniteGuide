@@ -1,12 +1,10 @@
 package ca.keaneq.uniteguide.ui.viewholder
 
-import android.graphics.Color
+import ca.keaneq.uniteguide.R
 import ca.keaneq.uniteguide.databinding.ListItemPokemonBinding
 import ca.keaneq.uniteguide.ui.model.ListItem
 import ca.keaneq.uniteguide.ui.model.ListItemPokemon
 import com.bumptech.glide.Glide
-
-private const val DEFAULT_BACKGROUND_COLOR = "#000000"
 
 class PokemonViewHolder(
     private val binding: ListItemPokemonBinding,
@@ -23,8 +21,15 @@ class PokemonViewHolder(
         val pokemonItem = item as? ListItemPokemon
         id = pokemonItem?.id
         binding.tvPokemonName.text = pokemonItem?.name ?: ""
+        binding.tvPokemonName.setTextColor(
+            binding.root.context.getColorFromAttr(
+                pokemonItem?.textColor ?: R.attr.colorOnPrimary
+            )
+        )
         binding.cvPokemon.setCardBackgroundColor(
-            pokemonItem?.backgroundColor ?: Color.parseColor(DEFAULT_BACKGROUND_COLOR)
+            binding.root.context.getColorFromAttr(
+                pokemonItem?.backgroundColor ?: R.attr.colorPrimary
+            )
         )
         pokemonItem
             ?.image

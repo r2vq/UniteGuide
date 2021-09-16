@@ -13,5 +13,54 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="colorOnBackground">@color/black</item>
+
+        <item name="colorAttacker">@color/orange_800</item>
+        <item name="colorOnAttacker">@color/black</item>
+        <item name="colorAttackerLight">@color/orange_800_light</item>
+        <item name="colorOnAttackerLight">@color/black</item>
+        <item name="colorAttackerDark">@color/orange_800_dark</item>
+        <item name="colorOnAttackerDark">@color/white</item>
+
+        <item name="colorDefender">@color/green_700</item>
+        <item name="colorOnDefender">@color/black</item>
+        <item name="colorDefenderLight">@color/green_700_light</item>
+        <item name="colorOnDefenderLight">@color/black</item>
+        <item name="colorDefenderDark">@color/green_700_dark</item>
+        <item name="colorOnDefenderDark">@color/white</item>
+
+        <item name="colorSpeedster">@color/light_blue_800</item>
+        <item name="colorOnSpeedster">@color/white</item>
+        <item name="colorSpeedsterLight">@color/light_blue_800_light</item>
+        <item name="colorOnSpeedsterLight">@color/black</item>
+        <item name="colorSpeedsterDark">@color/light_blue_800_dark</item>
+        <item name="colorOnSpeedsterDark">@color/white</item>
+
+        <item name="colorSupporter">@color/amber_300</item>
+        <item name="colorOnSupporter">@color/black</item>
+        <item name="colorSupporterLight">@color/amber_300_light</item>
+        <item name="colorOnSupporterLight">@color/black</item>
+        <item name="colorSupporterDark">@color/amber_300_dark</item>
+        <item name="colorOnSupporterDark">@color/black</item>
+
+        <item name="colorAllRounder">@color/deep_purple_a700</item>
+        <item name="colorOnAllRounder">@color/white</item>
+        <item name="colorAllRounderLight">@color/deep_purple_a700_light</item>
+        <item name="colorOnAllRounderLight">@color/black</item>
+        <item name="colorAllRounderDark">@color/deep_purple_a700_dark</item>
+        <item name="colorOnAllRounderDark">@color/white</item>
+
+        <item name="colorMelee">@color/grey_800</item>
+        <item name="colorOnMelee">@color/white</item>
+        <item name="colorMeleeLight">@color/grey_800_light</item>
+        <item name="colorOnMeleeLight">@color/white</item>
+        <item name="colorMeleeDark">@color/grey_800_dark</item>
+        <item name="colorOnMeleeDark">@color/white</item>
+
+        <item name="colorRanged">@color/blue_grey_200</item>
+        <item name="colorOnRanged">@color/black</item>
+        <item name="colorRangedLight">@color/blue_grey_200_light</item>
+        <item name="colorOnRangedLight">@color/black</item>
+        <item name="colorRangedDark">@color/blue_grey_200_dark</item>
+        <item name="colorOnRangedDark">@color/black</item>
     </style>
 </resources>

@@ -1,12 +1,10 @@
 package ca.keaneq.uniteguide.ui.viewholder
 
 import android.content.res.ColorStateList
-import android.graphics.Color
+import ca.keaneq.uniteguide.R
 import ca.keaneq.uniteguide.databinding.ListItemChipsBinding
 import ca.keaneq.uniteguide.ui.model.ListItem
 import ca.keaneq.uniteguide.ui.model.ListItemChips
-
-private const val DEFAULT_BACKGROUND_COLOR = "#000000"
 
 class ChipsViewHolder(
     private val binding: ListItemChipsBinding
@@ -15,8 +13,14 @@ class ChipsViewHolder(
         val chipItem = item as? ListItemChips
 
         binding.leftChip.chipBackgroundColor = ColorStateList.valueOf(
-            chipItem?.leftChip?.backgroundColor
-                ?: Color.parseColor(DEFAULT_BACKGROUND_COLOR)
+            binding.root.context.getColorFromAttr(
+                chipItem?.leftChip?.backgroundColor ?: R.attr.colorPrimary
+            )
+        )
+        binding.leftChip.setTextColor(
+            binding.root.context.getColorFromAttr(
+                chipItem?.leftChip?.textColor ?: R.attr.colorOnPrimary
+            )
         )
         chipItem
             ?.leftChip
@@ -25,8 +29,14 @@ class ChipsViewHolder(
             ?: run { binding.leftChip.text = "" }
 
         binding.rightChip.chipBackgroundColor = ColorStateList.valueOf(
-            chipItem?.rightChip?.backgroundColor
-                ?: Color.parseColor(DEFAULT_BACKGROUND_COLOR)
+            binding.root.context.getColorFromAttr(
+                chipItem?.rightChip?.backgroundColor ?: R.attr.colorPrimary
+            )
+        )
+        binding.rightChip.setTextColor(
+            binding.root.context.getColorFromAttr(
+                chipItem?.rightChip?.textColor ?: R.attr.colorOnPrimary
+            )
         )
         chipItem
             ?.rightChip
