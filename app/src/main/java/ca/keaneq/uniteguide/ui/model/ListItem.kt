@@ -1,10 +1,7 @@
 package ca.keaneq.uniteguide.ui.model
 
 import android.content.Context
-import androidx.annotation.ColorInt
-import androidx.annotation.ColorRes
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
+import androidx.annotation.*
 
 enum class ListItemType(
     val id: Int
@@ -328,7 +325,7 @@ data class ListItemHome(
     val id: String,
     val title: String,
     @DrawableRes val image: Int,
-    @ColorRes val color: Int,
+    @AttrRes val color: Int,
 ) : ListItem() {
     override val type: ListItemType = ListItemType.HOME_ITEM
 

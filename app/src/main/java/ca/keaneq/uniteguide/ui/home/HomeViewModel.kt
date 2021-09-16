@@ -29,13 +29,13 @@ class HomeViewModel(
                     id = LIST_ITEM_ID_POKEMON,
                     title = stringGetter(R.string.title_pokemon),
                     image = R.drawable.ic_pokeball_black,
-                    color = R.color.purple_200,
+                    color = R.attr.colorPrimary,
                 ),
                 ListItemHome(
                     id = LIST_ITEM_ID_ITEMS,
                     title = stringGetter(R.string.title_items),
                     image = R.drawable.ic_dashboard_black_24dp,
-                    color = R.color.teal_200,
+                    color = R.attr.colorSecondary,
                 ),
             )
         )
