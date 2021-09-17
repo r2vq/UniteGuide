@@ -2,6 +2,7 @@ package ca.keaneq.uniteguide.ui.viewholder
 
 import ca.keaneq.uniteguide.R
 import ca.keaneq.uniteguide.databinding.ListItemPokemonBinding
+import ca.keaneq.uniteguide.ui.getColorFromAttr
 import ca.keaneq.uniteguide.ui.model.ListItem
 import ca.keaneq.uniteguide.ui.model.ListItemPokemon
 import com.bumptech.glide.Glide

@@ -1,11 +1,8 @@
 package ca.keaneq.uniteguide.ui.viewholder
 
-import android.content.Context
-import android.util.TypedValue
-import androidx.annotation.AttrRes
-import androidx.annotation.ColorInt
 import ca.keaneq.uniteguide.R
 import ca.keaneq.uniteguide.databinding.ListItemHomeBinding
+import ca.keaneq.uniteguide.ui.getColorFromAttr
 import ca.keaneq.uniteguide.ui.model.ListItem
 import ca.keaneq.uniteguide.ui.model.ListItemHome
 import com.bumptech.glide.Glide
@@ -42,14 +39,4 @@ class HomeItemViewHolder(
 
         binding.tvItemName.text = homeItem?.title ?: ""
     }
-}
-
-@ColorInt
-fun Context.getColorFromAttr(
-    @AttrRes attrColor: Int,
-    typedValue: TypedValue = TypedValue(),
-    resolveRefs: Boolean = true
-): Int {
-    theme.resolveAttribute(attrColor, typedValue, resolveRefs)
-    return typedValue.data
 }

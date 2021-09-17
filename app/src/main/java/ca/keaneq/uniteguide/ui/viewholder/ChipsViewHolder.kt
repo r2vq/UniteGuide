@@ -3,6 +3,7 @@ package ca.keaneq.uniteguide.ui.viewholder
 import android.content.res.ColorStateList
 import ca.keaneq.uniteguide.R
 import ca.keaneq.uniteguide.databinding.ListItemChipsBinding
+import ca.keaneq.uniteguide.ui.getColorFromAttr
 import ca.keaneq.uniteguide.ui.model.ListItem
 import ca.keaneq.uniteguide.ui.model.ListItemChips
 

@@ -1,6 +1,9 @@
 package ca.keaneq.uniteguide.ui
 
+import android.content.Context
+import android.util.TypedValue
 import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import ca.keaneq.uniteguide.R
 import ca.keaneq.uniteguide.repo.model.Evolution
@@ -195,4 +198,14 @@ fun Pokemon.getDifficulty(): Int? = when (difficulty) {
     DIFFICULTY_INTERMEDIATE -> R.string.difficulty_intermediate
     DIFFICULTY_EXPERT -> R.string.difficulty_expert
     else -> null
+}
+
+@ColorInt
+fun Context.getColorFromAttr(
+    @AttrRes attrColor: Int,
+    typedValue: TypedValue = TypedValue(),
+    resolveRefs: Boolean = true
+): Int {
+    theme.resolveAttribute(attrColor, typedValue, resolveRefs)
+    return typedValue.data
 }
