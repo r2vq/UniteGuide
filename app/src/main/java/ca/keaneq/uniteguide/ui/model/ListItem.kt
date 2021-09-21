@@ -8,10 +8,6 @@ import androidx.annotation.StringRes
 enum class ListItemType(
     val id: Int
 ) {
-    POKEMON(0),
-    TITLE(1),
-    IMAGE(2),
-    CHIPS(3),
     FACTS(4),
     SUBTITLE(5),
     EVOLUTIONS(6),
@@ -20,6 +16,26 @@ enum class ListItemType(
     MOVE_ABILITY(9),
     MOVE_ABILITY_COMPRESSED(10),
     HOME_ITEM(11),
+    POKEMON_ALL_ROUNDER(12),
+    POKEMON_ATTACKER(13),
+    POKEMON_DEFENDER(14),
+    POKEMON_SPEEDSTER(15),
+    POKEMON_SUPPORTER(16),
+    TITLE_ALL_ROUNDER(17),
+    TITLE_ATTACKER(18),
+    TITLE_DEFENDER(19),
+    TITLE_SPEEDSTER(20),
+    TITLE_SUPPORTER(21),
+    IMAGE_ALL_ROUNDER(22),
+    IMAGE_ATTACKER(23),
+    IMAGE_DEFENDER(24),
+    IMAGE_SPEEDSTER(25),
+    IMAGE_SUPPORTER(26),
+    CHIPS_ALL_ROUNDER(27),
+    CHIPS_ATTACKER(28),
+    CHIPS_DEFENDER(29),
+    CHIPS_SPEEDSTER(30),
+    CHIPS_SUPPORTER(31),
 }
 
 sealed class ListItem {
@@ -31,12 +47,9 @@ sealed class ListItem {
 data class ListItemPokemon(
     val id: String,
     val name: String,
-    @AttrRes val backgroundColor: Int?,
-    @AttrRes val textColor: Int?,
-    val image: String?
+    val image: String?,
+    override val type: ListItemType,
 ) : ListItem() {
-    override val type: ListItemType = ListItemType.POKEMON
-
     override fun areItemsTheSame(newItem: ListItem): Boolean = newItem is ListItemPokemon
             && newItem.id == id
 
@@ -44,33 +57,28 @@ data class ListItemPokemon(
             && newItem.id == id
             && newItem.name == name
             && newItem.image == image
-            && newItem.textColor == textColor
+            && newItem.type == type
 }
 
 data class ListItemTitle(
     val id: String,
     val text: String,
-    @AttrRes val backgroundColor: Int?,
-    @AttrRes val textColor: Int?,
+    override val type: ListItemType,
 ) : ListItem() {
-    override val type: ListItemType = ListItemType.TITLE
-
     override fun areItemsTheSame(newItem: ListItem): Boolean = newItem is ListItemTitle
             && newItem.id == id
 
     override fun areContentsTheSame(newItem: ListItem): Boolean = newItem is ListItemTitle
             && newItem.id == id
             && newItem.text == text
-            && newItem.backgroundColor == backgroundColor
-            && newItem.textColor == backgroundColor
+            && newItem.type == type
 }
 
 data class ListItemImage(
     val id: String,
     val imageUrl: String?,
-    @AttrRes val backgroundColor: Int?
+    override val type: ListItemType,
 ) : ListItem() {
-    override val type: ListItemType = ListItemType.IMAGE
 
     override fun areItemsTheSame(newItem: ListItem): Boolean = newItem is ListItemImage
             && newItem.id == id
@@ -78,16 +86,15 @@ data class ListItemImage(
     override fun areContentsTheSame(newItem: ListItem): Boolean = newItem is ListItemImage
             && newItem.id == id
             && newItem.imageUrl == imageUrl
-            && newItem.backgroundColor == backgroundColor
+            && newItem.type == type
 }
 
 data class ListItemChips(
     val id: String,
     val leftChip: Chip,
     val rightChip: Chip,
+    override val type: ListItemType,
 ) : ListItem() {
-    override val type: ListItemType = ListItemType.CHIPS
-
     override fun areItemsTheSame(newItem: ListItem): Boolean = newItem is ListItemChips
             && newItem.id == id
 
@@ -95,6 +102,7 @@ data class ListItemChips(
             && newItem.id == id
             && leftChip.areContentsTheSame(newItem.leftChip)
             && rightChip.areContentsTheSame(newItem.rightChip)
+            && newItem.type == type
 
     data class Chip(
         @AttrRes val backgroundColor: Int?,

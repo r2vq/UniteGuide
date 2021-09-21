@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ca.keaneq.uniteguide.repo.PokemonRepository
 import ca.keaneq.uniteguide.repo.model.Pokemon
-import ca.keaneq.uniteguide.ui.pokemonToListItemPokemon
 import ca.keaneq.uniteguide.ui.model.ListItem
+import ca.keaneq.uniteguide.ui.pokemonToListItemPokemon
 import kotlinx.coroutines.*
 
 class PokemonListViewModel(
@@ -22,7 +22,7 @@ class PokemonListViewModel(
             val response = repository.getPokemon()
             withContext(Dispatchers.Main) {
                 _data.postValue(
-                    response.map(Pokemon::pokemonToListItemPokemon)
+                    response.mapNotNull(Pokemon::pokemonToListItemPokemon)
                 )
             }
         }

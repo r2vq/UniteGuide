@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="colorPokemonMain" format="color" />
+    <attr name="colorOnPokemonMain" format="color" />
+    <attr name="colorPokemonLight" format="color" />
+    <attr name="colorOnPokemonLight" format="color" />
+    <attr name="colorPokemonDark" format="color" />
+    <attr name="colorOnPokemonDark" format="color" />
+
     <attr name="colorAttacker" format="color" />
     <attr name="colorAttackerLight" format="color" />
     <attr name="colorAttackerDark" format="color" />

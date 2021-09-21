@@ -9,10 +9,11 @@
         android:id="@+id/vw_background_top"
         android:layout_width="0dp"
         android:layout_height="150dp"
+        android:background="?attr/colorPokemonMain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="@android:color/holo_red_dark" />
+        tools:background="?attr/colorPrimary" />
 
     <View
         android:id="@+id/vw_background_bottom"

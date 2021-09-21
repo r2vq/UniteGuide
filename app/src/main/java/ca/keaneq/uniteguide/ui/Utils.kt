@@ -31,40 +31,78 @@ const val STYLE_RANGED = "ranged"
 const val TYPE_PHYSICAL = "physical"
 const val TYPE_SPECIAL = "special"
 
-fun Pokemon.pokemonToListItemPokemon(): ListItemPokemon = ListItemPokemon(
-    id = id,
-    name = name,
-    backgroundColor = getRoleColor(),
-    textColor = getRoleTextColor(),
-    image = image
-)
+fun Pokemon.pokemonToListItemPokemon(): ListItemPokemon? = when (role) {
+    ROLE_ALL_ROUNDER -> ListItemType.POKEMON_ALL_ROUNDER
+    ROLE_ATTACKER -> ListItemType.POKEMON_ATTACKER
+    ROLE_DEFENDER -> ListItemType.POKEMON_DEFENDER
+    ROLE_SPEEDSTER -> ListItemType.POKEMON_SPEEDSTER
+    ROLE_SUPPORTER -> ListItemType.POKEMON_SUPPORTER
+    else -> null
+}
+    ?.let { type ->
+        ListItemPokemon(
+            id = id,
+            name = name,
+            image = image,
+            type = type,
+        )
+    }
 
-fun Pokemon.pokemonToTitle(id: String): ListItemTitle = ListItemTitle(
-    id = id,
-    text = name,
-    backgroundColor = getRoleColor(),
-    textColor = getRoleTextColor(),
-)
+fun Pokemon.pokemonToTitle(id: String): ListItemTitle? = when (role) {
+    ROLE_ALL_ROUNDER -> ListItemType.TITLE_ALL_ROUNDER
+    ROLE_ATTACKER -> ListItemType.TITLE_ATTACKER
+    ROLE_DEFENDER -> ListItemType.TITLE_DEFENDER
+    ROLE_SPEEDSTER -> ListItemType.TITLE_SPEEDSTER
+    ROLE_SUPPORTER -> ListItemType.TITLE_SUPPORTER
+    else -> null
+}
+    ?.let { type ->
+        ListItemTitle(
+            id = id,
+            text = name,
+            type = type
+        )
+    }
 
-fun Pokemon.pokemonToImage(id: String): ListItemImage = ListItemImage(
-    id = id,
-    imageUrl = image,
-    backgroundColor = getRoleColor(),
-)
+fun Pokemon.pokemonToImage(id: String): ListItemImage? = when (role) {
+    ROLE_ALL_ROUNDER -> ListItemType.IMAGE_ALL_ROUNDER
+    ROLE_ATTACKER -> ListItemType.IMAGE_ATTACKER
+    ROLE_DEFENDER -> ListItemType.IMAGE_DEFENDER
+    ROLE_SPEEDSTER -> ListItemType.IMAGE_SPEEDSTER
+    ROLE_SUPPORTER -> ListItemType.IMAGE_SUPPORTER
+    else -> null
+}
+    ?.let { type ->
+        ListItemImage(
+            id = id,
+            imageUrl = image,
+            type = type
+        )
+    }
 
-fun Pokemon.pokemonToChips(id: String): ListItemChips = ListItemChips(
-    id = id,
-    leftChip = ListItemChips.Chip(
-        backgroundColor = getRoleColor(),
-        textColor = getRoleTextColor(),
-        text = getRoleName()
-    ),
-    rightChip = ListItemChips.Chip(
-        backgroundColor = getStyleColor(),
-        textColor = getStyleTextColor(),
-        text = getStyleName()
-    ),
-)
+fun Pokemon.pokemonToChips(id: String): ListItemChips? = when (role) {
+    ROLE_ALL_ROUNDER -> ListItemType.CHIPS_ALL_ROUNDER
+    ROLE_ATTACKER -> ListItemType.CHIPS_ATTACKER
+    ROLE_DEFENDER -> ListItemType.CHIPS_DEFENDER
+    ROLE_SPEEDSTER -> ListItemType.CHIPS_SPEEDSTER
+    ROLE_SUPPORTER -> ListItemType.CHIPS_SUPPORTER
+    else -> null
+}?.let { type ->
+    ListItemChips(
+        id = id,
+        leftChip = ListItemChips.Chip(
+            backgroundColor = null,
+            textColor = null,
+            text = getRoleName()
+        ),
+        rightChip = ListItemChips.Chip(
+            backgroundColor = getStyleColor(),
+            textColor = getStyleTextColor(),
+            text = getStyleName()
+        ),
+        type = type
+    )
+}
 
 fun Pokemon.pokemonToFacts(id: String): ListItemFacts = ListItemFacts(
     id = id,
@@ -125,26 +163,6 @@ fun Pokemon.pokemonToBasic(id: String) = ListItemMoveSingleCompressed(
     name = basic.name,
     description = basic.description
 )
-
-@AttrRes
-fun Pokemon.getRoleColor(): Int? = when (role) {
-    ROLE_ATTACKER -> R.attr.colorAttacker
-    ROLE_DEFENDER -> R.attr.colorDefender
-    ROLE_SPEEDSTER -> R.attr.colorSpeedster
-    ROLE_SUPPORTER -> R.attr.colorSupporter
-    ROLE_ALL_ROUNDER -> R.attr.colorAllRounder
-    else -> null
-}
-
-@AttrRes
-fun Pokemon.getRoleTextColor(): Int? = when (role) {
-    ROLE_ATTACKER -> R.attr.colorOnAttacker
-    ROLE_DEFENDER -> R.attr.colorOnDefender
-    ROLE_SPEEDSTER -> R.attr.colorOnSpeedster
-    ROLE_SUPPORTER -> R.attr.colorOnSupporter
-    ROLE_ALL_ROUNDER -> R.attr.colorOnAllRounder
-    else -> null
-}
 
 @StringRes
 fun Pokemon.getRoleName(): Int? = when (role) {

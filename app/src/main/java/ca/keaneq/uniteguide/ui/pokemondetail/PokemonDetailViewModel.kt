@@ -24,9 +24,9 @@ class PokemonDetailViewModel(
             withContext(Dispatchers.Main) {
                 response?.run {
                     emptySequence<ListItem>()
-                        .plus(pokemonToTitle("title"))
-                        .plus(pokemonToImage("image"))
-                        .plus(pokemonToChips("chips"))
+                        .run { pokemonToTitle("title")?.let { title -> plus(title) } ?: this }
+                        .run { pokemonToImage("image")?.let { image -> plus(image) } ?: this }
+                        .run { pokemonToChips("chips")?.let { chips -> plus(chips) } ?: this }
                         .plus(pokemonToFacts("facts"))
                         .plus(
                             ListItemResSubtitle("evolution-subtitle", R.string.header_evolutions)

@@ -13,16 +13,6 @@ class ChipsViewHolder(
     override fun bind(item: ListItem) {
         val chipItem = item as? ListItemChips
 
-        binding.leftChip.chipBackgroundColor = ColorStateList.valueOf(
-            binding.root.context.getColorFromAttr(
-                chipItem?.leftChip?.backgroundColor ?: R.attr.colorPrimary
-            )
-        )
-        binding.leftChip.setTextColor(
-            binding.root.context.getColorFromAttr(
-                chipItem?.leftChip?.textColor ?: R.attr.colorOnPrimary
-            )
-        )
         chipItem
             ?.leftChip
             ?.text

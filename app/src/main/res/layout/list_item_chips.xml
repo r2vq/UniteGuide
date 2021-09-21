@@ -10,12 +10,14 @@
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textColor="?attr/colorOnPrimary"
+        android:textColor="?attr/colorOnPokemonMain"
+        app:chipBackgroundColor="?attr/colorPokemonMain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/center"
         app:layout_constraintTop_toTopOf="parent"
-        tools:chipBackgroundColor="@android:color/holo_red_dark"
-        tools:text="Attacker" />
+        tools:chipBackgroundColor="?attr/colorPrimary"
+        tools:text="Attacker"
+        tools:textColor="?attr/colorOnPrimary" />
 
     <View
         android:id="@+id/center"
@@ -31,11 +33,13 @@
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textColor="?attr/colorOnPrimary"
+        android:textColor="?attr/colorOnPokemonDark"
+        app:chipBackgroundColor="?attr/colorPokemonDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/center"
         app:layout_constraintTop_toTopOf="parent"
-        tools:chipBackgroundColor="@android:color/holo_red_dark"
-        tools:text="Special Attack" />
+        tools:chipBackgroundColor="?attr/colorSecondary"
+        tools:text="Special Attack"
+        tools:textColor="?attr/colorOnSecondary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

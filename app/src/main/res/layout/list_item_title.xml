@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/colorPokemonMain"
     android:padding="16dp"
     tools:background="?attr/colorPrimary">
 
@@ -12,9 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textColor="?attr/colorOnPrimary"
+        android:textColor="?attr/colorOnPokemonMain"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Gengar" />
+        tools:text="Gengar"
+        tools:textColor="?attr/colorOnPrimary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
