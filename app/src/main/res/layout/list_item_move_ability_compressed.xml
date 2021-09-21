@@ -9,10 +9,11 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="?attr/colorPrimary"
+        app:cardBackgroundColor="?attr/colorPokemonMain"
         app:cardCornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:cardBackgroundColor="?attr/colorPrimary">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -35,11 +36,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="?attr/colorOnPokemonMain"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/iv_move_icon"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="@tools:sample/cities" />
+                tools:text="@tools:sample/cities"
+                tools:textColor="?attr/colorOnPrimary" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -36,13 +36,13 @@ class PokemonDetailViewModel(
                             ListItemResSubtitle("moveset-subtitle", R.string.header_moveset)
                         )
                         .plus(
-                            moveset.mapIndexed { index, moveset ->
-                                moveset.pokemonToMoveAbility("moveset-basic-$index")
+                            moveset.mapIndexedNotNull { index, moveset ->
+                                moveset.pokemonToMoveAbility("moveset-basic-$index", role)
                             }
                         )
-                        .plus(pokemonToUnite("moveset-unite"))
-                        .plus(pokemonToPassive("moveset-passive"))
-                        .plus(pokemonToBasic("moveset-basic"))
+                        .run { pokemonToUnite("move-unite")?.let { move -> plus(move) } ?: this }
+                        .run { pokemonToPassive("move-pass")?.let { move -> plus(move) } ?: this }
+                        .run { pokemonToBasic("move-basic")?.let { move -> plus(move) } ?: this }
                         .toList()
                 }
                     ?.let(_data::postValue)

@@ -122,7 +122,15 @@ fun Evolution.evolutionToSpecies() = ListItemEvolutions.Species(
     image = image
 )
 
-fun Moveset.pokemonToMoveAbility(id: String): ListItemMoveAbilityCompressed {
+fun Moveset.pokemonToMoveAbility(id: String, role: String): ListItemMoveAbilityCompressed? {
+    val type = when (role) {
+        ROLE_ALL_ROUNDER -> ListItemType.MOVE_ABILITY_COMPRESSED_ALL_ROUNDER
+        ROLE_ATTACKER -> ListItemType.MOVE_ABILITY_COMPRESSED_ATTACKER
+        ROLE_DEFENDER -> ListItemType.MOVE_ABILITY_COMPRESSED_DEFENDER
+        ROLE_SPEEDSTER -> ListItemType.MOVE_ABILITY_COMPRESSED_SPEEDSTER
+        ROLE_SUPPORTER -> ListItemType.MOVE_ABILITY_COMPRESSED_SUPPORTER
+        else -> return null
+    }
     val upgrade1 = upgrades.getOrNull(0)
     val upgrade2 = upgrades.getOrNull(1)
     return ListItemMoveAbilityCompressed(
@@ -140,29 +148,60 @@ fun Moveset.pokemonToMoveAbility(id: String): ListItemMoveAbilityCompressed {
         upgrade2Description = upgrade2?.description,
         upgrade2Cooldown = upgrade2?.cooldown,
         upgrade2Image = upgrade2?.image,
+        type = type
     )
 }
 
-fun Pokemon.pokemonToPassive(id: String) = ListItemMoveSingleCompressed(
-    id = id,
-    image = passive.image,
-    name = passive.name,
-    description = passive.description
-)
+fun Pokemon.pokemonToPassive(id: String) = when (role) {
+    ROLE_ALL_ROUNDER -> ListItemType.MOVE_SINGLE_COMPRESSED_ALL_ROUNDER
+    ROLE_ATTACKER -> ListItemType.MOVE_SINGLE_COMPRESSED_ATTACKER
+    ROLE_DEFENDER -> ListItemType.MOVE_SINGLE_COMPRESSED_DEFENDER
+    ROLE_SPEEDSTER -> ListItemType.MOVE_SINGLE_COMPRESSED_SPEEDSTER
+    ROLE_SUPPORTER -> ListItemType.MOVE_SINGLE_COMPRESSED_SUPPORTER
+    else -> null
+}?.let { type ->
+    ListItemMoveSingleCompressed(
+        id = id,
+        image = passive.image,
+        name = passive.name,
+        description = passive.description,
+        type = type,
+    )
+}
 
-fun Pokemon.pokemonToUnite(id: String) = ListItemMoveSingleCompressed(
-    id = id,
-    image = unite.image,
-    name = unite.name,
-    description = unite.description
-)
+fun Pokemon.pokemonToUnite(id: String) = when (role) {
+    ROLE_ALL_ROUNDER -> ListItemType.MOVE_SINGLE_COMPRESSED_ALL_ROUNDER
+    ROLE_ATTACKER -> ListItemType.MOVE_SINGLE_COMPRESSED_ATTACKER
+    ROLE_DEFENDER -> ListItemType.MOVE_SINGLE_COMPRESSED_DEFENDER
+    ROLE_SPEEDSTER -> ListItemType.MOVE_SINGLE_COMPRESSED_SPEEDSTER
+    ROLE_SUPPORTER -> ListItemType.MOVE_SINGLE_COMPRESSED_SUPPORTER
+    else -> null
+}?.let { type ->
+    ListItemMoveSingleCompressed(
+        id = id,
+        image = unite.image,
+        name = unite.name,
+        description = unite.description,
+        type = type,
+    )
+}
 
-fun Pokemon.pokemonToBasic(id: String) = ListItemMoveSingleCompressed(
-    id = id,
-    image = basic.image,
-    name = basic.name,
-    description = basic.description
-)
+fun Pokemon.pokemonToBasic(id: String) = when (role) {
+    ROLE_ALL_ROUNDER -> ListItemType.MOVE_SINGLE_COMPRESSED_ALL_ROUNDER
+    ROLE_ATTACKER -> ListItemType.MOVE_SINGLE_COMPRESSED_ATTACKER
+    ROLE_DEFENDER -> ListItemType.MOVE_SINGLE_COMPRESSED_DEFENDER
+    ROLE_SPEEDSTER -> ListItemType.MOVE_SINGLE_COMPRESSED_SPEEDSTER
+    ROLE_SUPPORTER -> ListItemType.MOVE_SINGLE_COMPRESSED_SUPPORTER
+    else -> null
+}?.let { type ->
+    ListItemMoveSingleCompressed(
+        id = id,
+        image = basic.image,
+        name = basic.name,
+        description = basic.description,
+        type = type,
+    )
+}
 
 @StringRes
 fun Pokemon.getRoleName(): Int? = when (role) {

@@ -11,10 +11,6 @@ enum class ListItemType(
     FACTS(4),
     SUBTITLE(5),
     EVOLUTIONS(6),
-    MOVE_SINGLE(7),
-    MOVE_SINGLE_COMPRESSED(8),
-    MOVE_ABILITY(9),
-    MOVE_ABILITY_COMPRESSED(10),
     HOME_ITEM(11),
     POKEMON_ALL_ROUNDER(12),
     POKEMON_ATTACKER(13),
@@ -36,6 +32,26 @@ enum class ListItemType(
     CHIPS_DEFENDER(29),
     CHIPS_SPEEDSTER(30),
     CHIPS_SUPPORTER(31),
+    MOVE_SINGLE_ALL_ROUNDER(32),
+    MOVE_SINGLE_ATTACKER(33),
+    MOVE_SINGLE_DEFENDER(34),
+    MOVE_SINGLE_SPEEDSTER(35),
+    MOVE_SINGLE_SUPPORTER(36),
+    MOVE_SINGLE_COMPRESSED_ALL_ROUNDER(37),
+    MOVE_SINGLE_COMPRESSED_ATTACKER(38),
+    MOVE_SINGLE_COMPRESSED_DEFENDER(39),
+    MOVE_SINGLE_COMPRESSED_SPEEDSTER(40),
+    MOVE_SINGLE_COMPRESSED_SUPPORTER(41),
+    MOVE_ABILITY_ALL_ROUNDER(42),
+    MOVE_ABILITY_ATTACKER(43),
+    MOVE_ABILITY_DEFENDER(44),
+    MOVE_ABILITY_SPEEDSTER(45),
+    MOVE_ABILITY_SUPPORTER(46),
+    MOVE_ABILITY_COMPRESSED_ALL_ROUNDER(47),
+    MOVE_ABILITY_COMPRESSED_ATTACKER(48),
+    MOVE_ABILITY_COMPRESSED_DEFENDER(49),
+    MOVE_ABILITY_COMPRESSED_SPEEDSTER(50),
+    MOVE_ABILITY_COMPRESSED_SUPPORTER(51),
 }
 
 sealed class ListItem {
@@ -177,10 +193,9 @@ data class ListItemMoveSingle(
     val id: String,
     val image: String,
     val name: String,
-    val description: String
+    val description: String,
+    override val type: ListItemType,
 ) : ListItem() {
-    override val type: ListItemType = ListItemType.MOVE_SINGLE
-
     override fun areItemsTheSame(newItem: ListItem): Boolean = newItem is ListItemMoveSingle
             && newItem.id == id
 
@@ -189,23 +204,33 @@ data class ListItemMoveSingle(
             && newItem.image == image
             && newItem.name == name
             && newItem.description == description
+            && newItem.type == type
 
     fun compress() = ListItemMoveSingleCompressed(
         id = id,
         image = image,
         name = name,
-        description = description
+        description = description,
+        type = type.comprss()
     )
+
+    private fun ListItemType.comprss(): ListItemType = when (this) {
+        ListItemType.MOVE_SINGLE_ALL_ROUNDER -> ListItemType.MOVE_SINGLE_COMPRESSED_ALL_ROUNDER
+        ListItemType.MOVE_SINGLE_ATTACKER -> ListItemType.MOVE_SINGLE_COMPRESSED_ATTACKER
+        ListItemType.MOVE_SINGLE_DEFENDER -> ListItemType.MOVE_SINGLE_COMPRESSED_DEFENDER
+        ListItemType.MOVE_SINGLE_SPEEDSTER -> ListItemType.MOVE_SINGLE_COMPRESSED_SPEEDSTER
+        ListItemType.MOVE_SINGLE_SUPPORTER -> ListItemType.MOVE_SINGLE_COMPRESSED_SUPPORTER
+        else -> throw IllegalArgumentException("Unexpected type")
+    }
 }
 
 data class ListItemMoveSingleCompressed(
     val id: String,
     val image: String,
     val name: String,
-    val description: String
+    val description: String,
+    override val type: ListItemType,
 ) : ListItem() {
-    override val type: ListItemType = ListItemType.MOVE_SINGLE_COMPRESSED
-
     override fun areItemsTheSame(newItem: ListItem): Boolean =
         newItem is ListItemMoveSingleCompressed
                 && newItem.id == id
@@ -220,8 +245,18 @@ data class ListItemMoveSingleCompressed(
         id = id,
         image = image,
         name = name,
-        description = description
+        description = description,
+        type = type.expand()
     )
+
+    private fun ListItemType.expand(): ListItemType = when (this) {
+        ListItemType.MOVE_SINGLE_COMPRESSED_ALL_ROUNDER -> ListItemType.MOVE_SINGLE_ALL_ROUNDER
+        ListItemType.MOVE_SINGLE_COMPRESSED_ATTACKER -> ListItemType.MOVE_SINGLE_ATTACKER
+        ListItemType.MOVE_SINGLE_COMPRESSED_DEFENDER -> ListItemType.MOVE_SINGLE_DEFENDER
+        ListItemType.MOVE_SINGLE_COMPRESSED_SPEEDSTER -> ListItemType.MOVE_SINGLE_SPEEDSTER
+        ListItemType.MOVE_SINGLE_COMPRESSED_SUPPORTER -> ListItemType.MOVE_SINGLE_SUPPORTER
+        else -> throw IllegalArgumentException("Unexpected type")
+    }
 }
 
 data class ListItemMoveAbility(
@@ -239,9 +274,8 @@ data class ListItemMoveAbility(
     val upgrade2Description: String?,
     val upgrade2Cooldown: String?,
     val upgrade2Image: String?,
+    override val type: ListItemType,
 ) : ListItem() {
-    override val type: ListItemType = ListItemType.MOVE_ABILITY
-
     override fun areItemsTheSame(newItem: ListItem): Boolean =
         newItem is ListItemMoveAbility
                 && newItem.id == id
@@ -262,6 +296,7 @@ data class ListItemMoveAbility(
                 && newItem.upgrade2Description == upgrade2Description
                 && newItem.upgrade2Cooldown == upgrade2Cooldown
                 && newItem.upgrade2Image == upgrade2Image
+                && newItem.type == type
 
     fun compress(): ListItemMoveAbilityCompressed = ListItemMoveAbilityCompressed(
         id = id,
@@ -278,7 +313,17 @@ data class ListItemMoveAbility(
         upgrade2Description = upgrade2Description,
         upgrade2Cooldown = upgrade2Cooldown,
         upgrade2Image = upgrade2Image,
+        type = type.compress()
     )
+
+    private fun ListItemType.compress() = when (this) {
+        ListItemType.MOVE_ABILITY_ALL_ROUNDER -> ListItemType.MOVE_ABILITY_COMPRESSED_ALL_ROUNDER
+        ListItemType.MOVE_ABILITY_ATTACKER -> ListItemType.MOVE_ABILITY_COMPRESSED_ATTACKER
+        ListItemType.MOVE_ABILITY_DEFENDER -> ListItemType.MOVE_ABILITY_COMPRESSED_DEFENDER
+        ListItemType.MOVE_ABILITY_SPEEDSTER -> ListItemType.MOVE_ABILITY_COMPRESSED_SPEEDSTER
+        ListItemType.MOVE_ABILITY_SUPPORTER -> ListItemType.MOVE_ABILITY_COMPRESSED_SUPPORTER
+        else -> throw IllegalArgumentException("Unexpected type")
+    }
 }
 
 data class ListItemMoveAbilityCompressed(
@@ -296,9 +341,8 @@ data class ListItemMoveAbilityCompressed(
     val upgrade2Description: String?,
     val upgrade2Cooldown: String?,
     val upgrade2Image: String?,
+    override val type: ListItemType,
 ) : ListItem() {
-    override val type: ListItemType = ListItemType.MOVE_ABILITY_COMPRESSED
-
     override fun areItemsTheSame(newItem: ListItem): Boolean =
         newItem is ListItemMoveAbilityCompressed
                 && newItem.id == id
@@ -319,6 +363,7 @@ data class ListItemMoveAbilityCompressed(
                 && newItem.upgrade2Description == upgrade2Description
                 && newItem.upgrade2Cooldown == upgrade2Cooldown
                 && newItem.upgrade2Image == upgrade2Image
+                && newItem.type == type
 
     fun expand(): ListItemMoveAbility = ListItemMoveAbility(
         id = id,
@@ -335,7 +380,17 @@ data class ListItemMoveAbilityCompressed(
         upgrade2Description = upgrade2Description,
         upgrade2Cooldown = upgrade2Cooldown,
         upgrade2Image = upgrade2Image,
+        type = type.expand()
     )
+
+    private fun ListItemType.expand() = when (this) {
+        ListItemType.MOVE_ABILITY_COMPRESSED_ALL_ROUNDER -> ListItemType.MOVE_ABILITY_ALL_ROUNDER
+        ListItemType.MOVE_ABILITY_COMPRESSED_ATTACKER -> ListItemType.MOVE_ABILITY_ATTACKER
+        ListItemType.MOVE_ABILITY_COMPRESSED_DEFENDER -> ListItemType.MOVE_ABILITY_DEFENDER
+        ListItemType.MOVE_ABILITY_COMPRESSED_SPEEDSTER -> ListItemType.MOVE_ABILITY_SPEEDSTER
+        ListItemType.MOVE_ABILITY_COMPRESSED_SUPPORTER -> ListItemType.MOVE_ABILITY_SUPPORTER
+        else -> throw IllegalArgumentException("Unexpected type")
+    }
 }
 
 data class ListItemHome(
