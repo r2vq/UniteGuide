@@ -52,6 +52,7 @@ enum class ListItemType(
     MOVE_ABILITY_COMPRESSED_DEFENDER(49),
     MOVE_ABILITY_COMPRESSED_SPEEDSTER(50),
     MOVE_ABILITY_COMPRESSED_SUPPORTER(51),
+    ABOUT_ITEM(52),
 }
 
 sealed class ListItem {
@@ -409,4 +410,22 @@ data class ListItemHome(
             && newItem.title == title
             && newItem.image == image
             && newItem.color == color
+}
+
+data class ListItemAbout(
+    val id: String,
+    val title: String?,
+    val subtitle: String?,
+    val body: String?,
+) : ListItem() {
+    override val type: ListItemType = ListItemType.ABOUT_ITEM
+
+    override fun areItemsTheSame(newItem: ListItem): Boolean = newItem is ListItemAbout
+            && newItem.id == id
+
+    override fun areContentsTheSame(newItem: ListItem): Boolean = newItem is ListItemAbout
+            && newItem.id == id
+            && newItem.title == title
+            && newItem.subtitle == subtitle
+            && newItem.body == body
 }

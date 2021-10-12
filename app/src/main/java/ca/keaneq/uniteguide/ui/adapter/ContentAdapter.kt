@@ -153,6 +153,9 @@ class ContentAdapter(
                 R.style.PokemonSupporter,
                 parent
             )
+            ListItemType.ABOUT_ITEM.id -> AboutViewHolder(
+                ListItemAboutBinding.inflate(layoutInflater, parent, false)
+            )
             else -> UnknownViewHolder(
                 ListItemEmptyBinding.inflate(layoutInflater, parent, false)
             )

@@ -31,4 +31,9 @@
     <string name="header_moveset">Moveset</string>
 
     <string name="move_upgrade">Upon reaching Lv. %d, you can select one of the following two moves.</string>
+
+    <string name="about_version_title">Version Number</string>
+
+    <string name="about_disclaimer_title">Disclaimer</string>
+    <string name="about_disclaimer_body">Unite Guide is an unofficial, free, fan made app and is NOT affiliated, endorsed or supported by Nintendo, GAME FREAK, or The Pokémon Company in any way.\nSome images used in this app are copyrighted and are supported under fair use.\nPokémon and Pokémon character names are trademark of Nintendo.\nNo copyright infringement intended.\n\nPokémon © 2002–2021 Pokémon.\n© 1995–2021 Nintendo/Creatures Inc./GAME FREAK inc.</string>
 </resources>

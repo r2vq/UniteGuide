@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="colorBackground" format="color" />
+
     <attr name="colorPokemonMain" format="color" />
     <attr name="colorOnPokemonMain" format="color" />
     <attr name="colorPokemonLight" format="color" />
