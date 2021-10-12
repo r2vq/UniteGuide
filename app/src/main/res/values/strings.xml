@@ -3,6 +3,7 @@
     <string name="title_pokemon">Pokemon</string>
     <string name="title_items">Items</string>
     <string name="title_home">Unite Guide</string>
+    <string name="title_about">About</string>
 
     <string name="role_attacker">Attacker</string>
     <string name="role_defender">Defender</string>

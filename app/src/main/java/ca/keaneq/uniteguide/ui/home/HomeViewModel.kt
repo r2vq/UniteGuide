@@ -11,6 +11,7 @@ import ca.keaneq.uniteguide.ui.model.ListItemHome
 
 private const val LIST_ITEM_ID_POKEMON = "Menu Item Pokemon"
 private const val LIST_ITEM_ID_ITEMS = "Menu Item Items"
+private const val LIST_ITEM_ID_ABOUT = "Menu Item About"
 
 class HomeViewModel(
     private val stringGetter: (string: Int) -> String,
@@ -35,6 +36,12 @@ class HomeViewModel(
                     id = LIST_ITEM_ID_ITEMS,
                     title = stringGetter(R.string.title_items),
                     image = R.drawable.ic_dashboard_black_24dp,
+                    color = R.attr.colorPrimary,
+                ),
+                ListItemHome(
+                    id = LIST_ITEM_ID_ABOUT,
+                    title = stringGetter(R.string.title_about),
+                    image = R.drawable.ic_info_black_24dp,
                     color = R.attr.colorSecondary,
                 ),
             )
