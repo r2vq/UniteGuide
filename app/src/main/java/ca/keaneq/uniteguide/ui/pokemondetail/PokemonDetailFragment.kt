@@ -34,6 +34,7 @@ class PokemonDetailFragment : Fragment() {
 
         val rvPokemon: RecyclerView = binding.rvPokemon
         rvPokemon.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        rvPokemon.itemAnimator = null
         rvPokemon.adapter = listAdapter
 
         listAdapter.onClick.observe(viewLifecycleOwner, pokemonListViewModel::onItemClick)
