@@ -57,6 +57,7 @@ class HomeViewModel(
                 when (it.id) {
                     LIST_ITEM_ID_POKEMON -> R.id.navigation_pokemon_list
                     LIST_ITEM_ID_ITEMS -> R.id.navigation_items
+                    LIST_ITEM_ID_ABOUT -> R.id.navigation_about
                     else -> null
                 }
             }
