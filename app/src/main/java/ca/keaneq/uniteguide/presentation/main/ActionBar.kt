@@ -30,6 +30,8 @@ fun ActionBar(
                 )
             }
         },
+        backgroundColor = MaterialTheme.colors.primary,
+        contentColor = MaterialTheme.colors.onPrimary,
         title = { Text(text = text) }
     )
 }
