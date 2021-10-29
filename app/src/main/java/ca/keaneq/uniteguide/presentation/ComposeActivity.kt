@@ -5,7 +5,6 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -13,6 +12,7 @@ import ca.keaneq.uniteguide.R
 import ca.keaneq.uniteguide.presentation.main.ActionBar
 import ca.keaneq.uniteguide.presentation.main.NavigationDrawer
 import ca.keaneq.uniteguide.presentation.main.UniteGuideTheme
+import ca.keaneq.uniteguide.presentation.navigation.Navigation
 
 class ComposeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +29,7 @@ class ComposeActivity : AppCompatActivity() {
                     },
                     drawerContent = { NavigationDrawer() },
                     drawerShape = RoundedCornerShape(topEnd = 24.dp),
-                    content = { Text(stringResource(id = R.string.title_home)) },
+                    content = { Navigation() },
                     scaffoldState = scaffoldState,
                 )
             }
