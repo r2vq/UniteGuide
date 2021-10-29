@@ -1,38 +1,57 @@
 package ca.keaneq.uniteguide.presentation.main
 
-import android.content.Context
-import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.material.DrawerState
+import androidx.compose.material.DrawerValue
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import ca.keaneq.uniteguide.R
+import ca.keaneq.uniteguide.presentation.navigation.Screen
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 enum class DrawerItem(
     @StringRes val text: Int,
     @DrawableRes val icon: Int,
-    val onClick: (Context/*, NavController*/) -> Unit
+    val screen: Screen
 ) {
-    POKEMON(R.string.title_pokemon, R.drawable.ic_pokeball_black, { context ->
-        Toast.makeText(context, "Click Pokemon", Toast.LENGTH_SHORT).show()
-    }),
-    ABOUT(R.string.title_about, R.drawable.ic_info_black_24dp, { context ->
-        Toast.makeText(context, "Click About", Toast.LENGTH_SHORT).show()
-    }),
+    POKEMON(
+        text = R.string.title_pokemon,
+        icon = R.drawable.ic_pokeball_black,
+        screen = Screen.PokemonList,
+    ),
+    ABOUT(
+        text = R.string.title_about,
+        icon = R.drawable.ic_info_black_24dp,
+        screen = Screen.About,
+    ),
 }
 
 @Composable
-fun DrawerItem.ToNavigationDrawerItem() {
-    val context = LocalContext.current
+fun DrawerItem.ToNavigationDrawerItem(
+    navController: NavHostController = rememberNavController(),
+    drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
+    scope: CoroutineScope = rememberCoroutineScope()
+) {
     NavigationDrawerItem(
         text = stringResource(id = text),
         icon = icon,
         backgroundColor = MaterialTheme.colors.background,
         foregroundColor = MaterialTheme.colors.onBackground,
-        onClick = { onClick(context) }
+        onClick = {
+            navController.navigate(screen.route) {
+                launchSingleTop = true
+                popUpTo(screen.route)
+            }
+            scope.launch { drawerState.close() }
+        }
     )
 }
 

@@ -1,6 +1,7 @@
 package ca.keaneq.uniteguide.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -13,8 +14,9 @@ import ca.keaneq.uniteguide.presentation.pokemonlist.PokemonListScreen
 private const val ARG_POKEMON_ID = "pokemonId"
 
 @Composable
-fun Navigation() {
-    val navController = rememberNavController()
+fun Navigation(
+    navController: NavHostController = rememberNavController()
+) {
     NavHost(navController = navController, startDestination = Screen.PokemonList.route) {
         composable(
             route = Screen.PokemonList.route,
