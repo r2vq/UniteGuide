@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("androidx.navigation.safeargs.kotlin")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -50,6 +52,11 @@ android {
     }
 }
 
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     // Android Core
     implementation("androidx.appcompat:appcompat:1.3.1")
@@ -74,6 +81,9 @@ dependencies {
 
     // Dependency Injection
     implementation("io.insert-koin:koin-android:3.1.3")
+    implementation("com.google.dagger:hilt-android:2.38.1")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
+    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
 
     // Image Processing
     implementation("com.github.bumptech.glide:glide:4.12.0")

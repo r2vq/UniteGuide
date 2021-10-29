@@ -15,7 +15,9 @@ import ca.keaneq.uniteguide.presentation.main.ActionBar
 import ca.keaneq.uniteguide.presentation.main.NavigationDrawer
 import ca.keaneq.uniteguide.presentation.main.UniteGuideTheme
 import ca.keaneq.uniteguide.presentation.navigation.Navigation
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ComposeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
