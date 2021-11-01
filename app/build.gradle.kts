@@ -85,9 +85,9 @@ dependencies {
 
     // Dependency Injection
     implementation("io.insert-koin:koin-android:3.1.3")
-    implementation("com.google.dagger:hilt-android:2.38.1")
+    implementation("com.google.dagger:hilt-android:2.40")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
-    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.40")
 
     // Image Processing
     implementation("com.github.bumptech.glide:glide:4.12.0")
