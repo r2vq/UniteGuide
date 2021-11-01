@@ -1,22 +1,62 @@
 package ca.keaneq.uniteguide
 
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation
-import ca.keaneq.uniteguide.databinding.ActivityMainBinding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Scaffold
+import androidx.compose.material.rememberScaffoldState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
+import ca.keaneq.presentation.main.ActionBar
+import ca.keaneq.presentation.main.NavigationDrawer
+import ca.keaneq.presentation.main.UniteGuideTheme
+import ca.keaneq.presentation.navigation.Navigation
+import ca.keaneq.presentation.navigation.ToolbarState
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContent {
+            val navController = rememberNavController()
+            val scope = rememberCoroutineScope()
+            val toolbarState = mutableStateOf(ToolbarState.Menu)
+            UniteGuideTheme {
+                val scaffoldState = rememberScaffoldState()
+                Scaffold(
+                    topBar = {
+                        ActionBar(
+                            text = stringResource(id = R.string.app_name),
+                            drawerState = scaffoldState.drawerState,
+                            scope = scope,
+                            toolbarState = toolbarState.value,
+                            navController = navController,
+                        )
+                    },
+                    drawerContent = {
+                        NavigationDrawer(
+                            navController = navController,
+                            drawerState = scaffoldState.drawerState,
+                            scope = scope,
+                        )
+                    },
+                    drawerShape = RoundedCornerShape(topEnd = 24.dp),
+                    content = {
+                        Navigation(
+                            navController = navController,
+                            versionName = BuildConfig.VERSION_NAME,
+                        ) { toolbar ->
+                            toolbarState.value = toolbar
+                        }
+                    },
+                    scaffoldState = scaffoldState,
+                )
+            }
+        }
     }
-
-    override fun onSupportNavigateUp(): Boolean =
-        Navigation.findNavController(this, R.id.nav_host_fragment_activity_main).navigateUp()
-                || super.onSupportNavigateUp()
 }
