@@ -15,12 +15,14 @@ const val ARG_POKEMON_ID = "pokemonId"
 
 @Composable
 fun Navigation(
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    onNavigationChange: (ToolbarState) -> Unit = {},
 ) {
     NavHost(navController = navController, startDestination = Screen.PokemonList.route) {
         composable(
             route = Screen.PokemonList.route,
         ) {
+            onNavigationChange(ToolbarState.Menu)
             PokemonListScreen(navController = navController)
         }
         composable(
@@ -32,11 +34,13 @@ fun Navigation(
                 }
             )
         ) {
+            onNavigationChange(ToolbarState.Up)
             PokemonDetailScreen()
         }
         composable(
             route = Screen.About.route,
         ) {
+            onNavigationChange(ToolbarState.Menu)
             AboutScreen()
         }
     }
