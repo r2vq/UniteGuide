@@ -12,7 +12,7 @@ import ca.keaneq.uniteguide.presentation.pokemonlist.viewmodel.PokemonListViewMo
 
 @Composable
 fun PokemonListScreen(
-    viewModel: PokemonListViewModel = hiltViewModel()
+    viewModel: PokemonListViewModel = hiltViewModel(),
 ) {
     val state = viewModel.state.value
     LazyColumn(

@@ -99,6 +99,7 @@ private val PokemonItem.onColor: Color
 @Composable
 fun PokemonListItemVenusaurPreview() {
     val pokemon = PokemonItem(
+        id = "001",
         name = "Venusaur",
         imageUrl = "https://raw.githubusercontent.com/r2vq/r2vq.github.io/master/unite/img/Pokemon_Venusaur.png",
         role = "attacker",
@@ -110,6 +111,7 @@ fun PokemonListItemVenusaurPreview() {
 @Composable
 fun PokemonListItemTalonflamePreview() {
     val pokemon = PokemonItem(
+        id = "002",
         name = "Talonflame",
         imageUrl = "https://raw.githubusercontent.com/r2vq/r2vq.github.io/master/unite/img/Pokemon_Talonflame.png",
         role = "speedster",

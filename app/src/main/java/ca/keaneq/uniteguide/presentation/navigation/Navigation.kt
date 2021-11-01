@@ -11,7 +11,7 @@ import ca.keaneq.uniteguide.presentation.about.AboutScreen
 import ca.keaneq.uniteguide.presentation.pokemondetail.PokemonDetailScreen
 import ca.keaneq.uniteguide.presentation.pokemonlist.PokemonListScreen
 
-private const val ARG_POKEMON_ID = "pokemonId"
+const val ARG_POKEMON_ID = "pokemonId"
 
 @Composable
 fun Navigation(
@@ -31,10 +31,8 @@ fun Navigation(
                     nullable = false
                 }
             )
-        ) { navBackStackEntry ->
-            PokemonDetailScreen(
-                id = navBackStackEntry.arguments!!.getString(ARG_POKEMON_ID)!!
-            )
+        ) {
+            PokemonDetailScreen()
         }
         composable(
             route = Screen.About.route,
