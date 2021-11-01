@@ -1,6 +1,6 @@
-package ca.keaneq.uniteguide.data.network
+package ca.keaneq.network
 
-import ca.keaneq.uniteguide.data.network.dto.PokemonRootDTO
+import ca.keaneq.network.dto.PokemonRootDTO
 import retrofit2.http.GET
 
 interface PokeApi {

@@ -1,6 +1,7 @@
-package ca.keaneq.uniteguide.data.network
+package ca.keaneq.network
 
 import android.content.Context
+import ca.keaneq.network.impl.CacheControlInterceptor
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -19,6 +20,16 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+    @Provides
+    @Singleton
+    internal fun providesOkHttpClient(
+        interceptor: CacheControlInterceptor,
+        cache: Cache
+    ): OkHttpClient = OkHttpClient.Builder()
+        .cache(cache)
+        .addInterceptor(interceptor)
+        .build()
+
     @Provides
     @Singleton
     internal fun providesJsonAdapterFactory(
@@ -47,21 +58,11 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    internal fun providesOkHttpClient(
-        interceptor: CacheControlInterceptor,
-        cache: Cache
-    ): OkHttpClient = OkHttpClient.Builder()
-        .cache(cache)
-        .addInterceptor(interceptor)
-        .build()
-
-    @Provides
-    @Singleton
     fun providesApiService(
         client: OkHttpClient,
         factory: Converter.Factory
     ): PokeApi = Retrofit.Builder()
-        .baseUrl(ca.keaneq.uniteguide.api.PokeApi.BASE_URL)
+        .baseUrl(BuildConfig.BASE_POKEMON_URL)
         .addConverterFactory(factory)
         .client(client)
         .build()

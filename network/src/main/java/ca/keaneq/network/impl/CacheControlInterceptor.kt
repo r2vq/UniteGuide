@@ -1,7 +1,7 @@
-package ca.keaneq.uniteguide.data.network
+package ca.keaneq.network.impl
 
 import android.content.Context
-import ca.keaneq.uniteguide.api.hasNetwork
+import android.net.ConnectivityManager
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -33,3 +33,14 @@ internal class CacheControlInterceptor @Inject constructor(
         return chain.proceed(request)
     }
 }
+
+/**
+ * Quick check if there is network available.
+ *
+ * @return `false` if there is no network or if Connectivity Manager is not found. True otherwise.
+ */
+private fun Context.hasNetwork(): Boolean =
+    (getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager)
+        ?.activeNetworkInfo
+        ?.isConnected
+        ?: false

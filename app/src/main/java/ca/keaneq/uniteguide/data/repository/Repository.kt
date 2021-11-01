@@ -1,6 +1,6 @@
 package ca.keaneq.uniteguide.data.repository
 
-import ca.keaneq.uniteguide.data.network.dto.PokemonDTO
+import ca.keaneq.network.dto.PokemonDTO
 
 interface Repository {
     /**

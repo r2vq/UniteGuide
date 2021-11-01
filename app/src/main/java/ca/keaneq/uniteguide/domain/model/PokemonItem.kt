@@ -1,6 +1,6 @@
 package ca.keaneq.uniteguide.domain.model
 
-import ca.keaneq.uniteguide.data.network.dto.PokemonDTO
+import ca.keaneq.network.dto.PokemonDTO
 
 data class PokemonItem(
     val id: String,

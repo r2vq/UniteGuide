@@ -27,8 +27,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-
-            buildConfigField("String", "BASE_POKEMON_URL", "\"https://r2vq.github.io/unite/\"")
         }
         release {
             isMinifyEnabled = true
@@ -36,8 +34,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-
-            buildConfigField("String", "BASE_POKEMON_URL", "\"https://r2vq.github.io/unite/\"")
         }
     }
     compileOptions {
@@ -97,6 +93,9 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
+
+    // Modules
+    implementation(project(mapOf("path" to ":network")))
 
     // Testing
     testImplementation("junit:junit:4.13.2")

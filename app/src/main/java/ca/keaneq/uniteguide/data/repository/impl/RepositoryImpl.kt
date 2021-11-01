@@ -1,7 +1,7 @@
 package ca.keaneq.uniteguide.data.repository.impl
 
-import ca.keaneq.uniteguide.data.network.PokeApi
-import ca.keaneq.uniteguide.data.network.dto.PokemonDTO
+import ca.keaneq.network.PokeApi
+import ca.keaneq.network.dto.PokemonDTO
 import ca.keaneq.uniteguide.data.repository.Repository
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package ca.keaneq.uniteguide.data.network.dto
+package ca.keaneq.network.dto
 
 import androidx.annotation.Keep
 import com.squareup.moshi.Json
