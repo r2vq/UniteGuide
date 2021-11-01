@@ -27,6 +27,8 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            buildConfigField("String", "BASE_POKEMON_URL", "\"https://r2vq.github.io/unite/\"")
         }
         release {
             isMinifyEnabled = true
@@ -34,6 +36,8 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            buildConfigField("String", "BASE_POKEMON_URL", "\"https://r2vq.github.io/unite/\"")
         }
     }
     compileOptions {
