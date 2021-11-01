@@ -1,4 +1,4 @@
-package ca.keaneq.uniteguide.data.repository
+package ca.keaneq.repository
 
 import ca.keaneq.network.dto.PokemonDTO
 

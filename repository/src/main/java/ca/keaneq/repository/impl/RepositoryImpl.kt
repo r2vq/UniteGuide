@@ -1,11 +1,10 @@
-package ca.keaneq.uniteguide.data.repository.impl
+package ca.keaneq.repository.impl
 
 import ca.keaneq.network.PokeApi
 import ca.keaneq.network.dto.PokemonDTO
-import ca.keaneq.uniteguide.data.repository.Repository
-import javax.inject.Inject
+import ca.keaneq.repository.Repository
 
-class RepositoryImpl @Inject constructor(
+internal class RepositoryImpl constructor(
     private val api: PokeApi
 ) : Repository {
     override suspend fun getPokemon(id: String): PokemonDTO? = api

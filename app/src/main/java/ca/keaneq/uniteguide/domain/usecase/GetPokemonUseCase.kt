@@ -1,9 +1,9 @@
 package ca.keaneq.uniteguide.domain.usecase
 
+import ca.keaneq.repository.Repository
 import ca.keaneq.uniteguide.common.Resource
 import ca.keaneq.uniteguide.domain.model.PokemonItem
 import ca.keaneq.uniteguide.domain.model.toPokemonItem
-import ca.keaneq.uniteguide.data.repository.Repository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
