@@ -1,10 +1,9 @@
+@file:Suppress("unused")
+
 package ca.keaneq.uniteguide.presentation.main
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Typography
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -16,11 +15,24 @@ fun UniteGuideTheme(
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
-        colors = if (isDarkMode) Colors.DarkColors else Colors.LightColors,
+        colors = if (isDarkMode) ThemeColors.DarkColors else ThemeColors.LightColors,
         content = content,
         typography = typography,
     )
 }
+
+val Colors.allRounder: Color get() = ThemeColors.DEEP_PURPLE_A700
+val Colors.onAllRounder: Color get() = ThemeColors.WHITE
+val Colors.attacker: Color get() = ThemeColors.ORANGE_800
+val Colors.onAttacker: Color get() = ThemeColors.WHITE
+val Colors.defender: Color get() = ThemeColors.GREEN_700
+val Colors.speedster: Color get() = ThemeColors.LIGHT_BLUE_800
+val Colors.supporter: Color get() = ThemeColors.AMBER_300
+val Colors.unspecified: Color get() = ThemeColors.BLACK
+val Colors.onDefender: Color get() = ThemeColors.BLACK
+val Colors.onSpeedster: Color get() = ThemeColors.WHITE
+val Colors.onSupporter: Color get() = ThemeColors.BLACK
+val Colors.onUnspecified: Color get() = ThemeColors.WHITE
 
 private val typography = Typography(
     h1 = TextStyle(
@@ -34,7 +46,7 @@ private val typography = Typography(
     ),
 )
 
-private object Colors {
+private object ThemeColors {
     val BLACK = Color(0xFF000000)
     val WHITE = Color(0xFFFFFFFF)
     val ORANGE_700 = Color(0xFFF57C00)
