@@ -1,14 +1,25 @@
 package ca.keaneq.uniteguide.presentation.pokemonlist
 
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ca.keaneq.uniteguide.R
+import androidx.hilt.navigation.compose.hiltViewModel
+import ca.keaneq.uniteguide.presentation.pokemonlist.component.PokemonListItem
+import ca.keaneq.uniteguide.presentation.pokemonlist.viewmodel.PokemonListViewModel
 
 @Composable
-fun PokemonListScreen() {
-    Text(text = stringResource(id = R.string.title_pokemon))
+fun PokemonListScreen(
+    viewModel: PokemonListViewModel = hiltViewModel()
+) {
+    val state = viewModel.state.value
+    LazyColumn(
+        modifier = Modifier.fillMaxSize(),
+    ) {
+        items(state.pokemon) { pokemon -> PokemonListItem(pokemon) }
+    }
 }
 
 @Preview(showBackground = true)

@@ -39,13 +39,12 @@ fun PokemonListItem(
                     painter = painterResource(id = R.drawable.ic_pokeball),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
-                    colorFilter = ColorFilter.tint(pokemon.onColor),
                     modifier = Modifier
                         .size(
                             width = 150.dp,
                             height = 100.dp,
                         )
-                        .alpha(0.3f)
+                        .alpha(0.2f)
                         .fillMaxWidth(),
                 )
                 Image(
@@ -76,14 +75,44 @@ fun PokemonListItem(
     }
 }
 
+private val PokemonItem.color: Color
+    get() = when (role) {
+        "allrounder" -> Color(0xff4527a0)
+        "attacker" -> Color(0xfff06f2a)
+        "defender" -> Color(0xff689f38)
+        "speedster" -> Color(0xff0277bd)
+        "supporter" -> Color(0xffffd54f)
+        else -> Color.Black
+    }
+
+private val PokemonItem.onColor: Color
+    get() = when (role) {
+        "allrounder" -> Color.White
+        "attacker" -> Color.Black
+        "defender" -> Color.Black
+        "speedster" -> Color.White
+        "supporter" -> Color.Black
+        else -> Color.White
+    }
+
 @Preview
 @Composable
-fun PokemonListItemPreview() {
+fun PokemonListItemVenusaurPreview() {
     val pokemon = PokemonItem(
         name = "Venusaur",
-        imageUrl = "https://raw.githubusercontent.com/r2vq/r2vq.github.io/master/unite/img/Pokemon_Blastoise.png",
-        color = Color.Blue,
-        onColor = Color.White,
+        imageUrl = "https://raw.githubusercontent.com/r2vq/r2vq.github.io/master/unite/img/Pokemon_Venusaur.png",
+        role = "attacker",
+    )
+    PokemonListItem(pokemon = pokemon)
+}
+
+@Preview
+@Composable
+fun PokemonListItemTalonflamePreview() {
+    val pokemon = PokemonItem(
+        name = "Talonflame",
+        imageUrl = "https://raw.githubusercontent.com/r2vq/r2vq.github.io/master/unite/img/Pokemon_Talonflame.png",
+        role = "speedster",
     )
     PokemonListItem(pokemon = pokemon)
 }
