@@ -21,7 +21,7 @@ fun Navigation(
         composable(
             route = Screen.PokemonList.route,
         ) {
-            PokemonListScreen()
+            PokemonListScreen(navController = navController)
         }
         composable(
             route = Screen.PokemonDetail.route + "/{$ARG_POKEMON_ID}",

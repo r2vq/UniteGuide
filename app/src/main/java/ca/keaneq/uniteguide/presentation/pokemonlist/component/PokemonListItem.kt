@@ -1,6 +1,7 @@
 package ca.keaneq.uniteguide.presentation.pokemonlist.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -10,7 +11,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,13 +21,15 @@ import coil.compose.rememberImagePainter
 
 @Composable
 fun PokemonListItem(
-    pokemon: PokemonItem
+    pokemon: PokemonItem,
+    onItemClick: () -> Unit = {},
 ) {
     Card(
         backgroundColor = pokemon.color,
         modifier = Modifier
             .padding(4.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable { onItemClick() },
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
