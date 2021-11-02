@@ -1,8 +1,10 @@
 package ca.keaneq.uniteguide.presentation.pokemonlist
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,10 +23,15 @@ fun PokemonListScreen(
 ) {
     val state = viewModel.state.value
     LazyColumn(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colors.surface),
     ) {
-        items(state.pokemon) { pokemon ->
-            PokemonListItem(pokemon) {
+        itemsIndexed(state.pokemon) { i, pokemon ->
+            PokemonListItem(
+                pokemon = pokemon,
+                isFirstItem = i == 0,
+            ) {
                 navController.navigate(Screen.PokemonDetail.withArgs(pokemon.id))
             }
         }
