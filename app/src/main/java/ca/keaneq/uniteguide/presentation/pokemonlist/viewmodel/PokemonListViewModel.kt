@@ -4,8 +4,10 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import ca.keaneq.uniteguide.common.Resource
-import ca.keaneq.uniteguide.domain.usecase.GetPokemonListUseCase
+import ca.keaneq.domain.model.Pokemon
+import ca.keaneq.domain.model.Resource
+import ca.keaneq.domain.usecase.GetPokemonListUseCase
+import ca.keaneq.uniteguide.presentation.model.toPokemonItem
 import ca.keaneq.uniteguide.presentation.pokemonlist.model.PokemonListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -26,7 +28,7 @@ class PokemonListViewModel @Inject constructor(
     private fun getPokemonList() = getPokemonListUseCase().onEach { result ->
         when (result) {
             is Resource.Success -> _state.value = PokemonListState(
-                pokemon = result.data ?: emptyList()
+                pokemon = result.data?.map(Pokemon::toPokemonItem) ?: emptyList()
             )
             is Resource.Loading -> _state.value = PokemonListState(
                 isLoading = true

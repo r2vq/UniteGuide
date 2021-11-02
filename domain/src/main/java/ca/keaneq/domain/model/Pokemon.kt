@@ -1,15 +1,15 @@
-package ca.keaneq.uniteguide.domain.model
+package ca.keaneq.domain.model
 
 import ca.keaneq.network.dto.PokemonDTO
 
-data class PokemonItem(
+data class Pokemon(
     val id: String,
     val name: String,
     val imageUrl: String?,
     val role: Role
 )
 
-fun PokemonDTO.toPokemonItem(): PokemonItem = PokemonItem(
+fun PokemonDTO.toPokemon(): Pokemon = Pokemon(
     id = id,
     name = name,
     imageUrl = image,

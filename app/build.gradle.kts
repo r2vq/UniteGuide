@@ -95,7 +95,7 @@ dependencies {
     implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
 
     // Modules
-    implementation(project(mapOf("path" to ":repository")))
+    implementation(project(mapOf("path" to ":domain")))
 
     // Testing
     testImplementation("junit:junit:4.13.2")

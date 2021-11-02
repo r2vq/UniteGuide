@@ -1,6 +1,6 @@
 package ca.keaneq.uniteguide.presentation.pokemondetail.model
 
-import ca.keaneq.uniteguide.domain.model.PokemonItem
+import ca.keaneq.uniteguide.presentation.model.PokemonItem
 
 data class PokemonDetailState(
     val isLoading: Boolean = false,

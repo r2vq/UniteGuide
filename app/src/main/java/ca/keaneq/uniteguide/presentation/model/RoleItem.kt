@@ -1,11 +1,11 @@
-package ca.keaneq.uniteguide.domain.model
+package ca.keaneq.uniteguide.presentation.model
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import ca.keaneq.uniteguide.presentation.main.*
 
-enum class Role(
+enum class RoleItem(
     val color: @Composable () -> Color,
     val onColor: @Composable () -> Color,
 ) {

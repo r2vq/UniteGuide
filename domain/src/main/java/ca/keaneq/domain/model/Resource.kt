@@ -1,4 +1,4 @@
-package ca.keaneq.uniteguide.common
+package ca.keaneq.domain.model
 
 sealed class Resource<T>(
     val data: T? = null,

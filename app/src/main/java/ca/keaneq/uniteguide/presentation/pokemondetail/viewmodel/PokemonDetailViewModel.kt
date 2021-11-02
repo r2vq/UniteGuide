@@ -5,8 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import ca.keaneq.uniteguide.common.Resource
-import ca.keaneq.uniteguide.domain.usecase.GetPokemonUseCase
+import ca.keaneq.domain.model.Resource
+import ca.keaneq.domain.usecase.GetPokemonUseCase
+import ca.keaneq.uniteguide.presentation.model.toPokemonItem
 import ca.keaneq.uniteguide.presentation.navigation.ARG_POKEMON_ID
 import ca.keaneq.uniteguide.presentation.pokemondetail.model.PokemonDetailState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,7 +33,7 @@ class PokemonDetailViewModel @Inject constructor(
         .onEach { result ->
             when (result) {
                 is Resource.Success -> _state.value = PokemonDetailState(
-                    pokemon = result.data
+                    pokemon = result.data?.toPokemonItem()
                 )
                 is Resource.Loading -> _state.value = PokemonDetailState(
                     isLoading = true

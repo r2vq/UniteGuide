@@ -15,8 +15,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ca.keaneq.uniteguide.R
-import ca.keaneq.uniteguide.domain.model.PokemonItem
-import ca.keaneq.uniteguide.domain.model.Role
+import ca.keaneq.uniteguide.presentation.model.PokemonItem
+import ca.keaneq.uniteguide.presentation.model.RoleItem
 import coil.compose.rememberImagePainter
 
 @Composable
@@ -84,7 +84,7 @@ fun PokemonListItemVenusaurPreview() {
         id = "001",
         name = "Venusaur",
         imageUrl = "https://raw.githubusercontent.com/r2vq/r2vq.github.io/master/unite/img/Pokemon_Venusaur.png",
-        role = Role.ATTACKER,
+        role = RoleItem.ATTACKER,
     )
     PokemonListItem(pokemon = pokemon)
 }
@@ -96,7 +96,7 @@ fun PokemonListItemTalonflamePreview() {
         id = "002",
         name = "Talonflame",
         imageUrl = "https://raw.githubusercontent.com/r2vq/r2vq.github.io/master/unite/img/Pokemon_Talonflame.png",
-        role = Role.SPEEDSTER,
+        role = RoleItem.SPEEDSTER,
     )
     PokemonListItem(pokemon = pokemon)
 }
