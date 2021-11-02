@@ -1,18 +1,24 @@
 package ca.keaneq.repository.impl
 
-import ca.keaneq.network.PokeApi
+import ca.keaneq.network.PokeClient
 import ca.keaneq.network.dto.PokemonDTO
 import ca.keaneq.repository.Repository
+import ca.keaneq.repository.model.Resource
+import ca.keaneq.network.model.Resource as NetworkResource
 
 internal class RepositoryImpl constructor(
-    private val api: PokeApi
+    private val client: PokeClient
 ) : Repository {
-    override suspend fun getPokemon(id: String): PokemonDTO? = api
-        .getPokemon()
-        .pokemon
-        .firstOrNull { it.id == id }
 
-    override suspend fun getPokemonList(): List<PokemonDTO> = api
+    override suspend fun getPokemonList(): Resource<List<PokemonDTO>> = client
         .getPokemon()
-        .pokemon
+        .let { resource ->
+            if (resource is NetworkResource.Success) {
+                resource.data
+                    ?.pokemon
+                    .let { Resource.Success(it ?: emptyList()) }
+            } else {
+                Resource.Error(exception = resource.exception)
+            }
+        }
 }

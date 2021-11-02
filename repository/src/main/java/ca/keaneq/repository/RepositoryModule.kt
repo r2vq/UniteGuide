@@ -1,6 +1,6 @@
 package ca.keaneq.repository
 
-import ca.keaneq.network.PokeApi
+import ca.keaneq.network.PokeClient
 import ca.keaneq.repository.impl.RepositoryImpl
 import dagger.Module
 import dagger.Provides
@@ -14,8 +14,8 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun bindRepository(
-        api: PokeApi
+        client: PokeClient
     ): Repository = RepositoryImpl(
-        api = api
+        client = client
     )
 }

@@ -28,9 +28,6 @@ dependencies {
     // Compose
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
 
-    // Delete this
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-
     // Modules
     api(project(mapOf("path" to ":repository")))
 }

@@ -6,29 +6,22 @@ import ca.keaneq.domain.model.toPokemon
 import ca.keaneq.repository.Repository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import retrofit2.HttpException
-import java.io.IOException
 import javax.inject.Inject
+import ca.keaneq.repository.model.Resource as RepoResource
 
 class GetPokemonListUseCase @Inject constructor(
     private val repository: Repository
 ) {
     operator fun invoke(): Flow<Resource<List<Pokemon>>> = flow {
-        try {
-            emit(Resource.Loading<List<Pokemon>>())
-            repository.getPokemonList()
-                .map { pokemonList -> pokemonList.toPokemon() }
-                .let { pokemonList -> emit(Resource.Success(pokemonList)) }
-        } catch (e: HttpException) {
-            emit(Resource.Error<List<Pokemon>>(e.message ?: "An unknown network error occurred"))
-        } catch (e: IOException) {
-            emit(
-                Resource.Error<List<Pokemon>>(
-                    e.message ?: "An unknown IO error occurred. Do you have Internet?"
-                )
-            )
-        } catch (e: Exception) {
-            emit(Resource.Error<List<Pokemon>>(e.message ?: "An unknown error occurred."))
+        emit(Resource.Loading())
+        val result = repository.getPokemonList()
+        val emission = if (result is RepoResource.Success) {
+            result.data
+                ?.map { list -> list.toPokemon() }
+                .let { list -> Resource.Success(list ?: emptyList()) }
+        } else {
+            Resource.Error(result.exception?.message ?: "An unknown error occurred")
         }
+        emit(emission)
     }
 }

@@ -2,9 +2,11 @@ package ca.keaneq.network
 
 import android.content.Context
 import ca.keaneq.network.impl.CacheControlInterceptor
+import ca.keaneq.network.impl.PokeClientImpl
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,52 +21,60 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
-    @Provides
+abstract class NetworkModule {
+    @Binds
     @Singleton
-    internal fun providesOkHttpClient(
-        interceptor: CacheControlInterceptor,
-        cache: Cache
-    ): OkHttpClient = OkHttpClient.Builder()
-        .cache(cache)
-        .addInterceptor(interceptor)
-        .build()
+    internal abstract fun bindsPokeClient(
+        pokeClientImpl: PokeClientImpl
+    ): PokeClient
 
-    @Provides
-    @Singleton
-    internal fun providesJsonAdapterFactory(
-    ): JsonAdapter.Factory = KotlinJsonAdapterFactory()
+    companion object {
+        @Provides
+        @Singleton
+        internal fun providesOkHttpClient(
+            interceptor: CacheControlInterceptor,
+            cache: Cache
+        ): OkHttpClient = OkHttpClient.Builder()
+            .cache(cache)
+            .addInterceptor(interceptor)
+            .build()
 
-    @Provides
-    @Singleton
-    internal fun providesCache(
-        @ApplicationContext context: Context
-    ): Cache = Cache(context.cacheDir, 5 * 1024 * 1024L)
+        @Provides
+        @Singleton
+        internal fun providesJsonAdapterFactory(
+        ): JsonAdapter.Factory = KotlinJsonAdapterFactory()
 
-    @Provides
-    @Singleton
-    internal fun providesMoshi(
-        factory: JsonAdapter.Factory
-    ): Moshi = Moshi.Builder()
-        .addLast(factory)
-        .build()
+        @Provides
+        @Singleton
+        internal fun providesCache(
+            @ApplicationContext context: Context
+        ): Cache = Cache(context.cacheDir, 5 * 1024 * 1024L)
 
-    @Provides
-    @Singleton
-    internal fun providesConverterFactory(
-        moshi: Moshi
-    ): Converter.Factory = MoshiConverterFactory
-        .create(moshi)
+        @Provides
+        @Singleton
+        internal fun providesMoshi(
+            factory: JsonAdapter.Factory
+        ): Moshi = Moshi.Builder()
+            .addLast(factory)
+            .build()
 
-    @Provides
-    @Singleton
-    fun providesApiService(
-        client: OkHttpClient,
-        factory: Converter.Factory
-    ): PokeApi = Retrofit.Builder()
-        .baseUrl(BuildConfig.BASE_POKEMON_URL)
-        .addConverterFactory(factory)
-        .client(client)
-        .build()
-        .create(PokeApi::class.java)
+        @Provides
+        @Singleton
+        internal fun providesConverterFactory(
+            moshi: Moshi
+        ): Converter.Factory = MoshiConverterFactory
+            .create(moshi)
+
+        @Provides
+        @Singleton
+        internal fun providesApiService(
+            client: OkHttpClient,
+            factory: Converter.Factory
+        ): PokeApi = Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_POKEMON_URL)
+            .addConverterFactory(factory)
+            .client(client)
+            .build()
+            .create(PokeApi::class.java)
+    }
 }
