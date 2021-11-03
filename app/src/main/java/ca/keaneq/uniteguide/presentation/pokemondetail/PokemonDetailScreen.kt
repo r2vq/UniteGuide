@@ -3,6 +3,7 @@ package ca.keaneq.uniteguide.presentation.pokemondetail
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
+import ca.keaneq.uniteguide.presentation.pokemondetail.component.PokemonImage
 import ca.keaneq.uniteguide.presentation.pokemondetail.viewmodel.PokemonDetailViewModel
 
 @Composable
@@ -12,7 +13,7 @@ fun PokemonDetailScreen(
     val state = viewModel.state.value
     when {
         state.pokemon != null -> {
-            Text(text = state.pokemon.name)
+            PokemonImage(pokemon = state.pokemon)
         }
         state.isLoading -> {
             Text(text = "Loading")

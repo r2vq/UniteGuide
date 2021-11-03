@@ -7,7 +7,7 @@ data class PokemonItem(
     val id: String,
     val name: String,
     val imageUrl: String?,
-    val role: RoleItem
+    val role: RoleItem,
 )
 
 fun Pokemon.toPokemonItem(): PokemonItem = PokemonItem(
