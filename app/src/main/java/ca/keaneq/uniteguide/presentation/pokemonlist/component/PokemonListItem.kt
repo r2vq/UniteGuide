@@ -76,7 +76,7 @@ fun PokemonListItem(
             ) {
                 Text(
                     text = pokemon.name,
-                    style = MaterialTheme.typography.h1,
+                    style = MaterialTheme.typography.h2,
                     modifier = Modifier
                         .padding(16.dp),
                 )

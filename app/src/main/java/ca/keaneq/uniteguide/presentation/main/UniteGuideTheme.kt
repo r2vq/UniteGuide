@@ -36,6 +36,9 @@ val Colors.onUnspecified: Color get() = ThemeColors.WHITE
 
 private val typography = Typography(
     h1 = TextStyle(
+        fontSize = 24.sp,
+    ),
+    h2 = TextStyle(
         fontSize = 16.sp,
     ),
     subtitle1 = TextStyle(

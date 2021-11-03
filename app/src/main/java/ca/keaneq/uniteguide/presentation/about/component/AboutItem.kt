@@ -41,7 +41,7 @@ fun AboutItem(
                 title?.let {
                     Text(
                         text = it,
-                        style = MaterialTheme.typography.h1,
+                        style = MaterialTheme.typography.h2,
                         modifier = Modifier.padding(4.dp),
                     )
                 }
