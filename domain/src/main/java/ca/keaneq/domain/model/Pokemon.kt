@@ -11,6 +11,7 @@ data class Pokemon(
     val lane: Lane,
     val difficulty: Difficulty,
     val attackStyle: AttackStyle,
+    val evolutions: List<Evolution>,
 )
 
 fun PokemonDTO.toPokemon(): Pokemon = Pokemon(
@@ -46,5 +47,8 @@ fun PokemonDTO.toPokemon(): Pokemon = Pokemon(
         "melee" -> AttackStyle.MELEE
         "ranged" -> AttackStyle.RANGED
         else -> AttackStyle.UNSPECIFIED
-    }
+    },
+    evolutions = evolutions.map { pokemonEvolutionDTO ->
+        pokemonEvolutionDTO.toEvolution()
+    },
 )

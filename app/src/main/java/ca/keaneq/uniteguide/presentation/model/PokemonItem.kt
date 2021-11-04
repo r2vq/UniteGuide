@@ -11,6 +11,7 @@ data class PokemonItem(
     val lane: LaneItem,
     val difficulty: DifficultyItem,
     val attackStyle: AttackStyleItem,
+    val evolutions: List<EvolutionItem>,
 )
 
 fun Pokemon.toPokemonItem(): PokemonItem = PokemonItem(
@@ -47,4 +48,5 @@ fun Pokemon.toPokemonItem(): PokemonItem = PokemonItem(
         AttackStyle.RANGED -> AttackStyleItem.RANGED
         AttackStyle.UNSPECIFIED -> AttackStyleItem.UNSPECIFIED
     },
+    evolutions = evolutions.map { evolution -> evolution.toEvolutionItem() },
 )

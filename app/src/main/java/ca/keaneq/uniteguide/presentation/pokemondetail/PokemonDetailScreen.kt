@@ -8,6 +8,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import ca.keaneq.uniteguide.presentation.pokemondetail.component.PokemonEvolutions
 import ca.keaneq.uniteguide.presentation.pokemondetail.component.PokemonImage
 import ca.keaneq.uniteguide.presentation.pokemondetail.component.PokemonPillRow
 import ca.keaneq.uniteguide.presentation.pokemondetail.component.PokemonStats
@@ -39,6 +40,7 @@ fun PokemonDetailScreen(
                     item { PokemonImage(pokemon = pokemon) }
                     item { PokemonPillRow(pokemon = pokemon) }
                     item { PokemonStats(pokemonItem = pokemon) }
+                    item { PokemonEvolutions(pokemon = pokemon) }
                 }
             }
         }
