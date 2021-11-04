@@ -10,7 +10,7 @@ enum class AttackTypeItem(
         R.string.attack_type_physical,
     ),
     SPECIAL(
-        R.string.attack_type_physical,
+        R.string.attack_type_special,
     ),
     UNSPECIFIED(
         R.string.attack_type_unknown,
