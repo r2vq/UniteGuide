@@ -47,6 +47,9 @@ private val typography = Typography(
     body1 = TextStyle(
         fontSize = 12.sp,
     ),
+    body2 = TextStyle(
+        fontSize = 14.sp,
+    ),
 )
 
 private object ThemeColors {

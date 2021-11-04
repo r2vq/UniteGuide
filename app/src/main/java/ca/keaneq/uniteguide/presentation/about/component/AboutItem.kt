@@ -56,7 +56,7 @@ fun AboutItem(
             body?.let {
                 Text(
                     text = it,
-                    style = MaterialTheme.typography.body1,
+                    style = MaterialTheme.typography.body2,
                     modifier = Modifier.padding(4.dp),
                 )
             }
