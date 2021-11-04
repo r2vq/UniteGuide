@@ -16,14 +16,17 @@
 
     <string name="attack_type_physical">Attack</string>
     <string name="attack_type_special">Sp. Atk</string>
+    <string name="attack_type_unknown">\?\?\?</string>
 
     <string name="lane_top">Top</string>
     <string name="lane_center">Center</string>
     <string name="lane_bottom">Bottom</string>
+    <string name="lane_unspecified">\?\?\?</string>
 
     <string name="difficulty_novice">Novice</string>
     <string name="difficulty_intermediate">Intermediate</string>
     <string name="difficulty_expert">Expert</string>
+    <string name="difficulty_unspecified">\?\?\?</string>
 
     <string name="header_evolutions">Evolutions</string>
     <string name="evolves_at">Level %d</string>

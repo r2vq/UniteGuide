@@ -13,6 +13,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import ca.keaneq.uniteguide.presentation.pokemondetail.component.PillFilled
 import ca.keaneq.uniteguide.presentation.pokemondetail.component.PillOutlined
 import ca.keaneq.uniteguide.presentation.pokemondetail.component.PokemonImage
+import ca.keaneq.uniteguide.presentation.pokemondetail.component.PokemonStats
 import ca.keaneq.uniteguide.presentation.pokemondetail.viewmodel.PokemonDetailViewModel
 
 @Composable
@@ -40,6 +41,7 @@ fun PokemonDetailScreen(
                         onColor = pokemon.role.color(),
                     )
                 }
+                PokemonStats(pokemonItem = pokemon)
             }
         }
         state.isLoading -> {

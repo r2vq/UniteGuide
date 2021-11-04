@@ -16,8 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ca.keaneq.uniteguide.R
-import ca.keaneq.uniteguide.presentation.model.PokemonItem
-import ca.keaneq.uniteguide.presentation.model.RoleItem
+import ca.keaneq.uniteguide.presentation.model.*
 import coil.compose.rememberImagePainter
 
 @Composable
@@ -93,6 +92,9 @@ fun PokemonListItemVenusaurPreview() {
         name = "Venusaur",
         imageUrl = "https://raw.githubusercontent.com/r2vq/r2vq.github.io/master/unite/img/Pokemon_Venusaur.png",
         role = RoleItem.ATTACKER,
+        attackType = AttackTypeItem.SPECIAL,
+        lane = LaneItem.TOP,
+        difficulty = DifficultyItem.INTERMEDIATE,
     )
     PokemonListItem(pokemon = pokemon)
 }
@@ -105,6 +107,9 @@ fun PokemonListItemTalonflamePreview() {
         name = "Talonflame",
         imageUrl = "https://raw.githubusercontent.com/r2vq/r2vq.github.io/master/unite/img/Pokemon_Talonflame.png",
         role = RoleItem.SPEEDSTER,
+        attackType = AttackTypeItem.PHYSICAL,
+        lane = LaneItem.TOP,
+        difficulty = DifficultyItem.NOVICE,
     )
     PokemonListItem(pokemon = pokemon)
 }

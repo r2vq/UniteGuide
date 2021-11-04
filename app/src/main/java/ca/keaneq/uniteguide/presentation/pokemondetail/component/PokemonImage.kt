@@ -10,8 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ca.keaneq.uniteguide.presentation.model.PokemonItem
-import ca.keaneq.uniteguide.presentation.model.RoleItem
+import ca.keaneq.uniteguide.presentation.model.*
 import coil.compose.rememberImagePainter
 
 @Composable
@@ -62,10 +61,13 @@ fun PokemonImage(
 @Composable
 fun PreviewPokemonImageSpeedster() {
     val pokemon = PokemonItem(
-        "001",
-        "Venusaur",
-        "https://raw.githubusercontent.com/r2vq/r2vq.github.io/master/unite/img/Pokemon_Venusaur.png",
-        RoleItem.ATTACKER
+        id = "001",
+        name = "Venusaur",
+        imageUrl = "https://raw.githubusercontent.com/r2vq/r2vq.github.io/master/unite/img/Pokemon_Venusaur.png",
+        role = RoleItem.ATTACKER,
+        attackType = AttackTypeItem.SPECIAL,
+        lane = LaneItem.TOP,
+        difficulty = DifficultyItem.INTERMEDIATE,
     )
     PokemonImage(pokemon)
 }

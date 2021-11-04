@@ -6,7 +6,10 @@ data class Pokemon(
     val id: String,
     val name: String,
     val imageUrl: String?,
-    val role: Role
+    val role: Role,
+    val attackType: AttackType,
+    val lane: Lane,
+    val difficulty: Difficulty,
 )
 
 fun PokemonDTO.toPokemon(): Pokemon = Pokemon(
@@ -20,5 +23,22 @@ fun PokemonDTO.toPokemon(): Pokemon = Pokemon(
         "speedster" -> Role.SPEEDSTER
         "supporter" -> Role.SUPPORTER
         else -> Role.UNSPECIFIED
+    },
+    attackType = when (attackType) {
+        "physical" -> AttackType.PHYSICAL
+        "special" -> AttackType.SPECIAL
+        else -> AttackType.UNSPECIFIED
+    },
+    lane = when (lane) {
+        "top" -> Lane.TOP
+        "center" -> Lane.CENTER
+        "bottom" -> Lane.BOTTOM
+        else -> Lane.UNSPECIFIED
+    },
+    difficulty = when (difficulty) {
+        "novice" -> Difficulty.NOVICE
+        "intermediate" -> Difficulty.INTERMEDIATE
+        "expert" -> Difficulty.EXPERT
+        else -> Difficulty.UNSPECIFIED
     },
 )

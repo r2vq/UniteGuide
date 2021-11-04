@@ -1,13 +1,15 @@
 package ca.keaneq.uniteguide.presentation.model
 
-import ca.keaneq.domain.model.Pokemon
-import ca.keaneq.domain.model.Role
+import ca.keaneq.domain.model.*
 
 data class PokemonItem(
     val id: String,
     val name: String,
     val imageUrl: String?,
     val role: RoleItem,
+    val attackType: AttackTypeItem,
+    val lane: LaneItem,
+    val difficulty: DifficultyItem,
 )
 
 fun Pokemon.toPokemonItem(): PokemonItem = PokemonItem(
@@ -21,5 +23,22 @@ fun Pokemon.toPokemonItem(): PokemonItem = PokemonItem(
         Role.SPEEDSTER -> RoleItem.SPEEDSTER
         Role.SUPPORTER -> RoleItem.SUPPORTER
         Role.UNSPECIFIED -> RoleItem.UNSPECIFIED
+    },
+    attackType = when (attackType) {
+        AttackType.PHYSICAL -> AttackTypeItem.PHYSICAL
+        AttackType.SPECIAL -> AttackTypeItem.SPECIAL
+        AttackType.UNSPECIFIED -> AttackTypeItem.UNSPECIFIED
+    },
+    lane = when (lane) {
+        Lane.TOP -> LaneItem.TOP
+        Lane.CENTER -> LaneItem.CENTER
+        Lane.BOTTOM -> LaneItem.BOTTOM
+        Lane.UNSPECIFIED -> LaneItem.UNSPECIFIED
+    },
+    difficulty = when (difficulty) {
+        Difficulty.NOVICE -> DifficultyItem.NOVICE
+        Difficulty.INTERMEDIATE -> DifficultyItem.INTERMEDIATE
+        Difficulty.EXPERT -> DifficultyItem.EXPERT
+        Difficulty.UNSPECIFIED -> DifficultyItem.UNSPECIFIED
     },
 )
