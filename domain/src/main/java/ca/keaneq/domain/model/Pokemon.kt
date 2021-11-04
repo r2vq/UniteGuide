@@ -10,6 +10,7 @@ data class Pokemon(
     val attackType: AttackType,
     val lane: Lane,
     val difficulty: Difficulty,
+    val attackStyle: AttackStyle,
 )
 
 fun PokemonDTO.toPokemon(): Pokemon = Pokemon(
@@ -41,4 +42,9 @@ fun PokemonDTO.toPokemon(): Pokemon = Pokemon(
         "expert" -> Difficulty.EXPERT
         else -> Difficulty.UNSPECIFIED
     },
+    attackStyle = when (style) {
+        "melee" -> AttackStyle.MELEE
+        "ranged" -> AttackStyle.RANGED
+        else -> AttackStyle.UNSPECIFIED
+    }
 )

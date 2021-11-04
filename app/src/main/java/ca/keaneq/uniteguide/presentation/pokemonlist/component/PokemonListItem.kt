@@ -95,6 +95,7 @@ fun PokemonListItemVenusaurPreview() {
         attackType = AttackTypeItem.SPECIAL,
         lane = LaneItem.TOP,
         difficulty = DifficultyItem.INTERMEDIATE,
+        attackStyle = AttackStyleItem.RANGED,
     )
     PokemonListItem(pokemon = pokemon)
 }
@@ -110,6 +111,7 @@ fun PokemonListItemTalonflamePreview() {
         attackType = AttackTypeItem.PHYSICAL,
         lane = LaneItem.TOP,
         difficulty = DifficultyItem.NOVICE,
+        attackStyle = AttackStyleItem.MELEE,
     )
     PokemonListItem(pokemon = pokemon)
 }

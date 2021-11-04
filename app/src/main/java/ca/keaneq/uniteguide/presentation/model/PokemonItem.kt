@@ -10,6 +10,7 @@ data class PokemonItem(
     val attackType: AttackTypeItem,
     val lane: LaneItem,
     val difficulty: DifficultyItem,
+    val attackStyle: AttackStyleItem,
 )
 
 fun Pokemon.toPokemonItem(): PokemonItem = PokemonItem(
@@ -40,5 +41,10 @@ fun Pokemon.toPokemonItem(): PokemonItem = PokemonItem(
         Difficulty.INTERMEDIATE -> DifficultyItem.INTERMEDIATE
         Difficulty.EXPERT -> DifficultyItem.EXPERT
         Difficulty.UNSPECIFIED -> DifficultyItem.UNSPECIFIED
+    },
+    attackStyle = when (attackStyle) {
+        AttackStyle.MELEE -> AttackStyleItem.MELEE
+        AttackStyle.RANGED -> AttackStyleItem.RANGED
+        AttackStyle.UNSPECIFIED -> AttackStyleItem.UNSPECIFIED
     },
 )

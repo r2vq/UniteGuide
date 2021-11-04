@@ -68,6 +68,7 @@ fun PreviewPokemonImageSpeedster() {
         attackType = AttackTypeItem.SPECIAL,
         lane = LaneItem.TOP,
         difficulty = DifficultyItem.INTERMEDIATE,
+        attackStyle = AttackStyleItem.RANGED,
     )
     PokemonImage(pokemon)
 }
