@@ -55,13 +55,18 @@ fun Pokemon.toPokemonItem(): PokemonItem {
         moves = listOf(
             passive.toMoveItem(
                 id = 0,
-                color = roleItem.color,
-                onColor = roleItem.onColor,
+                color = roleItem.onColor,
+                onColor = roleItem.color,
             ),
             basic.toMoveItem(
                 id = 1,
-                color = roleItem.onColor,
-                onColor = roleItem.color,
+                color = roleItem.color,
+                onColor = roleItem.onColor,
+            ),
+            unite.toMoveItem(
+                id = 2,
+                color = roleItem.color,
+                onColor = roleItem.onColor,
             )
         )
     )
