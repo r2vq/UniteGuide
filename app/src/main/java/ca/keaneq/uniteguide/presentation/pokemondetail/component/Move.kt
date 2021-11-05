@@ -1,5 +1,6 @@
 package ca.keaneq.uniteguide.presentation.pokemondetail.component
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -39,6 +40,10 @@ fun Move(
     onClick: () -> Unit = {}
 ) {
     Card(
+        border = BorderStroke(
+            width = 1.dp,
+            color = onColor
+        ),
         backgroundColor = color,
         shape = RoundedCornerShape(12.dp),
         modifier = Modifier
