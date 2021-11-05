@@ -45,4 +45,6 @@
     <string name="descriptor_menu_button">Menu Button</string>
     <string name="descriptor_up_button">Up Button</string>
     <string name="descriptor_close_button">Close Button</string>
+
+    <string name="error_missing_value">Error. Missing value. Please try again.</string>
 </resources>

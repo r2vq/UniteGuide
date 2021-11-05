@@ -6,6 +6,10 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+}
+
 android {
     compileSdk = 31
     buildToolsVersion = "30.0.3"

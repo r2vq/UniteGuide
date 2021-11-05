@@ -2,20 +2,23 @@ package ca.keaneq.uniteguide.presentation.pokemondetail
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import ca.keaneq.uniteguide.R
 import ca.keaneq.uniteguide.presentation.pokemondetail.component.*
 import ca.keaneq.uniteguide.presentation.pokemondetail.model.SheetData
 import ca.keaneq.uniteguide.presentation.pokemondetail.viewmodel.PokemonDetailViewModel
 import kotlinx.coroutines.launch
 
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PokemonDetailScreen(
     viewModel: PokemonDetailViewModel = hiltViewModel(),
@@ -23,32 +26,37 @@ fun PokemonDetailScreen(
     val state = viewModel.state.value
     val pokemon = state.pokemon
     val scope = rememberCoroutineScope()
-    val bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
-    val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = bottomSheetState)
+    val modalBottomSheetState = rememberModalBottomSheetState(
+        initialValue = ModalBottomSheetValue.Hidden
+    )
     var currentSheet: SheetData? by remember { mutableStateOf(null) }
+    if (!modalBottomSheetState.isVisible) {
+        currentSheet = null
+    }
     viewModel.sheet.value
         ?.getContentIfNotHandled()
         ?.also {
             currentSheet = it
-            scope.launch { bottomSheetState.expand() }
+            scope.launch { modalBottomSheetState.show() }
         }
-    if (bottomSheetState.isCollapsed) {
-        currentSheet = null
-    }
     when {
         pokemon != null -> {
-            BottomSheetScaffold(
-                scaffoldState = scaffoldState,
+            ModalBottomSheetLayout(
+                sheetShape = CutCornerShape(topEnd = 40.dp),
                 sheetContent = {
                     Box(
                         modifier = Modifier
-                            .clickable { scope.launch { bottomSheetState.collapse() } }
+                            .clickable { scope.launch { modalBottomSheetState.hide() } }
                     ) {
-                        currentSheet?.let { sheet -> MoveSheet(sheet = sheet) }
+                        currentSheet
+                            ?.let { sheet -> MoveSheet(sheet = sheet) }
+                            ?: run {
+                                Text(stringResource(id = R.string.error_missing_value))
+                                scope.launch { modalBottomSheetState.hide() }
+                            }
                     }
                 },
-                sheetPeekHeight = 0.dp,
-                sheetShape = CutCornerShape(topEnd = 40.dp),
+                sheetState = modalBottomSheetState,
             ) {
                 LazyColumn(
                     horizontalAlignment = Alignment.CenterHorizontally,
