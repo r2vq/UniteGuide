@@ -57,6 +57,11 @@ fun Pokemon.toPokemonItem(): PokemonItem {
                 id = 0,
                 color = roleItem.color,
                 onColor = roleItem.onColor,
+            ),
+            basic.toMoveItem(
+                id = 1,
+                color = roleItem.onColor,
+                onColor = roleItem.color,
             )
         )
     )
