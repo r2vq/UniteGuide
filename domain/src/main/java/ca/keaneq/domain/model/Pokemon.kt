@@ -12,6 +12,7 @@ data class Pokemon(
     val difficulty: Difficulty,
     val attackStyle: AttackStyle,
     val evolutions: List<Evolution>,
+    val passive: Move,
 )
 
 fun PokemonDTO.toPokemon(): Pokemon = Pokemon(
@@ -51,4 +52,5 @@ fun PokemonDTO.toPokemon(): Pokemon = Pokemon(
     evolutions = evolutions.map { pokemonEvolutionDTO ->
         pokemonEvolutionDTO.toEvolution()
     },
+    passive = passive.toMove(),
 )

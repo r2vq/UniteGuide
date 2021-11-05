@@ -18,7 +18,9 @@ fun PokemonEvolutions(pokemon: PokemonItem) {
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 16.dp)
     ) {
         pokemon.evolutions.forEachIndexed { i, evolutionItem ->
             if (i > 0) {

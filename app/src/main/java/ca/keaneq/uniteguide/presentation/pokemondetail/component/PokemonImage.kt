@@ -70,6 +70,7 @@ fun PreviewPokemonImageSpeedster() {
         difficulty = DifficultyItem.INTERMEDIATE,
         attackStyle = AttackStyleItem.RANGED,
         evolutions = emptyList(),
+        moves = emptyList(),
     )
     PokemonImage(pokemon)
 }
