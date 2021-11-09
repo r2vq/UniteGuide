@@ -26,5 +26,5 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.40")
 
     // Modules
-    api(project(mapOf("path" to ":network")))
+    implementation(project(mapOf("path" to ":network")))
 }

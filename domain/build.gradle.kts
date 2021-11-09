@@ -29,5 +29,5 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
 
     // Modules
-    api(project(mapOf("path" to ":repository")))
+    implementation(project(mapOf("path" to ":repository")))
 }

@@ -100,6 +100,9 @@ dependencies {
 
     // Modules
     implementation(project(mapOf("path" to ":domain")))
+    implementation(project(mapOf("path" to ":network")))
+    implementation(project(mapOf("path" to ":presentation")))
+    implementation(project(mapOf("path" to ":repository")))
 
     // Testing
     testImplementation("junit:junit:4.13.2")
