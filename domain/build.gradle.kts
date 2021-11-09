@@ -30,4 +30,6 @@ dependencies {
 
     // Modules
     implementation(project(mapOf("path" to ":repository")))
+    // remove this
+    implementation(project(mapOf("path" to ":network")))
 }

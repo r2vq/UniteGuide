@@ -6,10 +6,6 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
-}
-
 android {
     compileSdk = 31
     buildToolsVersion = "30.0.3"
@@ -76,12 +72,7 @@ dependencies {
     // Compose
     implementation("androidx.activity:activity-compose:1.4.0")
     implementation("androidx.compose.material:material:1.0.5")
-    implementation("androidx.compose.animation:animation:1.0.5")
     implementation("androidx.compose.ui:ui-tooling:1.0.5")
-    implementation("androidx.navigation:navigation-compose:2.4.0-beta02")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
-    implementation("io.coil-kt:coil-compose:1.4.0")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.5")
 
     // Dependency Injection
     implementation("io.insert-koin:koin-android:3.1.3")
@@ -108,4 +99,5 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.5")
 }

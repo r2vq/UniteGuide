@@ -1,5 +1,6 @@
 package ca.keaneq.domain.model
 
+// this should be in the repo
 import ca.keaneq.network.dto.PokemonEvolutionDTO
 
 data class Evolution(
