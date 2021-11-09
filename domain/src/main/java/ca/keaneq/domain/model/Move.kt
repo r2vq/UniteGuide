@@ -1,6 +1,6 @@
 package ca.keaneq.domain.model
 
-import ca.keaneq.network.dto.PokemonSingleMoveDTO
+import ca.keaneq.repository.model.PokemonMoveEntity
 
 data class Move(
     val image: String,
@@ -8,7 +8,7 @@ data class Move(
     val description: String
 )
 
-fun PokemonSingleMoveDTO.toMove(): Move = Move(
+fun PokemonMoveEntity.toMove(): Move = Move(
     image = image,
     name = name,
     description = description,

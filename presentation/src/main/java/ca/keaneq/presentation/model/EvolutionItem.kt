@@ -1,6 +1,5 @@
 package ca.keaneq.presentation.model
 
-// This should be in the repository
 import ca.keaneq.domain.model.Evolution
 
 data class EvolutionItem(

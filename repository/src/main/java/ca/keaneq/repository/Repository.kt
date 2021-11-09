@@ -1,6 +1,6 @@
 package ca.keaneq.repository
 
-import ca.keaneq.network.dto.PokemonDTO
+import ca.keaneq.repository.model.PokemonEntity
 import ca.keaneq.repository.model.Resource
 
 interface Repository {
@@ -10,5 +10,5 @@ interface Repository {
      *
      * @return A list of Pokémon.
      */
-    suspend fun getPokemonList(): Resource<List<PokemonDTO>>
+    suspend fun getPokemonList(): Resource<List<PokemonEntity>>
 }

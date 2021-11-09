@@ -48,6 +48,5 @@ dependencies {
     implementation("io.coil-kt:coil-compose:1.4.0")
 
     // Modules
-    implementation(project(mapOf("path" to ":repository")))
-    implementation(project(mapOf("path" to ":domain"))) // remove this
+    implementation(project(mapOf("path" to ":domain")))
 }

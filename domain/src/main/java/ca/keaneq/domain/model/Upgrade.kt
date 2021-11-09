@@ -1,6 +1,6 @@
 package ca.keaneq.domain.model
 
-import ca.keaneq.network.dto.PokemonMovesetUpgradesDTO
+import ca.keaneq.repository.model.PokemonUpgradeEntity
 
 data class Upgrade(
     val name: String,
@@ -9,7 +9,7 @@ data class Upgrade(
     val image: String
 )
 
-fun PokemonMovesetUpgradesDTO.toUpgrade() = Upgrade(
+fun PokemonUpgradeEntity.toUpgrade() = Upgrade(
     name = name,
     cooldown = cooldown,
     description = description,

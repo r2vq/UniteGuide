@@ -1,6 +1,6 @@
 package ca.keaneq.domain.model
 
-import ca.keaneq.network.dto.PokemonDTO
+import ca.keaneq.repository.model.PokemonEntity
 
 data class Pokemon(
     val id: String,
@@ -18,7 +18,7 @@ data class Pokemon(
     val moveset: List<Moveset>,
 )
 
-fun PokemonDTO.toPokemon(): Pokemon = Pokemon(
+fun PokemonEntity.toPokemon(): Pokemon = Pokemon(
     id = id,
     name = name,
     imageUrl = image,
@@ -52,8 +52,8 @@ fun PokemonDTO.toPokemon(): Pokemon = Pokemon(
         "ranged" -> AttackStyle.RANGED
         else -> AttackStyle.UNSPECIFIED
     },
-    evolutions = evolutions.map { pokemonEvolutionDTO ->
-        pokemonEvolutionDTO.toEvolution()
+    evolutions = evolutions.map { evolution ->
+        evolution.toEvolution()
     },
     passive = passive.toMove(),
     basic = basic.toMove(),

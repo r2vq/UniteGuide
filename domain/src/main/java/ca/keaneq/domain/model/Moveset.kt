@@ -1,6 +1,6 @@
 package ca.keaneq.domain.model
 
-import ca.keaneq.network.dto.PokemonMovesetDTO
+import ca.keaneq.repository.model.PokemonMovesetEntity
 
 data class Moveset(
     val name: String,
@@ -11,7 +11,7 @@ data class Moveset(
     val upgrades: List<Upgrade>
 )
 
-fun PokemonMovesetDTO.toMoveset() = Moveset(
+fun PokemonMovesetEntity.toMoveset() = Moveset(
     name = basic.name,
     cooldown = basic.cooldown,
     description = basic.description,
