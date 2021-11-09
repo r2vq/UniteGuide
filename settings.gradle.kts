@@ -6,4 +6,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Unite Guide"
-include(":app", ":network", ":repository", ":domain")
+include(":app", ":network", ":repository", ":domain", ":presentation")
