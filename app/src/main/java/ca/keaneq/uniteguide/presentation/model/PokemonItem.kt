@@ -52,22 +52,43 @@ fun Pokemon.toPokemonItem(): PokemonItem {
             AttackStyle.UNSPECIFIED -> AttackStyleItem.UNSPECIFIED
         },
         evolutions = evolutions.map { evolution -> evolution.toEvolutionItem() },
-        moves = listOf(
-            passive.toMoveItem(
-                id = 0,
-                color = roleItem.onColor,
-                onColor = roleItem.color,
-            ),
-            basic.toMoveItem(
-                id = 1,
-                color = roleItem.color,
-                onColor = roleItem.onColor,
-            ),
-            unite.toMoveItem(
-                id = 2,
-                color = roleItem.color,
-                onColor = roleItem.onColor,
+        moves = mutableListOf<MoveItem>().apply {
+            var i = 0
+            add(
+                passive.toMoveItem(
+                    id = i++,
+                    color = roleItem.onColor,
+                    onColor = roleItem.color,
+                )
             )
-        )
+            add(
+                basic.toMoveItem(
+                    id = i++,
+                    color = roleItem.color,
+                    onColor = roleItem.onColor,
+                )
+            )
+            moveset.getOrNull(0)
+                ?.toMoveItem(
+                    id = i++,
+                    color = roleItem.color,
+                    onColor = roleItem.onColor,
+                )
+                ?.let { add(it) }
+            moveset.getOrNull(1)
+                ?.toMoveItem(
+                    id = i++,
+                    color = roleItem.color,
+                    onColor = roleItem.onColor,
+                )
+                ?.let { add(it) }
+            add(
+                unite.toMoveItem(
+                    id = i,
+                    color = roleItem.color,
+                    onColor = roleItem.onColor,
+                )
+            )
+        }
     )
 }

@@ -2,7 +2,6 @@ package ca.keaneq.uniteguide.presentation.pokemondetail
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material.*
@@ -13,6 +12,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ca.keaneq.uniteguide.R
+import ca.keaneq.uniteguide.presentation.model.MovesetItem
+import ca.keaneq.uniteguide.presentation.model.SingleMoveItem
 import ca.keaneq.uniteguide.presentation.pokemondetail.component.*
 import ca.keaneq.uniteguide.presentation.pokemondetail.model.SheetData
 import ca.keaneq.uniteguide.presentation.pokemondetail.viewmodel.PokemonDetailViewModel
@@ -66,7 +67,17 @@ fun PokemonDetailScreen(
                     item { PokemonStats(pokemonItem = pokemon) }
                     item { PokemonEvolutions(pokemon = pokemon) }
                     pokemon.moves.forEach { move ->
-                        item { Move(move) { viewModel.onItemClick(move.id) } }
+                        item {
+                            if (move is SingleMoveItem) {
+                                Move(move) {
+                                    viewModel.onItemClick(move.id)
+                                }
+                            } else if (move is MovesetItem) {
+                                Moveset(move) {
+                                    viewModel.onItemClick(move.id)
+                                }
+                            }
+                        }
                     }
                 }
             }

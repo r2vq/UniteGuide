@@ -15,6 +15,7 @@ data class Pokemon(
     val passive: Move,
     val basic: Move,
     val unite: Move,
+    val moveset: List<Moveset>,
 )
 
 fun PokemonDTO.toPokemon(): Pokemon = Pokemon(
@@ -57,4 +58,7 @@ fun PokemonDTO.toPokemon(): Pokemon = Pokemon(
     passive = passive.toMove(),
     basic = basic.toMove(),
     unite = unite.toMove(),
+    moveset = moveset.map { moveset ->
+        moveset.toMoveset()
+    },
 )

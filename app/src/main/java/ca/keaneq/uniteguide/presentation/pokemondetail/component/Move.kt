@@ -14,12 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ca.keaneq.uniteguide.presentation.model.MoveItem
+import ca.keaneq.uniteguide.presentation.model.SingleMoveItem
 import coil.compose.rememberImagePainter
 
 @Composable
 fun Move(
-    moveItem: MoveItem,
+    moveItem: SingleMoveItem,
     onClick: () -> Unit = {}
 ) {
     Move(
