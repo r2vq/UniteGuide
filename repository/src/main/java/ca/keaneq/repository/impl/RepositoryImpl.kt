@@ -2,9 +2,9 @@ package ca.keaneq.repository.impl
 
 import ca.keaneq.network.PokeClient
 import ca.keaneq.repository.Repository
+import ca.keaneq.repository.mapper.toEntity
 import ca.keaneq.repository.model.PokemonEntity
 import ca.keaneq.repository.model.Resource
-import ca.keaneq.repository.model.toEntity
 import ca.keaneq.network.model.Resource as NetworkResource
 
 internal class RepositoryImpl constructor(
