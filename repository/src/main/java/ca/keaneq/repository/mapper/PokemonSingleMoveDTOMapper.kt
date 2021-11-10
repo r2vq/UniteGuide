@@ -1,5 +1,3 @@
-@file:JvmName("PokemonMovesetBasicDTOMapperKt")
-
 package ca.keaneq.repository.mapper
 
 import ca.keaneq.network.dto.PokemonSingleMoveDTO

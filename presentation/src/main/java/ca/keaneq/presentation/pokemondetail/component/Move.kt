@@ -14,8 +14,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ca.keaneq.domain.model.Move
 import ca.keaneq.presentation.model.SingleMoveItem
 import coil.compose.rememberImagePainter
+
+@Composable
+fun Move(
+    move: Move,
+    color: Color,
+    onColor: Color,
+    onClick: () -> Unit = {}
+) {
+    Move(
+        image = move.image,
+        color = color,
+        onColor = onColor,
+        text = move.name,
+        onClick = onClick,
+    )
+}
 
 @Composable
 fun Move(

@@ -12,15 +12,18 @@ import androidx.compose.material.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import ca.keaneq.presentation.model.MovesetItem
+import ca.keaneq.domain.model.Moveset
+import ca.keaneq.domain.model.Upgrade
 import coil.compose.rememberImagePainter
 
 @Composable
 fun Moveset(
-    moveItem: MovesetItem,
-    onClick: () -> Unit = {}
+    moveset: Moveset,
+    color: Color,
+    onColor: Color,
+    onOpenBottomSheet: (title: String, body: String, image: String) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -33,24 +36,28 @@ fun Moveset(
         Card(
             border = BorderStroke(
                 width = 1.dp,
-                color = moveItem.onColor(),
+                color = onColor,
             ),
-            backgroundColor = moveItem.color(),
-            contentColor = contentColorFor(backgroundColor = moveItem.color()),
+            backgroundColor = color,
+            contentColor = contentColorFor(backgroundColor = color),
             shape = RoundedCornerShape(
                 topStart = 12.dp,
                 topEnd = 12.dp,
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .clickable { onClick() }
+                .clickable {
+                    onOpenBottomSheet(
+                        moveset.name, moveset.description, moveset.image
+                    )
+                }
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Image(
-                    painter = rememberImagePainter(moveItem.image),
+                    painter = rememberImagePainter(moveset.image),
                     contentDescription = null,
                     modifier = Modifier
                         .height(48.dp)
@@ -59,91 +66,71 @@ fun Moveset(
                 )
                 Text(
                     style = MaterialTheme.typography.h1,
-                    text = moveItem.name,
-                    color = moveItem.onColor(),
+                    text = moveset.name,
+                    color = onColor,
                 )
             }
         }
-        Card(
-            border = BorderStroke(
-                width = 1.dp,
-                color = moveItem.onColor(),
-            ),
-            backgroundColor = moveItem.color(),
-            contentColor = contentColorFor(backgroundColor = moveItem.color()),
-            shape = RoundedCornerShape(0.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable { onClick() }
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Image(
-                    painter = rememberImagePainter(moveItem.upgrade1Image),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .height(48.dp)
-                        .width(48.dp)
-                        .padding(12.dp)
-                )
-                Text(
-                    style = MaterialTheme.typography.h2,
-                    text = moveItem.upgrade1,
-                    color = moveItem.onColor(),
-                )
-            }
-        }
-        Card(
-            border = BorderStroke(
-                width = 1.dp,
-                color = moveItem.onColor(),
-            ),
-            backgroundColor = moveItem.color(),
-            contentColor = contentColorFor(backgroundColor = moveItem.color()),
-            shape = RoundedCornerShape(0.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable { onClick() }
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Image(
-                    painter = rememberImagePainter(moveItem.upgrade2Image),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .height(48.dp)
-                        .width(48.dp)
-                        .padding(12.dp)
-                )
-                Text(
-                    style = MaterialTheme.typography.h2,
-                    text = moveItem.upgrade2,
-                    color = moveItem.onColor(),
-                )
-            }
+        moveset.upgrades.forEachIndexed { i, upgrade ->
+            MovesetUpgrade(
+                isLastMove = i + 1 == moveset.upgrades.size,
+                upgrade = upgrade,
+                color = color,
+                onColor = onColor,
+                onOpenBottomSheet = onOpenBottomSheet
+            )
         }
     }
 }
 
 @Composable
-@Preview
-fun MovesetPreview() {
-    Moveset(
-        moveItem = MovesetItem(
-            id = 1,
-            name = "Seed Bomb",
-            description = "Hurls a large seed at the designated area, dealing damage to opposing Pokémon in the area of effect.",
-            color = { MaterialTheme.colors.primary },
-            onColor = { MaterialTheme.colors.onPrimary },
-            image = "",
-            upgrade1 = "Sludge Bomb",
-            upgrade2 = "Giga Drain",
-            upgrade1Image = "",
-            upgrade2Image = "",
+private fun MovesetUpgrade(
+    isLastMove: Boolean,
+    upgrade: Upgrade,
+    color: Color,
+    onColor: Color,
+    onOpenBottomSheet: (title: String, body: String, image: String) -> Unit,
+) {
+    Card(
+        border = BorderStroke(
+            width = 1.dp,
+            color = onColor,
         ),
-    )
+        backgroundColor = color,
+        contentColor = contentColorFor(backgroundColor = color),
+        shape = RoundedCornerShape(
+            topStart = 0.dp,
+            topEnd = 0.dp,
+            bottomStart = if (isLastMove) 12.dp else 0.dp,
+            bottomEnd = if (isLastMove) 12.dp else 0.dp,
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+                onOpenBottomSheet(
+                    upgrade.name,
+                    upgrade.description,
+                    upgrade.image,
+                )
+            }
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Image(
+                painter = rememberImagePainter(upgrade.image),
+                contentDescription = null,
+                modifier = Modifier
+                    .height(48.dp)
+                    .width(48.dp)
+                    .padding(12.dp)
+            )
+            Text(
+                style = MaterialTheme.typography.h2,
+                text = upgrade.name,
+                color = onColor,
+            )
+        }
+    }
 }

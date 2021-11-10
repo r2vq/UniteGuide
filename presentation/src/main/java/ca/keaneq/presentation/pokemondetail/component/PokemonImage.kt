@@ -8,14 +8,43 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ca.keaneq.domain.model.Pokemon
 import ca.keaneq.presentation.model.*
 import coil.compose.rememberImagePainter
 
 @Composable
 fun PokemonImage(
+    pokemon: Pokemon
+) {
+    PokemonImage(
+        name = pokemon.name,
+        imageUrl = pokemon.imageUrl,
+        color = pokemon.role.color,
+        onColor = pokemon.role.onColor,
+    )
+}
+
+@Composable
+fun PokemonImage(
     pokemon: PokemonItem
+) {
+    PokemonImage(
+        name = pokemon.name,
+        imageUrl = pokemon.imageUrl,
+        color = pokemon.role.color(),
+        onColor = pokemon.role.onColor(),
+    )
+}
+
+@Composable
+fun PokemonImage(
+    name: String,
+    imageUrl: String?,
+    color: Color,
+    onColor: Color,
 ) {
     Box {
         Column(
@@ -24,17 +53,17 @@ fun PokemonImage(
                 .fillMaxWidth()
         ) {
             Text(
-                text = pokemon.name,
+                text = name,
                 style = MaterialTheme.typography.h1,
-                color = pokemon.role.onColor(),
+                color = onColor,
                 modifier = Modifier
-                    .background(pokemon.role.color())
+                    .background(color)
                     .fillMaxWidth()
                     .padding(16.dp)
             )
             Box(
                 modifier = Modifier
-                    .background(pokemon.role.color())
+                    .background(color)
                     .fillMaxWidth()
                     .height(175.dp)
             )
@@ -46,7 +75,7 @@ fun PokemonImage(
             )
         }
         Image(
-            rememberImagePainter(pokemon.imageUrl),
+            rememberImagePainter(imageUrl),
             contentDescription = null,
             modifier = Modifier
                 .height(250.dp)
