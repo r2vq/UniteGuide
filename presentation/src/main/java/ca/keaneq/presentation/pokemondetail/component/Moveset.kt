@@ -1,5 +1,6 @@
 package ca.keaneq.presentation.pokemondetail.component
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -9,7 +10,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.contentColorFor
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,8 +24,8 @@ fun Moveset(
     moveset: Moveset,
     color: Color,
     onColor: Color,
-    onOpenBottomSheet: (title: String, body: String, image: String) -> Unit,
 ) {
+    var isExpanded by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -32,6 +33,7 @@ fun Moveset(
                 vertical = 4.dp,
                 horizontal = 8.dp,
             )
+            .animateContentSize()
     ) {
         Card(
             border = BorderStroke(
@@ -46,29 +48,39 @@ fun Moveset(
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .clickable {
-                    onOpenBottomSheet(
-                        moveset.name, moveset.description, moveset.image
+                .clickable { isExpanded = !isExpanded }
+                .animateContentSize()
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(12.dp)
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Image(
+                        painter = rememberImagePainter(moveset.image),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .height(48.dp)
+                            .width(48.dp)
+                            .padding(end = 12.dp)
+                    )
+                    Text(
+                        style = MaterialTheme.typography.h1,
+                        text = moveset.name,
+                        color = onColor,
                     )
                 }
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Image(
-                    painter = rememberImagePainter(moveset.image),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .height(48.dp)
-                        .width(48.dp)
-                        .padding(12.dp)
-                )
-                Text(
-                    style = MaterialTheme.typography.h1,
-                    text = moveset.name,
-                    color = onColor,
-                )
+                if (isExpanded) {
+                    Text(
+                        style = MaterialTheme.typography.body1,
+                        text = moveset.description,
+                        color = onColor,
+                    )
+                }
             }
         }
         moveset.upgrades.forEachIndexed { i, upgrade ->
@@ -76,8 +88,7 @@ fun Moveset(
                 isLastMove = i + 1 == moveset.upgrades.size,
                 upgrade = upgrade,
                 color = color,
-                onColor = onColor,
-                onOpenBottomSheet = onOpenBottomSheet
+                onColor = onColor
             )
         }
     }
@@ -89,8 +100,8 @@ private fun MovesetUpgrade(
     upgrade: Upgrade,
     color: Color,
     onColor: Color,
-    onOpenBottomSheet: (title: String, body: String, image: String) -> Unit,
 ) {
+    var isExpanded by remember { mutableStateOf(false) }
     Card(
         border = BorderStroke(
             width = 1.dp,
@@ -106,31 +117,39 @@ private fun MovesetUpgrade(
         ),
         modifier = Modifier
             .fillMaxWidth()
-            .clickable {
-                onOpenBottomSheet(
-                    upgrade.name,
-                    upgrade.description,
-                    upgrade.image,
+            .clickable { isExpanded = !isExpanded }
+            .animateContentSize()
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(12.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Image(
+                    painter = rememberImagePainter(upgrade.image),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .height(48.dp)
+                        .width(48.dp)
+                        .padding(end = 12.dp)
+                )
+                Text(
+                    style = MaterialTheme.typography.h1,
+                    text = upgrade.name,
+                    color = onColor,
                 )
             }
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Image(
-                painter = rememberImagePainter(upgrade.image),
-                contentDescription = null,
-                modifier = Modifier
-                    .height(48.dp)
-                    .width(48.dp)
-                    .padding(12.dp)
-            )
-            Text(
-                style = MaterialTheme.typography.h2,
-                text = upgrade.name,
-                color = onColor,
-            )
+            if (isExpanded) {
+                Text(
+                    style = MaterialTheme.typography.body1,
+                    text = upgrade.description,
+                    color = onColor,
+                )
+            }
         }
     }
 }
