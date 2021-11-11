@@ -9,7 +9,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,9 +21,10 @@ import coil.compose.rememberImagePainter
 fun Move(
     move: Move,
     color: Color,
-    onColor: Color
+    onColor: Color,
+    isExpanded: Boolean,
+    onClick: () -> Unit
 ) {
-    var isExpanded by remember { mutableStateOf(false) }
     Card(
         border = BorderStroke(
             width = 1.dp,
@@ -38,7 +39,7 @@ fun Move(
                 horizontal = 8.dp,
             )
             .animateContentSize()
-            .clickable { isExpanded = !isExpanded }
+            .clickable { onClick() }
     ) {
         Column(
             modifier = Modifier
