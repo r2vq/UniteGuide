@@ -1,6 +1,5 @@
 package ca.keaneq.presentation.model
 
-import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import ca.keaneq.domain.model.Lane

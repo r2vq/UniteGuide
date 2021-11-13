@@ -23,7 +23,7 @@ class GetPokemonUseCase @Inject constructor(
                 ?.let { pokemon -> Resource.Success(pokemon) }
                 ?: run { Resource.Error("No matching Pokémon found") }
         } else {
-            Resource.Error(result.exception?.toString() ?: "Error ocurred in use case.")
+            Resource.Error(result.exception?.toString() ?: "Error occurred in use case.")
         }
         emit(emission)
     }
