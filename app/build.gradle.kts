@@ -59,35 +59,15 @@ kapt {
 
 dependencies {
     // Android Core
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.1")
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-core-ktx:2.4.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
-    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
     implementation("com.google.android.material:material:1.4.0")
 
     // Compose
     implementation("androidx.activity:activity-compose:1.4.0")
-    implementation("androidx.compose.material:material:1.1.0-beta02")
-    implementation("androidx.compose.ui:ui-tooling:1.1.0-beta02")
 
     // Dependency Injection
-    implementation("io.insert-koin:koin-android:3.1.3")
     implementation("com.google.dagger:hilt-android:2.40.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
     kapt("com.google.dagger:hilt-android-compiler:2.40.1")
-
-    // Image Processing
-    implementation("com.github.bumptech.glide:glide:4.12.0")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
-
-    // Network
-    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
 
     // Modules
     implementation(project(mapOf("path" to ":domain")))
