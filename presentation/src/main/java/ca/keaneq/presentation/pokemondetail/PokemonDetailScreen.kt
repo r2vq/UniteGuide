@@ -3,13 +3,13 @@ package ca.keaneq.presentation.pokemondetail
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.hilt.navigation.compose.hiltViewModel
-import ca.keaneq.domain.model.Pokemon
 import ca.keaneq.presentation.model.color
 import ca.keaneq.presentation.model.onColor
 import ca.keaneq.presentation.pokemondetail.component.*
+import ca.keaneq.presentation.pokemondetail.model.PokemonState
 import ca.keaneq.presentation.pokemondetail.viewmodel.PokemonDetailViewModel
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -22,7 +22,8 @@ fun PokemonDetailScreen(
     when {
         pokemon != null -> {
             Content(
-                pokemon = pokemon,
+                pokemonState = pokemon,
+                onMoveClick = viewModel::onMoveClick
             )
         }
         state.isLoading -> {
@@ -36,35 +37,24 @@ fun PokemonDetailScreen(
 
 @Composable
 private fun Content(
-    pokemon: Pokemon,
+    pokemonState: PokemonState,
+    onMoveClick: (Int) -> Unit,
 ) {
-    var isPassiveExpanded by remember { mutableStateOf(false) }
-    var isBasicExpanded by remember { mutableStateOf(false) }
-    var isUniteExpanded by remember { mutableStateOf(false) }
-
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        item { PokemonImage(pokemon = pokemon) }
-        item { PokemonPillRow(pokemon = pokemon) }
-        item { PokemonStats(pokemon = pokemon) }
-        item { PokemonEvolutions(pokemon = pokemon) }
-        item {
-            Move(pokemon.passive, pokemon.role.color, pokemon.role.onColor, isPassiveExpanded) {
-                isPassiveExpanded = !isPassiveExpanded
-            }
-        }
-        item {
-            Move(pokemon.basic, pokemon.role.color, pokemon.role.onColor, isBasicExpanded) {
-                isBasicExpanded = !isBasicExpanded
-            }
-        }
-        pokemon.moveset.forEach { moveset ->
-            item { Moveset(moveset, pokemon.role.color, pokemon.role.onColor) }
-        }
-        item {
-            Move(pokemon.unite, pokemon.role.color, pokemon.role.onColor, isUniteExpanded) {
-                isUniteExpanded = !isUniteExpanded
+        item { PokemonImage(pokemon = pokemonState.pokemon) }
+        item { PokemonPillRow(pokemon = pokemonState.pokemon) }
+        item { PokemonStats(pokemon = pokemonState.pokemon) }
+        item { PokemonEvolutions(pokemon = pokemonState.pokemon) }
+        pokemonState.moves.forEach { moveState ->
+            item {
+                Move(
+                    moveState = moveState,
+                    color = pokemonState.pokemon.role.color,
+                    onColor = pokemonState.pokemon.role.onColor,
+                    onClick = onMoveClick,
+                )
             }
         }
     }

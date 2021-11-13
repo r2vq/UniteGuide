@@ -14,16 +14,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import ca.keaneq.domain.model.Move
+import ca.keaneq.presentation.pokemondetail.model.MoveState
+import ca.keaneq.presentation.pokemondetail.model.MoveType
 import coil.compose.rememberImagePainter
 
 @Composable
 fun Move(
-    move: Move,
+    moveState: MoveState,
     color: Color,
     onColor: Color,
-    isExpanded: Boolean,
-    onClick: () -> Unit
+    onClick: (Int) -> Unit
 ) {
     Card(
         border = BorderStroke(
@@ -31,15 +31,17 @@ fun Move(
             color = onColor
         ),
         backgroundColor = color,
-        shape = RoundedCornerShape(12.dp),
+        shape = moveState.moveType.toShape,
         modifier = Modifier
             .fillMaxWidth()
             .padding(
-                vertical = 4.dp,
-                horizontal = 8.dp,
+                top = moveState.moveType.toTopPadding,
+                bottom = moveState.moveType.toBottomPadding,
+                start = 8.dp,
+                end = 8.dp,
             )
             .animateContentSize()
-            .clickable { onClick() }
+            .clickable { onClick(moveState.id) }
     ) {
         Column(
             modifier = Modifier
@@ -51,7 +53,7 @@ fun Move(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Image(
-                    painter = rememberImagePainter(move.image),
+                    painter = rememberImagePainter(moveState.image),
                     contentDescription = null,
                     modifier = Modifier
                         .height(48.dp)
@@ -60,17 +62,57 @@ fun Move(
                 )
                 Text(
                     style = MaterialTheme.typography.h1,
-                    text = move.name,
+                    text = moveState.name,
                     color = onColor,
                 )
             }
-            if (isExpanded) {
+            if (moveState.isExpanded) {
                 Text(
                     style = MaterialTheme.typography.body1,
-                    text = move.description,
+                    text = moveState.description,
                     color = onColor,
                 )
             }
         }
     }
 }
+
+private val MoveType.toShape
+    @Composable
+    get() = when (this) {
+        MoveType.SINGLE -> RoundedCornerShape(12.dp)
+        MoveType.BASIC_ABILITY -> RoundedCornerShape(
+            topStart = 12.dp,
+            topEnd = 12.dp,
+            bottomStart = 0.dp,
+            bottomEnd = 0.dp
+        )
+        MoveType.UPGRADE_ABILITY -> RoundedCornerShape(
+            topStart = 0.dp,
+            topEnd = 0.dp,
+            bottomStart = 0.dp,
+            bottomEnd = 0.dp
+        )
+        MoveType.UPGRADE_ABILITY_END -> RoundedCornerShape(
+            topStart = 0.dp,
+            topEnd = 0.dp,
+            bottomStart = 12.dp,
+            bottomEnd = 12.dp
+        )
+    }
+
+private val MoveType.toTopPadding
+    get() = when (this) {
+        MoveType.SINGLE -> 4.dp
+        MoveType.BASIC_ABILITY -> 4.dp
+        MoveType.UPGRADE_ABILITY -> 0.dp
+        MoveType.UPGRADE_ABILITY_END -> 0.dp
+    }
+
+private val MoveType.toBottomPadding
+    get() = when (this) {
+        MoveType.SINGLE -> 4.dp
+        MoveType.BASIC_ABILITY -> 0.dp
+        MoveType.UPGRADE_ABILITY -> 0.dp
+        MoveType.UPGRADE_ABILITY_END -> 4.dp
+    }
