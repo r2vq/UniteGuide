@@ -22,8 +22,8 @@ kapt {
 
 dependencies {
     // Dependency Injection
-    implementation("com.google.dagger:hilt-android:2.40")
-    kapt("com.google.dagger:hilt-android-compiler:2.40")
+    implementation("com.google.dagger:hilt-android:2.40.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.40.1")
 
     // Modules
     implementation(project(mapOf("path" to ":network")))
