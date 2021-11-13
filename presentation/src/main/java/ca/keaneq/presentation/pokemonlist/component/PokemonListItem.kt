@@ -13,15 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ca.keaneq.domain.model.Pokemon
 import ca.keaneq.presentation.R
-import ca.keaneq.presentation.model.*
+import ca.keaneq.presentation.model.color
 import coil.compose.rememberImagePainter
 
 @Composable
 fun PokemonListItem(
-    pokemon: PokemonItem,
+    pokemon: Pokemon,
     isFirstItem: Boolean = false,
     onItemClick: () -> Unit = {},
 ) {
@@ -43,7 +43,7 @@ fun PokemonListItem(
                 .fillMaxWidth(),
         ) {
             Box(
-                modifier = Modifier.background(pokemon.role.color())
+                modifier = Modifier.background(pokemon.role.color)
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_pokeball),
@@ -82,40 +82,4 @@ fun PokemonListItem(
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun PokemonListItemVenusaurPreview() {
-    val pokemon = PokemonItem(
-        id = "001",
-        name = "Venusaur",
-        imageUrl = "https://raw.githubusercontent.com/r2vq/r2vq.github.io/master/unite/img/Pokemon_Venusaur.png",
-        role = RoleItem.ATTACKER,
-        attackType = AttackTypeItem.SPECIAL,
-        lane = LaneItem.TOP,
-        difficulty = DifficultyItem.INTERMEDIATE,
-        attackStyle = AttackStyleItem.RANGED,
-        evolutions = emptyList(),
-        moves = emptyList(),
-    )
-    PokemonListItem(pokemon = pokemon)
-}
-
-@Preview
-@Composable
-fun PokemonListItemTalonflamePreview() {
-    val pokemon = PokemonItem(
-        id = "002",
-        name = "Talonflame",
-        imageUrl = "https://raw.githubusercontent.com/r2vq/r2vq.github.io/master/unite/img/Pokemon_Talonflame.png",
-        role = RoleItem.SPEEDSTER,
-        attackType = AttackTypeItem.PHYSICAL,
-        lane = LaneItem.TOP,
-        difficulty = DifficultyItem.NOVICE,
-        attackStyle = AttackStyleItem.MELEE,
-        evolutions = emptyList(),
-        moves = emptyList(),
-    )
-    PokemonListItem(pokemon = pokemon)
 }

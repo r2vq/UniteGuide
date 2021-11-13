@@ -9,10 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ca.keaneq.domain.model.Pokemon
-import ca.keaneq.presentation.model.*
+import ca.keaneq.presentation.model.color
+import ca.keaneq.presentation.model.onColor
 import coil.compose.rememberImagePainter
 
 @Composable
@@ -24,18 +24,6 @@ fun PokemonImage(
         imageUrl = pokemon.imageUrl,
         color = pokemon.role.color,
         onColor = pokemon.role.onColor,
-    )
-}
-
-@Composable
-fun PokemonImage(
-    pokemon: PokemonItem
-) {
-    PokemonImage(
-        name = pokemon.name,
-        imageUrl = pokemon.imageUrl,
-        color = pokemon.role.color(),
-        onColor = pokemon.role.onColor(),
     )
 }
 
@@ -84,22 +72,4 @@ fun PokemonImage(
                 .align(Alignment.BottomCenter)
         )
     }
-}
-
-@Preview
-@Composable
-fun PreviewPokemonImageSpeedster() {
-    val pokemon = PokemonItem(
-        id = "001",
-        name = "Venusaur",
-        imageUrl = "https://raw.githubusercontent.com/r2vq/r2vq.github.io/master/unite/img/Pokemon_Venusaur.png",
-        role = RoleItem.ATTACKER,
-        attackType = AttackTypeItem.SPECIAL,
-        lane = LaneItem.TOP,
-        difficulty = DifficultyItem.INTERMEDIATE,
-        attackStyle = AttackStyleItem.RANGED,
-        evolutions = emptyList(),
-        moves = emptyList(),
-    )
-    PokemonImage(pokemon)
 }

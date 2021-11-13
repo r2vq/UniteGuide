@@ -11,7 +11,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ca.keaneq.domain.model.Pokemon
 import ca.keaneq.presentation.R
-import ca.keaneq.presentation.model.PokemonItem
 import coil.compose.rememberImagePainter
 
 @Composable
