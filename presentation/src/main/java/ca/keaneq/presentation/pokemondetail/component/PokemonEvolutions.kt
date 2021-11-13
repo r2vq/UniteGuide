@@ -35,26 +35,6 @@ fun PokemonEvolutions(pokemon: Pokemon) {
 }
 
 @Composable
-fun PokemonEvolutions(pokemon: PokemonItem) {
-    Row(
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 16.dp)
-    ) {
-        pokemon.evolutions.forEachIndexed { i, evolutionItem ->
-            Evolution(
-                name = evolutionItem.name,
-                showLevel = i > 0,
-                imageUrl = evolutionItem.image,
-                evolutionLevel = evolutionItem.level,
-            )
-        }
-    }
-}
-
-@Composable
 fun Evolution(
     name: String,
     showLevel: Boolean,

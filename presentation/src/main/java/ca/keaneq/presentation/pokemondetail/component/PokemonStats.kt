@@ -25,15 +25,6 @@ fun PokemonStats(pokemon: Pokemon) {
 }
 
 @Composable
-fun PokemonStats(pokemonItem: PokemonItem) {
-    PokemonStats(
-        attackTypeText = stringResource(pokemonItem.attackType.text),
-        laneText = stringResource(pokemonItem.lane.text),
-        difficultyText = stringResource(pokemonItem.difficulty.text),
-    )
-}
-
-@Composable
 fun PokemonStats(
     attackTypeText: String,
     laneText: String,

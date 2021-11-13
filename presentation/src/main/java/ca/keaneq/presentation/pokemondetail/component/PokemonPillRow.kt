@@ -25,16 +25,6 @@ fun PokemonPillRow(pokemon: Pokemon) {
 }
 
 @Composable
-fun PokemonPillRow(pokemon: PokemonItem) {
-    PokemonPillRow(
-        roleText = stringResource(pokemon.role.text),
-        attackStyleText = stringResource(pokemon.attackStyle.text),
-        color = pokemon.role.color(),
-        onColor = pokemon.role.onColor(),
-    )
-}
-
-@Composable
 fun PokemonPillRow(
     roleText: String,
     attackStyleText: String,
