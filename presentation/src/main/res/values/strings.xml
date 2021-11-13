@@ -34,6 +34,7 @@
 
     <string name="header_moveset">Moveset</string>
 
+    <string name="move_cooldown">Cooldown: %s</string>
     <string name="move_upgrade">Upon reaching Lv. %d, you can select one of the following two moves.</string>
 
     <string name="about_version_title">Version Number</string>

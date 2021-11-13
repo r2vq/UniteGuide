@@ -5,6 +5,8 @@ data class MoveState(
     val name: String,
     val description: String,
     val image: String,
-    val isExpanded: Boolean,
+    val isExpanded: Boolean = false,
+    val cooldown: String? = null,
+    val upgrade: Int? = null,
     val moveType: MoveType,
 )

@@ -13,7 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import ca.keaneq.presentation.R
 import ca.keaneq.presentation.pokemondetail.model.MoveState
 import ca.keaneq.presentation.pokemondetail.model.MoveType
 import coil.compose.rememberImagePainter
@@ -67,11 +69,29 @@ fun Move(
                 )
             }
             if (moveState.isExpanded) {
+                moveState.cooldown?.let { cooldown ->
+                    Text(
+                        style = MaterialTheme.typography.body2,
+                        text = stringResource(R.string.move_cooldown, cooldown),
+                        color = onColor,
+                        modifier = Modifier
+                            .padding(bottom = 4.dp)
+                    )
+                }
                 Text(
-                    style = MaterialTheme.typography.body1,
+                    style = MaterialTheme.typography.body2,
                     text = moveState.description,
                     color = onColor,
                 )
+                moveState.upgrade?.let { upgrade ->
+                    Text(
+                        style = MaterialTheme.typography.body2,
+                        text = stringResource(R.string.move_upgrade, upgrade),
+                        color = onColor,
+                        modifier = Modifier
+                            .padding(top = 4.dp)
+                    )
+                }
             }
         }
     }

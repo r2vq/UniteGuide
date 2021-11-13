@@ -82,7 +82,6 @@ private fun Pokemon.toMoves(): List<MoveState> = mutableListOf<MoveState>()
                 name = passive.name,
                 description = passive.description,
                 image = passive.image,
-                isExpanded = false,
                 moveType = MoveType.SINGLE,
             )
         )
@@ -92,7 +91,6 @@ private fun Pokemon.toMoves(): List<MoveState> = mutableListOf<MoveState>()
                 name = basic.name,
                 description = basic.description,
                 image = basic.image,
-                isExpanded = false,
                 moveType = MoveType.SINGLE,
             )
         )
@@ -103,7 +101,8 @@ private fun Pokemon.toMoves(): List<MoveState> = mutableListOf<MoveState>()
                     name = moveset.name,
                     description = moveset.description,
                     image = moveset.image,
-                    isExpanded = false,
+                    cooldown = moveset.cooldown,
+                    upgrade = moveset.upgrade,
                     moveType = MoveType.BASIC_ABILITY,
                 )
             )
@@ -115,7 +114,7 @@ private fun Pokemon.toMoves(): List<MoveState> = mutableListOf<MoveState>()
                         name = move.name,
                         description = move.description,
                         image = move.image,
-                        isExpanded = false,
+                        cooldown = move.cooldown,
                         moveType = if (j == upgradesSize) MoveType.UPGRADE_ABILITY_END else MoveType.UPGRADE_ABILITY,
                     )
                 )
@@ -127,7 +126,6 @@ private fun Pokemon.toMoves(): List<MoveState> = mutableListOf<MoveState>()
                 name = unite.name,
                 description = unite.description,
                 image = unite.image,
-                isExpanded = false,
                 moveType = MoveType.SINGLE,
             )
         )
