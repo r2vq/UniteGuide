@@ -12,6 +12,7 @@ data class PokemonDTO(
     @Json(name = "role") val role: String,
     @Json(name = "lane") val lane: String,
     @Json(name = "attack_type") val attackType: String,
+    @Json(name = "stars") val stars: PokemonStarsDTO,
     @Json(name = "image") val image: String?,
     @Json(name = "evolutions") val evolutions: List<PokemonEvolutionDTO>,
     @Json(name = "moveset") val moveset: List<PokemonMovesetDTO>,

@@ -2,6 +2,7 @@ package ca.keaneq.repository.mapper
 
 import ca.keaneq.network.dto.PokemonDTO
 import ca.keaneq.repository.model.PokemonEntity
+import ca.keaneq.repository.model.toEntity
 
 internal fun PokemonDTO.toEntity() = PokemonEntity(
     id = id,
@@ -11,6 +12,7 @@ internal fun PokemonDTO.toEntity() = PokemonEntity(
     role = role,
     lane = lane,
     attackType = attackType,
+    stars = stars.toEntity(),
     image = image,
     evolutions = evolutions.map { evolution ->
         evolution.toEntity()

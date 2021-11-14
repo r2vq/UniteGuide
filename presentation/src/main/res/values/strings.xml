@@ -37,6 +37,12 @@
     <string name="move_cooldown">Cooldown: %s</string>
     <string name="move_upgrade">Upon reaching Lv. %d, you can select one of the following two moves.</string>
 
+    <string name="star_offense">Offense</string>
+    <string name="star_endurance">Endurance</string>
+    <string name="star_mobility">Mobility</string>
+    <string name="star_scoring">Scoring</string>
+    <string name="star_support">Support</string>
+
     <string name="about_version_title">Version Number</string>
 
     <string name="about_disclaimer_title">Disclaimer</string>

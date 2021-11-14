@@ -11,6 +11,7 @@ data class Pokemon(
     val lane: Lane,
     val difficulty: Difficulty,
     val attackStyle: AttackStyle,
+    val stars: Stars,
     val evolutions: List<Evolution>,
     val passive: Move,
     val basic: Move,
@@ -35,6 +36,13 @@ fun PokemonEntity.toPokemon(): Pokemon = Pokemon(
         "special" -> AttackType.SPECIAL
         else -> AttackType.UNSPECIFIED
     },
+    stars = Stars(
+        offense = stars.offense,
+        endurance = stars.endurance,
+        mobility = stars.mobility,
+        scoring = stars.scoring,
+        support = stars.support,
+    ),
     lane = when (lane) {
         "top" -> Lane.TOP
         "center" -> Lane.CENTER
