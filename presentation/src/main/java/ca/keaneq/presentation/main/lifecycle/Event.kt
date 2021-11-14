@@ -1,4 +1,4 @@
-package ca.keaneq.presentation.lifecycle
+package ca.keaneq.presentation.main.lifecycle
 
 open class Event<out T>(private val content: T) {
     var hasBeenHandled = false

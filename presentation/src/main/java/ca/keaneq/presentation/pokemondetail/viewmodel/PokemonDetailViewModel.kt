@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import ca.keaneq.domain.model.Pokemon
 import ca.keaneq.domain.model.Resource
 import ca.keaneq.domain.usecase.GetPokemonUseCase
-import ca.keaneq.presentation.navigation.ARG_POKEMON_ID
+import ca.keaneq.presentation.main.navigation.ARG_POKEMON_ID
 import ca.keaneq.presentation.pokemondetail.model.MoveState
 import ca.keaneq.presentation.pokemondetail.model.MoveType
 import ca.keaneq.presentation.pokemondetail.model.PokemonDetailState

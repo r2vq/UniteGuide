@@ -9,25 +9,16 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import ca.keaneq.domain.model.AttackType
+import ca.keaneq.domain.model.Difficulty
+import ca.keaneq.domain.model.Lane
 import ca.keaneq.domain.model.Pokemon
-import ca.keaneq.presentation.model.text
+import ca.keaneq.presentation.R
 
 @Composable
 fun PokemonStats(pokemon: Pokemon) {
-    PokemonStats(
-        attackTypeText = pokemon.attackType.text,
-        laneText = pokemon.lane.text,
-        difficultyText = pokemon.difficulty.text,
-    )
-}
-
-@Composable
-fun PokemonStats(
-    attackTypeText: String,
-    laneText: String,
-    difficultyText: String,
-) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
@@ -36,7 +27,7 @@ fun PokemonStats(
             .padding(8.dp)
     ) {
         Text(
-            text = attackTypeText,
+            text = pokemon.attackType.text,
             style = MaterialTheme.typography.body1,
         )
         Text(
@@ -44,7 +35,7 @@ fun PokemonStats(
             modifier = Modifier.padding(8.dp)
         )
         Text(
-            text = laneText,
+            text = pokemon.lane.text,
             style = MaterialTheme.typography.body1,
         )
         Text(
@@ -52,8 +43,40 @@ fun PokemonStats(
             modifier = Modifier.padding(8.dp)
         )
         Text(
-            text = difficultyText,
+            text = pokemon.difficulty.text,
             style = MaterialTheme.typography.body1,
         )
     }
 }
+
+private val AttackType.text
+    @Composable
+    get() = stringResource(
+        when (this) {
+            AttackType.PHYSICAL -> R.string.attack_type_physical
+            AttackType.SPECIAL -> R.string.attack_type_special
+            AttackType.UNSPECIFIED -> R.string.attack_style_unspecified
+        }
+    )
+
+private val Difficulty.text
+    @Composable
+    get() = stringResource(
+        when (this) {
+            Difficulty.NOVICE -> R.string.difficulty_novice
+            Difficulty.INTERMEDIATE -> R.string.difficulty_intermediate
+            Difficulty.EXPERT -> R.string.difficulty_expert
+            Difficulty.UNSPECIFIED -> R.string.difficulty_unspecified
+        }
+    )
+
+private val Lane.text
+    @Composable
+    get() = stringResource(
+        when (this) {
+            Lane.TOP -> R.string.lane_top
+            Lane.CENTER -> R.string.lane_center
+            Lane.BOTTOM -> R.string.lane_bottom
+            Lane.UNSPECIFIED -> R.string.lane_unspecified
+        }
+    )

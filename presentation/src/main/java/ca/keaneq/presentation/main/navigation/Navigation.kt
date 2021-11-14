@@ -1,4 +1,4 @@
-package ca.keaneq.presentation.navigation
+package ca.keaneq.presentation.main.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController

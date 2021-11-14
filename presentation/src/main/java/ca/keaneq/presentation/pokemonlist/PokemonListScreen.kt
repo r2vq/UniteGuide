@@ -11,8 +11,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import ca.keaneq.presentation.navigation.Screen
-import ca.keaneq.presentation.navigation.withArgs
+import ca.keaneq.presentation.main.navigation.Screen
+import ca.keaneq.presentation.main.navigation.withArgs
 import ca.keaneq.presentation.pokemonlist.component.PokemonListItem
 import ca.keaneq.presentation.pokemonlist.viewmodel.PokemonListViewModel
 

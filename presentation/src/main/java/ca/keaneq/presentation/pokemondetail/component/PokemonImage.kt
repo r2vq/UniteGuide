@@ -11,26 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import ca.keaneq.domain.model.Pokemon
-import ca.keaneq.presentation.model.color
-import ca.keaneq.presentation.model.onColor
 import coil.compose.rememberImagePainter
 
 @Composable
 fun PokemonImage(
-    pokemon: Pokemon
-) {
-    PokemonImage(
-        name = pokemon.name,
-        imageUrl = pokemon.imageUrl,
-        color = pokemon.role.color,
-        onColor = pokemon.role.onColor,
-    )
-}
-
-@Composable
-fun PokemonImage(
-    name: String,
-    imageUrl: String?,
+    pokemon: Pokemon,
     color: Color,
     onColor: Color,
 ) {
@@ -41,7 +26,7 @@ fun PokemonImage(
                 .fillMaxWidth()
         ) {
             Text(
-                text = name,
+                text = pokemon.name,
                 style = MaterialTheme.typography.h1,
                 color = onColor,
                 modifier = Modifier
@@ -63,7 +48,7 @@ fun PokemonImage(
             )
         }
         Image(
-            rememberImagePainter(imageUrl),
+            rememberImagePainter(pokemon.imageUrl),
             contentDescription = null,
             modifier = Modifier
                 .height(250.dp)

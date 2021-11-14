@@ -34,7 +34,7 @@ fun PokemonEvolutions(pokemon: Pokemon) {
 }
 
 @Composable
-fun Evolution(
+private fun Evolution(
     name: String,
     showLevel: Boolean,
     imageUrl: String,

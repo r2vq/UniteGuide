@@ -16,7 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import ca.keaneq.domain.model.Pokemon
 import ca.keaneq.presentation.R
-import ca.keaneq.presentation.model.color
+import ca.keaneq.presentation.main.mapper.color
 import coil.compose.rememberImagePainter
 
 @Composable

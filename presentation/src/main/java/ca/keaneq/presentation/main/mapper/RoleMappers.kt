@@ -1,10 +1,8 @@
-package ca.keaneq.presentation.model
+package ca.keaneq.presentation.main.mapper
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
 import ca.keaneq.domain.model.Role
-import ca.keaneq.presentation.R
 import ca.keaneq.presentation.main.*
 
 val Role.color
@@ -28,16 +26,3 @@ val Role.onColor
         Role.SUPPORTER -> MaterialTheme.colors.onSupporter
         else -> MaterialTheme.colors.onUnspecified
     }
-
-val Role.text
-    @Composable
-    get() = stringResource(
-        when (this) {
-            Role.ALL_ROUNDER -> R.string.role_all_rounder
-            Role.ATTACKER -> R.string.role_attacker
-            Role.DEFENDER -> R.string.role_defender
-            Role.SPEEDSTER -> R.string.role_speedster
-            Role.SUPPORTER -> R.string.role_supporter
-            else -> R.string.role_unspecified
-        }
-    )

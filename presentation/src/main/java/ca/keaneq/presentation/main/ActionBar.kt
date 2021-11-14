@@ -7,7 +7,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import ca.keaneq.presentation.navigation.ToolbarState
+import ca.keaneq.presentation.main.navigation.ToolbarState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

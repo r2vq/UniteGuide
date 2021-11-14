@@ -12,8 +12,8 @@ import androidx.navigation.compose.rememberNavController
 import ca.keaneq.presentation.main.ActionBar
 import ca.keaneq.presentation.main.NavigationDrawer
 import ca.keaneq.presentation.main.UniteGuideTheme
-import ca.keaneq.presentation.navigation.Navigation
-import ca.keaneq.presentation.navigation.ToolbarState
+import ca.keaneq.presentation.main.navigation.Navigation
+import ca.keaneq.presentation.main.navigation.ToolbarState
 
 @Composable
 fun UniteGuide(

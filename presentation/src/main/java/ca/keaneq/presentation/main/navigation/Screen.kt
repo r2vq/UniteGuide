@@ -1,4 +1,4 @@
-package ca.keaneq.presentation.navigation
+package ca.keaneq.presentation.main.navigation
 
 sealed class Screen(val route: String) {
     object PokemonList : Screen("pokemon_list")
