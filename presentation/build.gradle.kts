@@ -40,8 +40,8 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.40.1")
 
     // Compose
-    implementation("androidx.compose.material:material:1.0.5")
-    implementation("androidx.compose.ui:ui-tooling:1.0.5")
+    implementation("androidx.compose.material:material:1.1.0-beta02")
+    implementation("androidx.compose.ui:ui-tooling:1.1.0-beta02")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
     implementation("androidx.navigation:navigation-compose:2.4.0-beta02")
