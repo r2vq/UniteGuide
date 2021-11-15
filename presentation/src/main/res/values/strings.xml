@@ -48,6 +48,12 @@
     <string name="about_disclaimer_title">Disclaimer</string>
     <string name="about_disclaimer_body">Unite Guide is an unofficial, free, fan made app and is NOT affiliated, endorsed or supported by Nintendo, GAME FREAK, or The Pokémon Company in any way.\nSome images used in this app are copyrighted and are supported under fair use.\nPokémon and Pokémon character names are trademark of Nintendo.\nNo copyright infringement intended.\n\nPokémon © 2002–2021 Pokémon.\n© 1995–2021 Nintendo/Creatures Inc./GAME FREAK inc.</string>
 
+    <string name="about_app_title">About Unite Guide</string>
+    <string name="about_app_body">Unite Guide is an app that I made as a resource for Pokémon Unite. The app itself is completely open-source, non-profit, and ad-free. But I am the only the developer. If you would like to contribute, please open a Pull Request on Unite Guide\'s GitHub page.</string>
+
+    <string name="about_privacy_title">Privacy Policy</string>
+    <string name="about_privacy_body">I don\'t store your data. Period.</string>
+
     <string name="descriptor_menu_button">Menu Button</string>
     <string name="descriptor_up_button">Up Button</string>
     <string name="descriptor_close_button">Close Button</string>

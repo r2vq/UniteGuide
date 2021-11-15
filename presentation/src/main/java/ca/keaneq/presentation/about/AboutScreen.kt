@@ -22,6 +22,14 @@ fun AboutScreen(
                 subtitle = "v$versionName",
             )
             AboutItem(
+                title = stringResource(id = R.string.about_app_title),
+                body = stringResource(id = R.string.about_app_body),
+            )
+            AboutItem(
+                title = stringResource(id = R.string.about_privacy_title),
+                body = stringResource(id = R.string.about_privacy_body),
+            )
+            AboutItem(
                 title = stringResource(id = R.string.about_disclaimer_title),
                 body = stringResource(id = R.string.about_disclaimer_body),
             )
