@@ -27,6 +27,11 @@ enum class DrawerItem(
         icon = R.drawable.ic_pokeball_black,
         screen = Screen.PokemonList,
     ),
+    HELD_ITEM(
+        text = R.string.title_held_items,
+        icon = R.drawable.ic_held_items,
+        screen = Screen.HeldItems,
+    ),
     ABOUT(
         text = R.string.title_about,
         icon = R.drawable.ic_info_black_24dp,

@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import ca.keaneq.presentation.about.AboutScreen
+import ca.keaneq.presentation.helditemlist.HeldItemListScreen
 import ca.keaneq.presentation.pokemondetail.PokemonDetailScreen
 import ca.keaneq.presentation.pokemonlist.PokemonListScreen
 
@@ -43,6 +44,12 @@ fun Navigation(
         ) {
             onNavigationChange(ToolbarState.Menu)
             AboutScreen(versionName)
+        }
+        composable(
+            route = Screen.HeldItems.route,
+        ) {
+            onNavigationChange(ToolbarState.Menu)
+            HeldItemListScreen(navController = navController)
         }
     }
 }

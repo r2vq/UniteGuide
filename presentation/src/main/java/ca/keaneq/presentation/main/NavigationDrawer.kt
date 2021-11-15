@@ -41,6 +41,13 @@ fun NavigationDrawer(
                     )
                 }
                 item {
+                    DrawerItem.HELD_ITEM.ToNavigationDrawerItem(
+                        navController = navController,
+                        drawerState = drawerState,
+                        scope = scope
+                    )
+                }
+                item {
                     DrawerItem.ABOUT.ToNavigationDrawerItem(
                         navController = navController,
                         drawerState = drawerState,
