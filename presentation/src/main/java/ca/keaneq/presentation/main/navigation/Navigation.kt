@@ -11,6 +11,7 @@ import ca.keaneq.presentation.about.AboutScreen
 import ca.keaneq.presentation.helditemlist.HeldItemListScreen
 import ca.keaneq.presentation.pokemondetail.PokemonDetailScreen
 import ca.keaneq.presentation.pokemonlist.PokemonListScreen
+import ca.keaneq.presentation.settings.SettingsScreen
 
 const val ARG_POKEMON_ID = "pokemonId"
 
@@ -50,6 +51,12 @@ fun Navigation(
         ) {
             onNavigationChange(ToolbarState.Menu)
             HeldItemListScreen(navController = navController)
+        }
+        composable(
+            route = Screen.Settings.route,
+        ) {
+            onNavigationChange(ToolbarState.Menu)
+            SettingsScreen()
         }
     }
 }

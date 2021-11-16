@@ -14,6 +14,10 @@ android {
     compileSdk = 31
     buildToolsVersion = "30.0.3"
 
+    defaultConfig {
+        minSdk = 30
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8

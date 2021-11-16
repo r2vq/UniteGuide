@@ -4,6 +4,7 @@ import ca.keaneq.domain.model.Theme
 import ca.keaneq.repository.Repository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 /**
@@ -21,4 +22,5 @@ class GetThemeUseCase @Inject constructor(
                 else -> Theme.System
             }
         }
+        .onStart { emit(Theme.System) }
 }

@@ -54,6 +54,13 @@ fun NavigationDrawer(
                         scope = scope
                     )
                 }
+                item {
+                    DrawerItem.SETTING.ToNavigationDrawerItem(
+                        navController = navController,
+                        drawerState = drawerState,
+                        scope = scope
+                    )
+                }
             },
             modifier = Modifier.fillMaxSize()
         )

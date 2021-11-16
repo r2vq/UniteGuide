@@ -37,6 +37,11 @@ enum class DrawerItem(
         icon = R.drawable.ic_info_black_24dp,
         screen = Screen.About,
     ),
+    SETTING(
+        text = R.string.title_settings,
+        icon = R.drawable.ic_gear,
+        screen = Screen.Settings,
+    )
 }
 
 @Composable
