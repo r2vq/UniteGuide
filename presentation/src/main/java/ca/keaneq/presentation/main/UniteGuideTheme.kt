@@ -2,8 +2,6 @@
 
 package ca.keaneq.presentation.main
 
-import androidx.compose.animation.Crossfade
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -12,25 +10,22 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
 import ca.keaneq.domain.model.Theme
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
-
 fun UniteGuideTheme(
     theme: Theme,
     content: @Composable () -> Unit
 ) {
-    val state = when (theme) {
+    val colors = when (theme) {
         Theme.Dark -> ThemeColors.DarkColors
         Theme.Light -> ThemeColors.LightColors
         Theme.System -> if (isSystemInDarkTheme()) ThemeColors.DarkColors else ThemeColors.LightColors
     }
-    Crossfade(targetState = state) { colors ->
-        MaterialTheme(
-            colors = colors,
-            content = content,
-            typography = typography,
-        )
-    }
+    // TODO Add in crossfade here for better transition WHEN CROSSFADE DOESN'T BREAK BACKSTACK
+    MaterialTheme(
+        colors = colors,
+        content = content,
+        typography = typography,
+    )
 }
 
 val Colors.allRounder: Color get() = ThemeColors.DEEP_PURPLE_A700
