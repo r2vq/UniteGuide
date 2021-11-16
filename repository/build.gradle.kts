@@ -25,6 +25,10 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.40.1")
     kapt("com.google.dagger:hilt-android-compiler:2.40.1")
 
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+
     // Modules
     implementation(project(mapOf("path" to ":network")))
+    implementation(project(mapOf("path" to ":preferences")))
 }

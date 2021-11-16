@@ -1,15 +1,17 @@
 package ca.keaneq.repository.impl
 
 import ca.keaneq.network.PokeClient
+import ca.keaneq.preferences.UnitePreferences
 import ca.keaneq.repository.Repository
 import ca.keaneq.repository.mapper.toEntity
-import ca.keaneq.repository.model.HeldItemEntity
-import ca.keaneq.repository.model.PokemonEntity
-import ca.keaneq.repository.model.Resource
+import ca.keaneq.repository.model.*
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 import ca.keaneq.network.model.Resource as NetworkResource
 
-internal class RepositoryImpl constructor(
-    private val client: PokeClient
+internal class RepositoryImpl @Inject constructor(
+    private val client: PokeClient,
+    private val prefs: UnitePreferences,
 ) : Repository {
 
     override suspend fun getPokemonList(): Resource<List<PokemonEntity>> = client
@@ -37,4 +39,11 @@ internal class RepositoryImpl constructor(
                 Resource.Error(exception = resource.exception)
             }
         }
+
+    override suspend fun setTheme(theme: Int) {
+        prefs.setValue(PrefKeys.theme, theme)
+    }
+
+    override fun getTheme(): Flow<Int> = prefs
+        .valueFlow(PrefKeys.theme)
 }
