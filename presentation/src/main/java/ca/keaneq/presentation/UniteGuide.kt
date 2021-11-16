@@ -3,29 +3,31 @@ package ca.keaneq.presentation
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import ca.keaneq.presentation.main.ActionBar
 import ca.keaneq.presentation.main.NavigationDrawer
 import ca.keaneq.presentation.main.UniteGuideTheme
 import ca.keaneq.presentation.main.navigation.Navigation
 import ca.keaneq.presentation.main.navigation.ToolbarState
+import ca.keaneq.presentation.main.viewmodel.ThemeViewModel
 
 @Composable
 fun UniteGuide(
     appName: String,
-    versionName: String
+    versionName: String,
+    viewModel: ThemeViewModel = hiltViewModel()
 ) {
     val navController = rememberNavController()
     val scope = rememberCoroutineScope()
     val toolbarState = remember { mutableStateOf(ToolbarState.Menu) }
     val scaffoldState = rememberScaffoldState()
 
-    UniteGuideTheme {
+    UniteGuideTheme(
+        theme = viewModel.theme.collectAsState().value
+    ) {
         Scaffold(
             topBar = {
                 ActionBar(

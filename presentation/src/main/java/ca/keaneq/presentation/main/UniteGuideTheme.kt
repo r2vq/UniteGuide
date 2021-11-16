@@ -8,14 +8,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
+import ca.keaneq.domain.model.Theme
 
 @Composable
 fun UniteGuideTheme(
-    isDarkMode: Boolean = isSystemInDarkTheme(),
+    theme: Theme,
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
-        colors = if (isDarkMode) ThemeColors.DarkColors else ThemeColors.LightColors,
+        colors = when (theme) {
+            Theme.Dark -> ThemeColors.DarkColors
+            Theme.Light -> ThemeColors.LightColors
+            Theme.System -> if (isSystemInDarkTheme()) ThemeColors.DarkColors else ThemeColors.LightColors
+        },
         content = content,
         typography = typography,
     )
