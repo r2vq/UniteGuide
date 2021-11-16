@@ -50,50 +50,66 @@ fun Move(
                 .fillMaxWidth()
                 .padding(12.dp)
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Image(
-                    painter = rememberImagePainter(moveState.image),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .height(48.dp)
-                        .width(48.dp)
-                        .padding(end = 12.dp)
-                )
-                Text(
-                    style = MaterialTheme.typography.h1,
-                    text = moveState.name,
-                    color = onColor,
-                )
-            }
+            MainContent(moveState, onColor)
             if (moveState.isExpanded) {
-                moveState.cooldown?.let { cooldown ->
-                    Text(
-                        style = MaterialTheme.typography.body2,
-                        text = stringResource(R.string.move_cooldown, cooldown),
-                        color = onColor,
-                        modifier = Modifier
-                            .padding(bottom = 4.dp)
-                    )
-                }
-                Text(
-                    style = MaterialTheme.typography.body2,
-                    text = moveState.description,
-                    color = onColor,
-                )
-                moveState.upgrade?.let { upgrade ->
-                    Text(
-                        style = MaterialTheme.typography.body2,
-                        text = stringResource(R.string.move_upgrade, upgrade),
-                        color = onColor,
-                        modifier = Modifier
-                            .padding(top = 4.dp)
-                    )
-                }
+                ExpandedContent(moveState, onColor)
             }
         }
+    }
+}
+
+@Composable
+private fun MainContent(
+    moveState: MoveState,
+    onColor: Color
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Image(
+            painter = rememberImagePainter(moveState.image),
+            contentDescription = null,
+            modifier = Modifier
+                .height(48.dp)
+                .width(48.dp)
+                .padding(end = 12.dp)
+        )
+        Text(
+            style = MaterialTheme.typography.h1,
+            text = moveState.name,
+            color = onColor,
+        )
+    }
+}
+
+@Composable
+private fun ExpandedContent(
+    moveState: MoveState,
+    onColor: Color
+) {
+    moveState.cooldown?.let { cooldown ->
+        Text(
+            style = MaterialTheme.typography.body2,
+            text = stringResource(R.string.move_cooldown, cooldown),
+            color = onColor,
+            modifier = Modifier
+                .padding(bottom = 4.dp)
+        )
+    }
+    Text(
+        style = MaterialTheme.typography.body2,
+        text = moveState.description,
+        color = onColor,
+    )
+    moveState.upgrade?.let { upgrade ->
+        Text(
+            style = MaterialTheme.typography.body2,
+            text = stringResource(R.string.move_upgrade, upgrade),
+            color = onColor,
+            modifier = Modifier
+                .padding(top = 4.dp)
+        )
     }
 }
 

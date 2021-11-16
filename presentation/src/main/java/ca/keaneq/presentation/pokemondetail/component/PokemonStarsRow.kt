@@ -19,12 +19,16 @@ fun StarsRow(
     score: Float,
     color: Color,
     onColor: Color,
+    isTop: Boolean = false,
+    isBottom: Boolean = false,
 ) {
     Row(
         modifier = Modifier
             .padding(
-                horizontal = 4.dp,
-                vertical = 8.dp
+                start = 4.dp,
+                top = if (isTop) 8.dp else 4.dp,
+                end = 4.dp,
+                bottom = if (isBottom) 16.dp else 4.dp,
             )
     ) {
         Text(

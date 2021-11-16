@@ -1,8 +1,10 @@
 package ca.keaneq.presentation.pokemondetail.component
 
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import ca.keaneq.domain.model.AttackStyle
 import ca.keaneq.domain.model.Role
@@ -39,46 +41,7 @@ fun Content(
         }
         item { PokemonStats(pokemon = pokemonState.pokemon) }
         item { PokemonEvolutions(pokemon = pokemonState.pokemon) }
-        item {
-            StarsRow(
-                text = stringResource(R.string.star_offense),
-                color = color,
-                onColor = onColor,
-                score = pokemonState.pokemon.stars.offense,
-            )
-        }
-        item {
-            StarsRow(
-                text = stringResource(R.string.star_endurance),
-                color = color,
-                onColor = onColor,
-                score = pokemonState.pokemon.stars.endurance,
-            )
-        }
-        item {
-            StarsRow(
-                text = stringResource(R.string.star_mobility),
-                color = color,
-                onColor = onColor,
-                score = pokemonState.pokemon.stars.mobility,
-            )
-        }
-        item {
-            StarsRow(
-                text = stringResource(R.string.star_scoring),
-                color = color,
-                onColor = onColor,
-                score = pokemonState.pokemon.stars.scoring,
-            )
-        }
-        item {
-            StarsRow(
-                text = stringResource(R.string.star_support),
-                color = color,
-                onColor = onColor,
-                score = pokemonState.pokemon.stars.support,
-            )
-        }
+        starsRows(color, onColor, pokemonState)
         pokemonState.moves.forEach { moveState ->
             item {
                 Move(
@@ -89,6 +52,55 @@ fun Content(
                 )
             }
         }
+    }
+}
+
+private fun LazyListScope.starsRows(
+    color: Color,
+    onColor: Color,
+    pokemonState: PokemonState
+) {
+    item {
+        StarsRow(
+            text = stringResource(R.string.star_offense),
+            color = color,
+            onColor = onColor,
+            score = pokemonState.pokemon.stars.offense,
+            isTop = true,
+        )
+    }
+    item {
+        StarsRow(
+            text = stringResource(R.string.star_endurance),
+            color = color,
+            onColor = onColor,
+            score = pokemonState.pokemon.stars.endurance,
+        )
+    }
+    item {
+        StarsRow(
+            text = stringResource(R.string.star_mobility),
+            color = color,
+            onColor = onColor,
+            score = pokemonState.pokemon.stars.mobility,
+        )
+    }
+    item {
+        StarsRow(
+            text = stringResource(R.string.star_scoring),
+            color = color,
+            onColor = onColor,
+            score = pokemonState.pokemon.stars.scoring,
+        )
+    }
+    item {
+        StarsRow(
+            text = stringResource(R.string.star_support),
+            color = color,
+            onColor = onColor,
+            score = pokemonState.pokemon.stars.support,
+            isBottom = true,
+        )
     }
 }
 
