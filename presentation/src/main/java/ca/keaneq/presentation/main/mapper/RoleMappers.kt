@@ -15,14 +15,3 @@ val Role.color
         Role.SUPPORTER -> MaterialTheme.colors.supporter
         else -> MaterialTheme.colors.unspecified
     }
-
-val Role.onColor
-    @Composable
-    get() = when (this) {
-        Role.ALL_ROUNDER -> MaterialTheme.colors.onAllRounder
-        Role.ATTACKER -> MaterialTheme.colors.onAttacker
-        Role.DEFENDER -> MaterialTheme.colors.onDefender
-        Role.SPEEDSTER -> MaterialTheme.colors.onSpeedster
-        Role.SUPPORTER -> MaterialTheme.colors.onSupporter
-        else -> MaterialTheme.colors.onUnspecified
-    }

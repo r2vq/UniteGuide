@@ -2,6 +2,7 @@ package ca.keaneq.presentation.pokemondetail.component
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
@@ -10,7 +11,7 @@ import ca.keaneq.domain.model.AttackStyle
 import ca.keaneq.domain.model.Role
 import ca.keaneq.presentation.R
 import ca.keaneq.presentation.main.mapper.color
-import ca.keaneq.presentation.main.mapper.onColor
+import ca.keaneq.presentation.main.onPokemon
 import ca.keaneq.presentation.pokemondetail.model.PokemonState
 
 @Composable
@@ -19,7 +20,7 @@ fun Content(
     onMoveClick: (Int) -> Unit,
 ) {
     val color = pokemonState.pokemon.role.color
-    val onColor = pokemonState.pokemon.role.onColor
+    val onColor = MaterialTheme.colors.onPokemon
 
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,

@@ -35,12 +35,7 @@ val Colors.speedster: Color get() = ThemeColors.LIGHT_BLUE_800
 val Colors.supporter: Color get() = ThemeColors.ORANGE_800
 val Colors.unspecified: Color get() = ThemeColors.BLACK
 
-val Colors.onAllRounder: Color get() = ThemeColors.WHITE
-val Colors.onAttacker: Color get() = ThemeColors.WHITE
-val Colors.onDefender: Color get() = ThemeColors.WHITE
-val Colors.onSpeedster: Color get() = ThemeColors.WHITE
-val Colors.onSupporter: Color get() = ThemeColors.WHITE
-val Colors.onUnspecified: Color get() = ThemeColors.WHITE
+val Colors.onPokemon: Color get() = ThemeColors.WHITE
 
 private val typography = Typography(
     h1 = TextStyle(
