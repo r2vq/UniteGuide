@@ -29,16 +29,17 @@ fun UniteGuideTheme(
 }
 
 val Colors.allRounder: Color get() = ThemeColors.DEEP_PURPLE_A700
-val Colors.onAllRounder: Color get() = ThemeColors.WHITE
-val Colors.attacker: Color get() = ThemeColors.ORANGE_800
-val Colors.onAttacker: Color get() = ThemeColors.WHITE
-val Colors.defender: Color get() = ThemeColors.GREEN_700
+val Colors.attacker: Color get() = ThemeColors.RED_500
+val Colors.defender: Color get() = ThemeColors.GREEN_800
 val Colors.speedster: Color get() = ThemeColors.LIGHT_BLUE_800
-val Colors.supporter: Color get() = ThemeColors.AMBER_300
+val Colors.supporter: Color get() = ThemeColors.ORANGE_800
 val Colors.unspecified: Color get() = ThemeColors.BLACK
-val Colors.onDefender: Color get() = ThemeColors.BLACK
+
+val Colors.onAllRounder: Color get() = ThemeColors.WHITE
+val Colors.onAttacker: Color get() = ThemeColors.WHITE
+val Colors.onDefender: Color get() = ThemeColors.WHITE
 val Colors.onSpeedster: Color get() = ThemeColors.WHITE
-val Colors.onSupporter: Color get() = ThemeColors.BLACK
+val Colors.onSupporter: Color get() = ThemeColors.WHITE
 val Colors.onUnspecified: Color get() = ThemeColors.WHITE
 
 private val typography = Typography(
@@ -62,13 +63,15 @@ private val typography = Typography(
 private object ThemeColors {
     val BLACK = Color(0xFF000000)
     val WHITE = Color(0xFFFFFFFF)
+    val RED_500 = Color(0xFFD32F2F)
     val ORANGE_700 = Color(0xFFF57C00)
     val ORANGE_800 = Color(0xFFF06F2A)
-    val GREEN_700 = Color(0xFF689F38)
-    val LIGHT_BLUE_800 = Color(0xFF0277BD)
     val AMBER_300 = Color(0xFFFFD54F)
-    val DEEP_PURPLE_A700 = Color(0xFF5427A0)
+    val GREEN_700 = Color(0xFF689F38)
+    val GREEN_800 = Color(0xFF2E7D32)
+    val LIGHT_BLUE_800 = Color(0xFF0277BD)
     val DEEP_PURPLE_A700_DARK = Color(0XFF0A00B6)
+    val DEEP_PURPLE_A700 = Color(0xFF5427A0)
     val GRAY_800 = Color(0xFF424242)
     val GRAY_900 = Color(0xFF111111)
     val BLUE_GRAY_200 = Color(0xFFB0BEC5)
