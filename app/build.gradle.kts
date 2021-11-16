@@ -74,6 +74,7 @@ dependencies {
     implementation(project(mapOf("path" to ":network")))
     implementation(project(mapOf("path" to ":presentation")))
     implementation(project(mapOf("path" to ":repository")))
+    implementation(project(mapOf("path" to ":preferences")))
 
     // Testing
     testImplementation("junit:junit:4.13.2")
