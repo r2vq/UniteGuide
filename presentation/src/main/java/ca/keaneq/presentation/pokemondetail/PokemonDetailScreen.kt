@@ -1,13 +1,11 @@
 package ca.keaneq.presentation.pokemondetail
 
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import ca.keaneq.presentation.pokemondetail.component.Content
 import ca.keaneq.presentation.pokemondetail.viewmodel.PokemonDetailViewModel
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PokemonDetailScreen(
     viewModel: PokemonDetailViewModel = hiltViewModel(),
