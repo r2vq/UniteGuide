@@ -8,6 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import ca.keaneq.presentation.helditemlist.component.HeldListItem
 import ca.keaneq.presentation.helditemlist.viewmodel.HeldItemListViewModel
+import ca.keaneq.presentation.main.navigation.Screen
+import ca.keaneq.presentation.main.navigation.withArgs
 
 @Composable
 fun HeldItemListScreen(
@@ -25,9 +27,9 @@ fun HeldItemListScreen(
                 heldItem.name
             }
         ) { _, heldItem ->
-            HeldListItem(heldItem) {
-                // todo navigate
-            }
+            HeldListItem(
+                heldItem = heldItem
+            ) { onNavigate(Screen.HeldItemDetail.withArgs(heldItem.id)) }
         }
     }
 }

@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import ca.keaneq.presentation.about.AboutScreen
+import ca.keaneq.presentation.helditemdetail.HeldItemDetailScreen
 import ca.keaneq.presentation.helditemlist.HeldItemListScreen
 import ca.keaneq.presentation.pokemondetail.PokemonDetailScreen
 import ca.keaneq.presentation.pokemonlist.PokemonListScreen
@@ -56,6 +57,18 @@ fun UniteGuideContent(
         ) {
             onChangeToolbarState(ToolbarState.Menu)
             HeldItemListScreen(onNavigate = onNavigate)
+        }
+        composable(
+            route = Screen.HeldItemDetail.route + "/{$ARG_HELD_ITEM_ID}",
+            arguments = listOf(
+                navArgument(ARG_HELD_ITEM_ID) {
+                    type = NavType.StringType
+                    nullable = false
+                }
+            )
+        ) {
+            onChangeToolbarState(ToolbarState.Up)
+            HeldItemDetailScreen()
         }
         composable(
             route = Screen.Settings.route,
