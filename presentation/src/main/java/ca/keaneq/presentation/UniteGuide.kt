@@ -2,59 +2,61 @@ package ca.keaneq.presentation
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Scaffold
-import androidx.compose.material.rememberScaffoldState
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.compose.rememberNavController
 import ca.keaneq.presentation.main.ActionBar
 import ca.keaneq.presentation.main.NavigationDrawer
 import ca.keaneq.presentation.main.UniteGuideTheme
-import ca.keaneq.presentation.main.navigation.Navigation
-import ca.keaneq.presentation.main.navigation.ToolbarState
+import ca.keaneq.presentation.main.model.UniteGuideStateHolder
+import ca.keaneq.presentation.main.model.rememberUniteGuideState
+import ca.keaneq.presentation.main.navigation.UniteGuideContent
 import ca.keaneq.presentation.main.viewmodel.ThemeViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun UniteGuide(
-    appName: String,
-    versionName: String,
-    viewModel: ThemeViewModel = hiltViewModel()
+    appName: String = "",
+    versionName: String = "",
+    state: UniteGuideStateHolder = rememberUniteGuideState(
+        appName = appName,
+        versionName = versionName
+    ),
+    viewModel: ThemeViewModel = hiltViewModel(),
 ) {
-    val navController = rememberNavController()
-    val scope = rememberCoroutineScope()
-    val toolbarState = remember { mutableStateOf(ToolbarState.Menu) }
-    val scaffoldState = rememberScaffoldState()
-
     UniteGuideTheme(
         theme = viewModel.theme.collectAsState().value
     ) {
         Scaffold(
             topBar = {
                 ActionBar(
-                    text = appName,
-                    drawerState = scaffoldState.drawerState,
-                    scope = scope,
-                    toolbarState = toolbarState.value,
-                    navController = navController,
+                    text = state.appName,
+                    toolbarState = state.toolbarState.value,
+                    onOpenDrawer = { state.scope.launch { state.scaffoldState.drawerState.open() } },
+                    onCloseDrawer = { state.scope.launch { state.scaffoldState.drawerState.close() } },
+                    onPopBackStack = { state.navController.popBackStack() },
                 )
             },
             drawerContent = {
-                NavigationDrawer(
-                    navController = navController,
-                    drawerState = scaffoldState.drawerState,
-                    scope = scope,
-                )
+                NavigationDrawer { screen ->
+                    state.navController.navigate(screen.route) {
+                        launchSingleTop = true
+                        popUpTo(screen.route)
+                    }
+                    state.scope.launch { state.scaffoldState.drawerState.close() }
+                }
             },
             drawerShape = RoundedCornerShape(topEnd = 24.dp),
             content = {
-                Navigation(
-                    navController = navController,
-                    versionName = versionName,
-                ) { toolbar ->
-                    toolbarState.value = toolbar
-                }
+                UniteGuideContent(
+                    navController = state.navController,
+                    versionName = state.versionName,
+                    onChangeToolbarState = { toolbar -> state.toolbarState.value = toolbar },
+                    onNavigate = { route -> state.navController.navigate(route) },
+                )
             },
-            scaffoldState = scaffoldState,
+            scaffoldState = state.scaffoldState,
         )
     }
 }

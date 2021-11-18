@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContent {
             UniteGuide(
                 appName = stringResource(R.string.app_name),
-                versionName = BuildConfig.VERSION_NAME
+                versionName = BuildConfig.VERSION_NAME,
             )
         }
     }

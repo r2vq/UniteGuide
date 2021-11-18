@@ -9,8 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import ca.keaneq.presentation.main.navigation.Screen
 import ca.keaneq.presentation.main.navigation.withArgs
 import ca.keaneq.presentation.pokemonlist.component.PokemonListItem
@@ -19,7 +17,7 @@ import ca.keaneq.presentation.pokemonlist.viewmodel.PokemonListViewModel
 @Composable
 fun PokemonListScreen(
     viewModel: PokemonListViewModel = hiltViewModel(),
-    navController: NavController = rememberNavController(),
+    onNavigate: (route: String) -> Unit = {},
 ) {
     val state = viewModel.state.value
     LazyColumn(
@@ -31,9 +29,7 @@ fun PokemonListScreen(
             PokemonListItem(
                 pokemon = pokemon,
                 isFirstItem = i == 0,
-            ) {
-                navController.navigate(Screen.PokemonDetail.withArgs(pokemon.id))
-            }
+            ) { onNavigate(Screen.PokemonDetail.withArgs(pokemon.id)) }
         }
     }
 }

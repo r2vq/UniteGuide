@@ -14,19 +14,24 @@ import ca.keaneq.presentation.pokemonlist.PokemonListScreen
 import ca.keaneq.presentation.settings.SettingsScreen
 
 const val ARG_POKEMON_ID = "pokemonId"
+const val ARG_HELD_ITEM_ID = "heldItemId"
 
 @Composable
-fun Navigation(
+fun UniteGuideContent(
     navController: NavHostController = rememberNavController(),
     versionName: String = "",
-    onNavigationChange: (ToolbarState) -> Unit = {},
+    onChangeToolbarState: (ToolbarState) -> Unit = {},
+    onNavigate: (route: String) -> Unit = {},
 ) {
-    NavHost(navController = navController, startDestination = Screen.PokemonList.route) {
+    NavHost(
+        navController = navController,
+        startDestination = Screen.PokemonList.route
+    ) {
         composable(
             route = Screen.PokemonList.route,
         ) {
-            onNavigationChange(ToolbarState.Menu)
-            PokemonListScreen(navController = navController)
+            onChangeToolbarState(ToolbarState.Menu)
+            PokemonListScreen(onNavigate = onNavigate)
         }
         composable(
             route = Screen.PokemonDetail.route + "/{$ARG_POKEMON_ID}",
@@ -37,25 +42,25 @@ fun Navigation(
                 }
             )
         ) {
-            onNavigationChange(ToolbarState.Up)
+            onChangeToolbarState(ToolbarState.Up)
             PokemonDetailScreen()
         }
         composable(
             route = Screen.About.route,
         ) {
-            onNavigationChange(ToolbarState.Menu)
+            onChangeToolbarState(ToolbarState.Menu)
             AboutScreen(versionName)
         }
         composable(
             route = Screen.HeldItems.route,
         ) {
-            onNavigationChange(ToolbarState.Menu)
-            HeldItemListScreen(navController = navController)
+            onChangeToolbarState(ToolbarState.Menu)
+            HeldItemListScreen(onNavigate = onNavigate)
         }
         composable(
             route = Screen.Settings.route,
         ) {
-            onNavigationChange(ToolbarState.Menu)
+            onChangeToolbarState(ToolbarState.Menu)
             SettingsScreen()
         }
     }
