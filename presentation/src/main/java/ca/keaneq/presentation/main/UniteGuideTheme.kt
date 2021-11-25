@@ -28,6 +28,7 @@ fun UniteGuideTheme(
     )
 }
 
+val Colors.heldItems: Color get() = ThemeColors.GREEN_700
 val Colors.allRounder: Color get() = ThemeColors.DEEP_PURPLE_A700
 val Colors.attacker: Color get() = ThemeColors.RED_500
 val Colors.defender: Color get() = ThemeColors.GREEN_800

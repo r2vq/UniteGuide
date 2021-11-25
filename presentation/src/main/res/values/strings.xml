@@ -35,6 +35,9 @@
 
     <string name="header_moveset">Moveset</string>
 
+    <string name="held_item_stat_level">Level %s</string>
+    <string name="held_item_stat_description_summary">%s … %s</string>
+
     <string name="move_cooldown">Cooldown: %s</string>
     <string name="move_upgrade">Upon reaching Lv. %d, you can select one of the following two moves.</string>
 
