@@ -1,0 +1,31 @@
+body {
+  background: #000000;
+  color: #eeeeee;
+  font-family: 'Roboto', sans-serif;
+}
+
+article {
+  background: #222222;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 10px;
+}
+
+article div {
+  display: inline-block;
+}
+
+h1 {
+  margin: 20px;
+}
+
+h2 {
+  margin: 0px;
+}
+
+.download img {
+  margin: 40px;
+  width: 150px;
+}
